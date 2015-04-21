@@ -1,0 +1,13 @@
+<h2>Selected Role : {{ data.role_name }}</h2>
+
+<div class="b-a bg-light dk r r-2x">
+    <div ivh-treeview="my_data_tree"
+         ivh-treeview-change-handler="awesomeCallback"
+         ivh-treeview-id-attribute="'value'"
+         ivh-treeview-validate="true"
+
+            ></div>
+</div>
+<button class="btn btn-primary btn-default" ng-click="save()">
+    Save
+</button>
