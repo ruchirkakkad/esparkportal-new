@@ -1431,7 +1431,7 @@ angular.module('app')
                 })
                   .state('app.departments', {
                     url: '/departments',
-                    template: '<div ui-view  ng-controller="TimezonesController" class="fade-in-right-big"></div>'
+                    template: '<div ui-view  ng-controller="DepartmentsController" class="fade-in-right-big"></div>'
                 })
                 .state('app.departments.index', {
                     url: '/index',
