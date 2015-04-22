@@ -122,7 +122,7 @@ class PermissionsController extends \BaseController
                         $modules[$key1]['children'][$key2]['children'][$key3]['children'][3]['label'] = "view";
 
                         $modules[$key1]['children'][$key2]['children'][$key3]['children'][4]['label'] = "csv";
-                        if(!empty($permission)){
+                        if(!empty($permission)&&isset($permission[$value3['module_id']])){
                             $modules[$key1]['children'][$key2]['children'][$key3]['children'][0]['selected'] =($permission[$value3['module_id']]['add'])?true:false;
                             $modules[$key1]['children'][$key2]['children'][$key3]['children'][1]['selected'] =($permission[$value3['module_id']]['edit'])?true:false;
                             $modules[$key1]['children'][$key2]['children'][$key3]['children'][2]['selected'] =($permission[$value3['module_id']]['delete'])?true:false;
@@ -143,7 +143,7 @@ class PermissionsController extends \BaseController
                     $modules[$key1]['children'][$key2]['children'][3]['label'] = "view";
 
                     $modules[$key1]['children'][$key2]['children'][4]['label'] = "csv";
-                    if(!empty($permission)){
+                    if(!empty($permission)&&isset($permission[$value2['module_id']])){
                         $modules[$key1]['children'][$key2]['children'][0]['selected'] =($permission[$value2['module_id']]['add'])?true:false;
                         $modules[$key1]['children'][$key2]['children'][1]['selected'] =($permission[$value2['module_id']]['edit'])?true:false;
                         $modules[$key1]['children'][$key2]['children'][2]['selected'] =($permission[$value2['module_id']]['delete'])?true:false;

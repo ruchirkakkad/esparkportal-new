@@ -36,7 +36,7 @@ angular.module('app')
                 })
                 .state('access.signup', {
                     url: '/signup',
-                    templateUrl: 'tpl/page_signup.html',
+                    templateUrl: 'signup',
                     resolve: {
                         deps: ['uiLoad',
                             function (uiLoad) {
@@ -149,9 +149,17 @@ angular.module('app')
                     templateUrl: 'marketing_countries/index-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/marketing_countries.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/marketing_countries.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -160,9 +168,17 @@ angular.module('app')
                     templateUrl: 'marketing_countries/create-add',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/marketing_countries.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/marketing_countries.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -171,9 +187,17 @@ angular.module('app')
                     templateUrl: 'marketing_countries/edit-edit',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/marketing_countries.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/marketing_countries.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
 
                     }
@@ -553,9 +577,17 @@ angular.module('app')
                     templateUrl: 'marketing_states/index-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/marketing_states.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/marketing_states.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -564,9 +596,17 @@ angular.module('app')
                     templateUrl: 'marketing_states/create-add',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/marketing_states.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/marketing_states.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -575,9 +615,17 @@ angular.module('app')
                     templateUrl: 'marketing_states/edit-edit',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/marketing_states.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/marketing_states.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
 
                     }
@@ -1314,6 +1362,135 @@ angular.module('app')
                 .state('music.playlist', {
                     url: '/playlist/{fold}',
                     templateUrl: 'tpl/music.playlist.html'
+                })
+                
+                
+                 .state('app.users', {
+                    url: '/users',
+                    template: '<div ui-view  ng-controller="UsersController" class="fade-in-right-big"></div>'
+
+                })
+                .state('app.users.index', {
+                    url: '/index',
+                    templateUrl: 'users/index',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/users.js']);
+                            }]
+                    }
+                })
+                .state('app.users.create', {
+                    url: '/create',
+                    templateUrl: 'users/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/users.js']);
+                            }]
+                    }
+                })
+                .state('app.users.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'users/edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/users.js']);
+                            }]
+
+                    }
+                })
+                .state('app.users.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/users/destroy/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    var message = '<strong>Delete!</strong> You successfully deleted the module.';
+                                    Flash.create('success', message);
+                                    $state.go('app.users.index');
+                                }
+                                if (data.code == '403') {
+                                    $state.go('app.users.index');
+                                }
+                            });
+                    }
+                })
+                  .state('app.departments', {
+                    url: '/departments',
+                    template: '<div ui-view  ng-controller="TimezonesController" class="fade-in-right-big"></div>'
+                })
+                .state('app.departments.index', {
+                    url: '/index',
+                    templateUrl: 'departments/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/departments.js']);
+                            }]
+                    }
+                })
+                .state('app.departments.create', {
+                    url: '/create',
+                    templateUrl: 'departments/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/departments.js']);
+                            }]
+                    }
+                })
+                .state('app.departments.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'departments/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/departments.js']);
+                            }]
+
+                    }
+                })
+                .state('app.departments.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/departments/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.departments.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.departments.index');
+                                }
+                            });
+                    }
                 })
         }
     ]

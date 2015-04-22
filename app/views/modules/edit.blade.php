@@ -33,6 +33,12 @@
                     <input type="text" class="form-control" placeholder="required field" ng-model="module_url" required >
                   </div>
               </div>
+            </div> <div class="form-group">
+                  <label class="col-sm-3 control-label">Controller Name</label>
+                  <div class="col-sm-9">
+                      <input type="text" class="form-control" placeholder="required field" ng-model="module_controller" required >
+                  </div>
+              </div>
               <div class="line line-dashed b-b line-lg pull-in"></div>
               <div class="form-group">
                   <label class="col-sm-3 control-label i-checks"></label>

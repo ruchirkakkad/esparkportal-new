@@ -9,7 +9,27 @@ app.controller('MarketingStatesController', ['$scope', '$http', '$state', 'Flash
             'marketing_states_name': '',
             'marketing_states_id': null,
             'marketing_countries_id': null,
-            'timezones_id': null
+            'timezones_id': null,
+            'marketing_states' : []
+        };
+
+        $scope.state_view_file = '';
+
+        $http.get('marketing_states/indexdata-view', {}).success(function (data) {
+            $scope.data.marketing_states = data.aaData;
+            $scope.state_view_file = 'tpl/marketing_states_view.html';
+        });
+
+
+        $scope.getArray = function(){
+            var csv = [];
+            angular.forEach($scope.data.marketing_countries, function(value, key) {
+                csv[key] = {
+                    id: value.marketing_countries_id,
+                    name : value.marketing_countries_name
+                }
+            });
+            return csv;
         };
 
         $scope.resetData = function() {

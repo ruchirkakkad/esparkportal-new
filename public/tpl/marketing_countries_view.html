@@ -1,0 +1,79 @@
+<div class="panel panel-default">
+
+    <div class="panel-body">
+        <div class="col-md-8">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-2">
+            <button ng-if="permission.marketing_countries.csv==1" type="button" ng-csv="getArray()" class="btn btn-sm btn-primary btn-addon pull-right m-xs"
+                    csv-header="['ID', 'Name']"
+                    filename="marketing_countries.csv">Export
+            </button>
+
+            <a href="#/app/marketing_countries/create" >
+                <button ng-if="permission.marketing_countries.add==1" class="btn btn-sm btn-primary btn-addon pull-right m-xs" ng-if="permission.marketing_countries.add==1">
+                    <i class="fa fa-plus"></i>Add
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <table st-table="data.marketing_countries" class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                <form>
+                    <div class="col-md-5">items by page</div>
+                    <div class="col-md-7">
+                        <input class="input-sm form-control" name="items" id="items" type="number"
+                               ng-model="itemsByPage">
+                    </div>
+                </form>
+            </th>
+            <!--<th colspan="2"></th>-->
+            <th>
+                <div class="col-md-3">Search</div>
+                <div class="col-md-9">
+                    <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <th st-sort="marketing_countries_id">Id</th>
+            <th st-sort="marketing_countries_name">Name</th>
+            <th ng-if="permission.marketing_countries.edit==1">Edit</th>
+            <th ng-if="permission.marketing_countries.delete==1">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in data.marketing_countries">
+            <td>{{row.marketing_countries_id}}</td>
+            <td>{{row.marketing_countries_name}}</td>
+
+            <td ng-if="permission.marketing_countries.edit==1">
+                <a href='#/app/marketing_countries/edit/{{ row.edit }}'>
+                    <button class="btn btn-sm btn-primary" tooltip="Edit"><i class=" fa fa-pencil"></i></button>
+                </a>
+            </td>
+            <td ng-if="permission.marketing_countries.delete==1">
+                <a href='#/app/marketing_countries/edit/{{ row.delete }}'>
+                    <button class="btn btn-sm btn-danger" tooltip="Delete"><i class=" fa fa-trash-o"></i></button>
+                </a>
+            </td>
+
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="20"
+                     class="no-margin"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

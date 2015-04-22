@@ -29,4 +29,19 @@ angular.module('app')
     // Tell the module to store the language in the local storage
     $translateProvider.useLocalStorage();
   }])
+    .run(function($rootScope,$http) {
+        //$rootScope.permission =[];
+        $http.post('setAngularPermission', {})
+            .success(function (data) {
+
+                if (data == '0') {
+                    //$scope.authError = 'Email or Password not right';
+                } else {
+                    $rootScope.permission=data.permission;
+                    $rootScope.user=data.user;
+                }
+            });
+    })
 ;
+
+

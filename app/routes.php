@@ -22,7 +22,10 @@ Route::get('headerDataView', ['uses' => 'LayoutController@headerDataView']);
 
 //---------------Authentication
 Route::get('login', ['uses' => 'LoginController@index']);
+Route::get('signup', ['uses' => 'LoginController@signup']);
 Route::post('checklogin', ['uses' => 'LoginController@checklogin']);
+Route::post('usersStore', ['uses' => 'LoginController@store']);
+Route::post('setAngularPermission', ['uses' => 'LoginController@setAngularPermission']);
 Route::get('dashboard', ['uses' => 'LoginController@dashboard']);
 Route::post('checkAuthentication', ['uses' => 'LoginController@checkAuthentication']);
 Route::post('logout', ['uses' => 'LoginController@logout']);
@@ -43,5 +46,8 @@ Route::group(['before' => 'permission'], function () {
     Route::controller('marketing_datas', 'MarketingDatasController');
     Route::controller('roles', 'RolesController');
     Route::controller('permissions', 'PermissionsController');
+    Route::controller('users', 'UsersController');
+    Route::controller('departments', 'DepartmentsController');
+    
 //---------------Marketing ends--------------------
 });

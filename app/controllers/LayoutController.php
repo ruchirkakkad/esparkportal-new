@@ -48,9 +48,7 @@ class LayoutController extends \BaseController
 
                 foreach ($second_level as $key2 => $value2) {
 
-                    $modules[$key1]['children'][$key2]['label'] = $value2['module_name'];
-                    $modules[$key1]['children'][$key2]['value'] = $value2['module_id'];
-                    $modules[$key1]['children'][$key2]['url'] = $value2['module_url'];
+
                     $third_level = Module::where('parent_id', '=', $value2['module_id'])->get();
                     $count_level_2 = 0;
                     foreach ($permission as $k => $v) {
@@ -64,8 +62,12 @@ class LayoutController extends \BaseController
                     if (count($third_level) > 0) {
                         if ($count_level_2 == 1) {
                             $modules[$key1]['children'][$key2]['children'] = array();
-
+                            $modules[$key1]['children'][$key2]['label'] = $value2['module_name'];
+                            $modules[$key1]['children'][$key2]['value'] = $value2['module_id'];
+                            $modules[$key1]['children'][$key2]['url'] = $value2['module_url'];
                             foreach ($third_level as $key3 => $value3) {
+                                if(isset($permission[$value3["module_id"]]))
+                                {
                                 if ($permission[$value3["module_id"]]['view'] == 1) {
 
                                     $modules[$key1]['children'][$key2]['children'][$key3]['label'] = $value3['module_name'];
@@ -73,16 +75,23 @@ class LayoutController extends \BaseController
                                     $modules[$key1]['children'][$key2]['children'][$key3]['url'] = $value3['module_url'];
 
                                 }
+                                }
                             }
                         }
-                    }
-                    else
-                    {
-                        $modules[$key1]['children'][$key2]['secondMenu'] = 1;
+                    } else {
+                         if(isset($permission[$value2["module_id"]]))
+                                {
+                        if ($permission[$value2["module_id"]]['view'] == 1) {
+                            $modules[$key1]['children'][$key2]['label'] = $value2['module_name'];
+                            $modules[$key1]['children'][$key2]['value'] = $value2['module_id'];
+                            $modules[$key1]['children'][$key2]['url'] = $value2['module_url'];
+                            $modules[$key1]['children'][$key2]['secondMenu'] = 1;
+                        }
+                                }
                     }
                 }
-
             }
+
         }
         $data['modules'] = $modules;
         return json_decode(json_encode($data), true);

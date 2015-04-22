@@ -244,7 +244,7 @@
                     <img src="img/a0.jpg" alt="...">
                     <i class="on md b-white bottom"></i>
                 </span>
-                <span class="hidden-sm hidden-md"><?php echo Auth::user()->firstname; ?></span> <b class="caret"></b>
+                <span class="hidden-sm hidden-md">{{user.first_name}} {{user.last_name}}</span> <b class="caret"></b>
             </a>
             <!-- dropdown -->
             <ul class="dropdown-menu animated fadeInRight w">
