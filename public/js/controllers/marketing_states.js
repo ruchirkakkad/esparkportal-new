@@ -10,29 +10,32 @@ app.controller('MarketingStatesController', ['$scope', '$http', '$state', 'Flash
             'marketing_states_id': null,
             'marketing_countries_id': null,
             'timezones_id': null,
-            'marketing_states' : []
+            'marketing_states': []
         };
 
         $scope.state_view_file = '';
+        $scope.index = function () {
+            $http.get('marketing_states/indexdata-view', {}).success(function (data) {
+                $scope.data.marketing_states = data.aaData;
+                $scope.state_view_file = 'tpl/marketing_states_view.html';
+            });
 
-        $http.get('marketing_states/indexdata-view', {}).success(function (data) {
-            $scope.data.marketing_states = data.aaData;
-            $scope.state_view_file = 'tpl/marketing_states_view.html';
-        });
+        }
 
-
-        $scope.getArray = function(){
+        $scope.getArray = function () {
             var csv = [];
-            angular.forEach($scope.data.marketing_countries, function(value, key) {
+            angular.forEach($scope.data.marketing_countries, function (value, key) {
                 csv[key] = {
-                    id: value.marketing_countries_id,
-                    name : value.marketing_countries_name
+                    id: value.marketing_states_id,
+                    name: value.marketing_states_name,
+                    country: value.marketing_states_name,
+                    timezone: value.marketing_states_name,
                 }
             });
             return csv;
         };
 
-        $scope.resetData = function() {
+        $scope.resetData = function () {
             $scope.data = {
                 'marketing_states_name': '',
                 'marketing_states_id': null,
@@ -41,8 +44,8 @@ app.controller('MarketingStatesController', ['$scope', '$http', '$state', 'Flash
             };
 
             $http.post('marketing_states/countries-timezones-add', {}).success(function (data) {
-                    $scope.data.countries = data.countries;
-                    $scope.data.timezones = data.timezones;
+                $scope.data.countries = data.countries;
+                $scope.data.timezones = data.timezones;
             }, function (x) {
                 Flash.create('danger', 'Server Error');
             });

@@ -16,8 +16,8 @@ class TimezonesController extends \BaseController {
         foreach ($returndata as $key => $val) {
             foreach ($val as $key1 => $val1) {
                 $id = Helper::simple_encrypt($val1['timezones_id']);
-                $returndata[$key][$key1]['edit'] = "<a href='#/app/timezones/edit/$id'><button class='btn m-b-xs btn-sm btn-primary'><i class='fa fa-edit'></i></button></a>";
-                $returndata[$key][$key1]['delete'] = "<a href='#/app/timezones/delete/$id'><button class='btn btn-sm btn-icon btn-danger'><i class='fa fa-trash-o'></i></button></a>";
+                $returndata[$key][$key1]['edit'] = $id;
+                $returndata[$key][$key1]['delete'] = $id;
             }
         }
         return $returndata;
@@ -111,5 +111,4 @@ class TimezonesController extends \BaseController {
             ]);
         }
     }
-
 }

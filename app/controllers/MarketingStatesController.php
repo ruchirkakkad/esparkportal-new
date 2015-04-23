@@ -19,8 +19,8 @@ class MarketingStatesController extends \BaseController {
             $returndata[$k]['marketing_states_name'] = $v->marketing_states_name;
             $returndata[$k]['timezones_name'] = $v->timezone->timezones_name;
             $returndata[$k]['marketing_countries_name'] = $v->country->marketing_countries_name;
-            $returndata[$k]['edit'] = "<a href='#/app/marketing_states/edit/$id'><button class='btn m-b-xs btn-sm btn-primary'><i class='fa fa-edit'></i></button></a>";
-            $returndata[$k]['delete'] = "<a href='#/app/marketing_states/delete/$id'><button class='btn btn-sm btn-icon btn-danger'><i class='fa fa-trash-o'></i></button></a>";
+            $returndata[$k]['edit'] = $id;
+            $returndata[$k]['delete'] = $id;
         }
 
         $data['aaData'] = $returndata;

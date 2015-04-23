@@ -5,29 +5,29 @@
 
 app.controller('MarketingCountriesController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope',
     function ($scope, $http, $state, Flash, $stateParams, $rootScope) {
-console.log($rootScope.permission);
+        console.log($rootScope.permission);
         $scope.country = {
             'marketing_countries_name': '',
             'marketing_countries_id': ''
 
         };
         $scope.data = {
-            'marketing_countries' : []
+            'marketing_countries': []
         };
 
         $scope.country_view_file = '';
-
-        $http.get('marketing_countries/indexdata-view', {}).success(function (data) {
-            $scope.data.marketing_countries = data.aaData;
-            $scope.country_view_file = 'tpl/marketing_countries_view.html';
-        });
-
-        $scope.getArray = function(){
+        $scope.index = function () {
+            $http.get('marketing_countries/indexdata-view', {}).success(function (data) {
+                $scope.data.marketing_countries = data.aaData;
+                $scope.country_view_file = 'tpl/marketing_countries_view.html';
+            });
+        }
+        $scope.getArray = function () {
             var csv = [];
-            angular.forEach($scope.data.marketing_countries, function(value, key) {
+            angular.forEach($scope.data.marketing_countries, function (value, key) {
                 csv[key] = {
                     id: value.marketing_countries_id,
-                    name : value.marketing_countries_name
+                    name: value.marketing_countries_name
                 }
             });
             return csv;

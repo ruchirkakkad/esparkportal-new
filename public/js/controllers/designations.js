@@ -2,42 +2,42 @@
  * Created by ruchir on 4/7/2015.
  */
 
-app.controller('DepartmentsController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope',
+app.controller('DesignationsController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope',
     function ($scope, $http, $state, Flash, $stateParams, $rootScope) {
 
         $scope.data = {
-            'departments_name': '',
-            'departments_id': '',
-            'departments' : []
+            'designations_name': '',
+            'designations_id': '',
+            'designations' : []
         };
         $scope.department_view_file = '';
         $scope.index = function() {
-            $http.get('departments/indexdata-view', {}).success(function (data) {
-                $scope.data.departments = data.aaData;
-                $scope.department_view_file = 'tpl/departments_view.html';
+            $http.get('designations/indexdata-view', {}).success(function (data) {
+                $scope.data.designations = data.aaData;
+                $scope.designation_view_file = 'tpl/designations_view.html';
             });
         }
         $scope.getArray = function(){
             var csv = [];
-            angular.forEach($scope.data.departments, function(value, key) {
+            angular.forEach($scope.data.designations, function(value, key) {
                 csv[key] = {
-                    id: value.departments_id,
-                    name : value.departments_name
+                    id: value.designations_id,
+                    name : value.designations_name
                 }
             });
             return csv;
         };
         $scope.resetData = function() {
             $scope.data = {
-                'departments_name': '',
-                'departments_id': ''
+                'designations_name': '',
+                'designations_id': ''
             };
         };
 
         $scope.create = function () {
 
-            $http.post('departments/store-add', {
-                departments_name: $scope.data.departments_name
+            $http.post('designations/store-add', {
+                designations_name: $scope.data.designations_name
             }).success(function (data) {
 
                 var data = (data);
@@ -45,7 +45,7 @@ app.controller('DepartmentsController', ['$scope', '$http', '$state', 'Flash', '
                 if (data.code == '200') {
                     $scope.department_view_file = '';
                     Flash.create('success', data.msg);
-                    $state.go('app.departments.index');
+                    $state.go('app.designations.index');
                 }
                 if (data.code == '403') {
                     Flash.create('danger', data.msg);
@@ -57,10 +57,10 @@ app.controller('DepartmentsController', ['$scope', '$http', '$state', 'Flash', '
 
 
         $scope.editData = function () {
-            $http.post('departments/find-edit/' + $stateParams.id, {})
+            $http.post('designations/find-edit/' + $stateParams.id, {})
                 .success(function (data) {
-                    $scope.data.departments_name = data.departments_name;
-                    $scope.data.departments_id = data.departments_id;
+                    $scope.data.designations_name = data.designations_name;
+                    $scope.data.designations_id = data.designations_id;
                 });
         }
 
@@ -68,8 +68,8 @@ app.controller('DepartmentsController', ['$scope', '$http', '$state', 'Flash', '
         $scope.update = function () {
 
 
-            $http.post('departments/update-edit/' + $scope.data.departments_id, {
-                departments_name: $scope.data.departments_name
+            $http.post('designations/update-edit/' + $scope.data.designations_id, {
+                designations_name: $scope.data.designations_name
             }).success(function (data) {
 
                 var data = (data);
@@ -77,7 +77,7 @@ app.controller('DepartmentsController', ['$scope', '$http', '$state', 'Flash', '
                 if (data.code == '200') {
                     $scope.department_view_file = '';
                     Flash.create('success', data.msg);
-                    $state.go('app.departments.index');
+                    $state.go('app.designations.index');
                 }
                 if (data.code == '403') {
                     Flash.create('danger', data.msg);

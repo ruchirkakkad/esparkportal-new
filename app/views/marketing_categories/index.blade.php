@@ -2,8 +2,6 @@
   <h1 class="m-n font-thin h3" >Categories</h1>
 </div>
 
-
-
 <div class="wrapper-md">
       <div flash-message="5000" ></div>
       <a href="#/app/marketing_categories/create">

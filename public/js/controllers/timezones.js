@@ -7,7 +7,27 @@ app.controller('TimezonesController', ['$scope', '$http', '$state', 'Flash', '$s
 
         $scope.data = {
             'timezones_name': '',
-            'timezones_id': ''
+            'timezones_id': '',
+            'timezones': []
+        };
+
+
+        $scope.timezone_view_file = '';
+        $scope.index = function () {
+            $http.get('timezones/indexdata-view', {}).success(function (data) {
+                $scope.data.timezones = data.aaData;
+                $scope.timezone_view_file = 'tpl/timezones_view.html';
+            });
+        }
+        $scope.getArray = function () {
+            var csv = [];
+            angular.forEach($scope.data.timezones, function (value, key) {
+                csv[key] = {
+                    id: value.timezones_id,
+                    name: value.timezones_name
+                }
+            });
+            return csv;
         };
 
         $scope.resetData = function() {

@@ -1372,12 +1372,20 @@ angular.module('app')
                 })
                 .state('app.users.index', {
                     url: '/index',
-                    templateUrl: 'users/index',
+                    templateUrl: 'users/index-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/users.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/users.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -1386,9 +1394,17 @@ angular.module('app')
                     templateUrl: 'users/create-add',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/users.js']);
+                         deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/users.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -1397,9 +1413,57 @@ angular.module('app')
                     templateUrl: 'users/edit',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/users.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/users.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.users.approve', {
+                    url: '/approve',
+                    templateUrl: 'users/approve-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/users.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.users.approve-change-edit', {
+                    url: '/approve-change-edit/{id}',
+                    templateUrl: 'users/approve-change-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/users.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
 
                     }
@@ -1416,15 +1480,15 @@ angular.module('app')
                             }, function (x) {
                             });
 
-                        $http.get('/users/destroy/' + $stateParams.id)
+                        $http.get('users/destroy-delete/' + $stateParams.id)
                             .success(function (data) {
                                 if (data.code == '200') {
-                                    var message = '<strong>Delete!</strong> You successfully deleted the module.';
+                                    var message = '<strong>Delete!</strong> You successfully deleted the user.';
                                     Flash.create('success', message);
-                                    $state.go('app.users.index');
+                                    $state.go(data.redirect);
                                 }
                                 if (data.code == '403') {
-                                    $state.go('app.users.index');
+                                    $state.go(data.redirect);
                                 }
                             });
                     }
@@ -1438,9 +1502,17 @@ angular.module('app')
                     templateUrl: 'departments/index-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/departments.js']);
+                         deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/departments.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -1449,9 +1521,17 @@ angular.module('app')
                     templateUrl: 'departments/create-add',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/departments.js']);
+                      deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/departments.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -1460,9 +1540,17 @@ angular.module('app')
                     templateUrl: 'departments/edit-edit',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/departments.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/departments.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
 
                     }
@@ -1488,6 +1576,94 @@ angular.module('app')
                                 if (data.code == '403') {
                                     Flash.create('danger', data.msg);
                                     $state.go('app.departments.index');
+                                }
+                            });
+                    }
+                })
+                                
+                  .state('app.designations', {
+                    url: '/designations',
+                    template: '<div ui-view  ng-controller="DesignationsController" class="fade-in-right-big"></div>'
+                })
+                .state('app.designations.index', {
+                    url: '/index',
+                    templateUrl: 'designations/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                         deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/designations.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.designations.create', {
+                    url: '/create',
+                    templateUrl: 'designations/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                      deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/designations.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.designations.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'designations/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/designations.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.designations.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/designations/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.designations.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.designations.index');
                                 }
                             });
                     }

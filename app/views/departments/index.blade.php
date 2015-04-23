@@ -1,43 +1,11 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n font-thin h3" >Roles</h1>
+    <h1 class="m-n font-thin h3">Departments</h1>
 </div>
 
 
+<div class="wrapper-md" ng-init="index()">
+    <div flash-message="5000"></div>
 
-<div class="wrapper-md">
-    <div flash-message="5000" ></div>
-    <a href="#/app/roles/create">
-        <button class="btn btn-sm btn-primary btn-addon pull-right m-xs">
-            <i class="fa fa-plus"></i>Add
-        </button>
-    </a>
+    <div data-ng-include="department_view_file" class="fade-in-up-big "></div>
 
-    <div class="panel panel-default">
-
-        <div class="panel-heading">
-            Roles
-        </div>
-        <div class="table-responsive">
-            <table ui-jq="dataTable" ui-options="{
-          sAjaxSource: 'roles/indexdata-view',
-          aoColumns: [
-            { mData: 'id' },
-            { mData: 'name' },
-            { mData: 'edit' },
-            { mData: 'delete' }
-          ]
-        }" class="table table-striped m-b-none">
-                <thead>
-                <tr>
-                    <th  style="width:15%">ID</th>
-                    <th  style="width:55%">Role Name</th>
-                    <th  style="width:15%">Edit</th>
-                    <th  style="width:15%">Delete</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-    </div>
 </div>

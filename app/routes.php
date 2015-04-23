@@ -48,6 +48,7 @@ Route::group(['before' => 'permission'], function () {
     Route::controller('permissions', 'PermissionsController');
     Route::controller('users', 'UsersController');
     Route::controller('departments', 'DepartmentsController');
+    Route::controller('designations', 'DesignationsController');
     
 //---------------Marketing ends--------------------
 });
