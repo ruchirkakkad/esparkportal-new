@@ -2,8 +2,8 @@
  * Created by ruchir on 4/7/2015.
  */
 
-app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope', '$interval', '$filter', '$timeout', 'editableOptions', 'editableThemes',
-    function ($scope, $http, $state, Flash, $stateParams, $rootScope, $interval, $filter, $timeout, editableOptions, editableThemes) {
+app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope', '$interval', '$filter', '$timeout', 'editableOptions', 'editableThemes','$modal','$log',
+    function ($scope, $http, $state, Flash, $stateParams, $rootScope, $interval, $filter, $timeout, editableOptions, editableThemes,$modal,$log) {
 
         $scope.data = {
             'marketing_datas_id': null,
@@ -19,8 +19,8 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
             'leads_statuses_id': null,
             'lead_statuses': [],
             'marketing_datas': [],
-            'filter_status':'',
-            'stateparam_id' : $stateParams.id
+            'filter_status': '',
+            'stateparam_id': $stateParams.id
         };
 
         $scope.date = new Date();
@@ -147,7 +147,7 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
                     timer = $interval(function () {
                         $scope.timezone.timezones_time++;
                         $scope.timezone.timezones_time1 = new Date($scope.timezone.timezones_time * 1000);
-                       $scope.date = new Date();
+                        $scope.date = new Date();
                     }, 1000);
                     $scope.timezone.timezones_time1 = new Date($scope.timezone.timezones_time * 1000);
 
@@ -168,7 +168,7 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
                         angular.extend(data, {id: id});
                         return $http.post('marketing_datas/change-lead-status-edit', data)
                             .success(function (data) {
-                                 var data = (data);
+                                var data = (data);
 
                                 if (data.code == '200') {
 
@@ -194,20 +194,19 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
         };
 
 
-
         //-------------------------- For csv Export ---------------------
-        $scope.getArray= function(){
+        $scope.getArray = function () {
             var try12 = $scope.data.marketing_datas;
             var log = [];
-            angular.forEach(try12, function(value, key) {
+            angular.forEach(try12, function (value, key) {
                 log[key] = {
                     id: value.marketing_datas_id,
-                    owner_name : value.owner_name,
-                    company_name : value.company_name,
-                    website : value.website,
-                    phone : value.phone,
-                    email : value.email,
-                    leads_statuses_name : value.leads_statuses_name
+                    owner_name: value.owner_name,
+                    company_name: value.company_name,
+                    website: value.website,
+                    phone: value.phone,
+                    email: value.email,
+                    leads_statuses_name: value.leads_statuses_name
                 }
             });
             console.log(log)
@@ -228,27 +227,121 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
             });
         };
 
+        $scope.editData = function () {
+            $scope.data = {
+                'marketing_datas_id': null,
+                'owner_name': '',
+                'company_name': null,
+                'website': null,
+                'phone': null,
+                'email': '',
+                'marketing_states_id': null,
+                'marketing_categories_id': null,
+                'user_id': null,
+                'leads_statuses_id': null,
+                'lead_statuses': []
+            };
 
-        //$scope.update = function () {
-        //
-        //
-        //    $http.post('sheets/update-edit/' + $scope.data.sheets_id, {
-        //        sheets_name: $scope.data.sheets_name
-        //    }).success(function (data) {
-        //
-        //        var data = (data);
-        //
-        //        if (data.code == '200') {
-        //
-        //            Flash.create('success', data.msg);
-        //            $state.go('app.sheets.index');
-        //        }
-        //        if (data.code == '403') {
-        //            Flash.create('danger', data.msg);
-        //        }
-        //    }, function (x) {
-        //        Flash.create('danger', 'Server Error');
-        //    });
-        //};
+
+            $http.post('marketing_datas/find-edit/' + $stateParams.id, {}).success(function (data) {
+                $scope.data.marketing_datas_id = data.marketing_datas_id;
+                $scope.data.owner_name = data.owner_name;
+                $scope.data.company_name = data.company_name;
+                $scope.data.website = data.website;
+                $scope.data.phone = data.phone;
+                $scope.data.email = data.email;
+                $scope.data.marketing_states_name = data.marketing_states_name;
+                $scope.data.marketing_categories_name = data.marketing_categories_name;
+                console.log($scope.data);
+            }, function (x) {
+                Flash.create('danger', 'Server Error');
+            });
+        }
+
+
+        $scope.update = function () {
+
+
+            $http.post('marketing_datas/update-edit/' + $scope.data.marketing_datas_id, {
+                owner_name : $scope.data.owner_name,
+                company_name : $scope.data.company_name,
+                website : $scope.data.website,
+                phone : $scope.data.phone,
+                email : $scope.data.email
+            }).success(function (data) {
+
+                var data = (data);
+
+                if (data.code == '200') {
+
+                    Flash.create('success', data.msg);
+                    $state.go('app.marketing_datas.index-one-view');
+                }
+                if (data.code == '403') {
+                    Flash.create('danger', data.msg);
+                }
+            }, function (x) {
+                Flash.create('danger', 'Server Error');
+            });
+        };
+
+        var d = new Date();
+        d.setHours( 14 );
+        d.setMinutes( 0 );
+
+        $scope.note = {
+            data_id : null,
+            message: null,
+            note_date: null,
+            note_time: d
+        };
+
+        $scope.open = function (note,id) {
+            $scope.note = note;
+            $scope.note.message
+            console.log($scope.note);
+            $scope.note.data_id = id;
+
+            $modal.open({
+                templateUrl: 'myModalContent.html',
+                backdrop: true,
+                windowClass: 'modal',
+                controller: function ($scope, $modalInstance, $log, user) {
+                    var d = new Date();
+                    d.setHours( 14 );
+                    d.setMinutes( 0 );
+
+                    $scope.note = {
+                        data_id : null,
+                        message: null,
+                        note_date: null,
+                        note_time: d
+                    };
+                    $scope.note = note;
+                    $scope.submit = function () {
+                        $http.post('marketing_datas/add-note-edit', {
+                            note: $scope.note
+                        }).success(function (data) {
+
+                        }, function (x) {
+                            Flash.create('danger', 'Server Error');
+                        });
+                        $log.log('Submiting user info.');
+                        $log.log(JSON.stringify($scope.note));
+                        $log.log(JSON.stringify($scope.note.data_id));
+                        $modalInstance.dismiss('cancel');
+                    }
+                    $scope.cancel = function () {
+                        $log.log(JSON.stringify(user));
+                        $modalInstance.dismiss('cancel');
+                    };
+                },
+                resolve: {
+                    user: function () {
+                        return $scope.user;
+                    }
+                }
+            });
+        };
 
     }]);

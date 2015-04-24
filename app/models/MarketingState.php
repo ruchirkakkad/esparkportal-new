@@ -29,7 +29,7 @@ class MarketingState extends \Eloquent {
 
     public function marketing_datas()
     {
-        return $this->hasMany('MarketingData', 'marketing_datas_id');
+        return $this->hasMany('MarketingData', 'marketing_datas_id','marketing_datas_id');
     }
 
 }

@@ -19,7 +19,7 @@ app.controller('SignupFormController', ['$scope', '$http', '$state', 'Flash', fu
 
 
                     Flash.create('success', data.msg);
-                    //$state.go('app.marketing_datas.index');
+                    $state.go('app.access.signin');
                 }
                 if (data.code == '403') {
                     //$scope.errors = data.result;

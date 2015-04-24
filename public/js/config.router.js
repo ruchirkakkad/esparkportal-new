@@ -299,9 +299,17 @@ angular.module('app')
                     templateUrl: 'leads_statuses/index-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/leads_statuses.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/leads_statuses.js',
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -310,9 +318,17 @@ angular.module('app')
                     templateUrl: 'leads_statuses/create-add',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/leads_statuses.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/leads_statuses.js',
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -321,9 +337,17 @@ angular.module('app')
                     templateUrl: 'leads_statuses/edit-edit',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/leads_statuses.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/leads_statuses.js',
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -505,6 +529,49 @@ angular.module('app')
                             }]
                     }
                 })
+                .state('app.leads', {
+                    url: '/leads',
+                    template: '<div ui-view  ng-controller="LeadsController" class="fade-in-right-big"></div>'
+                })
+                .state('app.leads.index-one-view', {
+                    url: '/index-one-view',
+                    templateUrl: 'leads/index-one-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table', 'xeditable']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/leads.js',
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.leads.index-two-view', {
+                    url: '/index-two-view/{id}',
+                    templateUrl: 'leads/index-two-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table', 'xeditable']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/leads.js',
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+
                 .state('app.marketing_categories', {
                     url: '/marketing_categories',
                     template: '<div ui-view  ng-controller="MarketingCategoriesController" class="fade-in-right-big"></div>'
@@ -514,9 +581,17 @@ angular.module('app')
                     templateUrl: 'marketing_categories/index-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/marketing_categories.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/marketing_categories.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -525,9 +600,17 @@ angular.module('app')
                     templateUrl: 'marketing_categories/create-add',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/marketing_categories.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/marketing_categories.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
                     }
                 })
@@ -536,9 +619,17 @@ angular.module('app')
                     templateUrl: 'marketing_categories/edit-edit',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/marketing_categories.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/marketing_categories.js'
+                                            ]
+                                        });
+                                    }
+                                );
                             }]
 
                     }

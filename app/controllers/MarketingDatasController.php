@@ -265,4 +265,69 @@ class MarketingDatasController extends \BaseController
     }
 
 
+    public function postFindEdit($id)
+    {
+        $id = Helper::simple_decrypt($id);
+        $data = MarketingData::find($id);
+        $data->marketing_datas_id = Helper::simple_encrypt($data->marketing_datas_id);
+        $data->marketing_states_name = $data->marketing_states()->first()->marketing_states_name;
+        $data->marketing_categories_name = $data->marketing_categories()->first()->marketing_categories_name;
+        return Response::json($data);
+    }
+
+    public function postUpdateEdit($id)
+    {
+        $id = Helper::simple_decrypt($id);
+        $data = MarketingData::find($id);
+        $data->owner_name = Input::get('owner_name');
+        $data->company_name = Input::get('company_name');
+        $data->website = Input::get('website');
+        $data->phone = Input::get('phone');
+        $data->email = Input::get('email');
+
+        $save = $data->save();
+        if ($save) {
+            return json_encode([
+                'code' => 200,
+                'msg' => Config::get('constants.update_record_msg'),
+                'result' => null
+            ]);
+        } else {
+            return json_encode([
+                'code' => 403,
+                'msg' => Config::get('constants.error_record_msg'),
+                'result' => null
+            ]);
+        }
+    }
+
+
+    public function postAddNoteEdit()
+    {
+        $note = Input::get('note');
+
+        $id = Helper::simple_decrypt($note['data_id']);
+
+        $data_note = new MarketingDatasNote();
+        $data_note->marketing_datas_id = $id;
+        $data_note->message = $note['message'];
+        $data_note->note_date = date('Y-m-d',strtotime($note['note_date']));
+        $data_note->note_time = date('H:i:s',strtotime($note['note_time']));
+
+        $save = $data_note->save();
+        if ($save) {
+            return json_encode([
+                'code' => 200,
+                'msg' => Config::get('constants.update_record_msg'),
+                'result' => null
+            ]);
+        } else {
+            return json_encode([
+                'code' => 403,
+                'msg' => Config::get('constants.error_record_msg'),
+                'result' => null
+            ]);
+        }
+    }
+
 }

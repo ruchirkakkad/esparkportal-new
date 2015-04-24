@@ -7,7 +7,8 @@ app.controller('MarketingCategoriesController', ['$scope', '$http', '$state', 'F
 
         $scope.data = {
             'marketing_categories_name': '',
-            'marketing_categories_id': ''
+            'marketing_categories_id': '',
+            'marketing_categories' : []
         };
 
         $scope.resetData = function() {
@@ -15,6 +16,25 @@ app.controller('MarketingCategoriesController', ['$scope', '$http', '$state', 'F
                 'marketing_categories_name': '',
                 'marketing_categories_id': ''
             };
+        };
+        $scope.marketing_categories_view = '';
+
+        $scope.index = function () {
+            $http.get('marketing_categories/indexdata-view', {}).success(function (data) {
+                $scope.data.marketing_categories = data.aaData;
+                $scope.marketing_categories_view = 'tpl/marketing_categories_view.html';
+            });
+        };
+
+        $scope.getArray = function () {
+            var csv = [];
+            angular.forEach($scope.data.marketing_categories, function (value, key) {
+                csv[key] = {
+                    id: value.marketing_categories_id,
+                    name: value.marketing_categories_name
+                }
+            });
+            return csv;
         };
 
         $scope.create = function () {

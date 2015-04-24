@@ -1,0 +1,106 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="col-md-11">
+
+        </div>
+
+        <div class="col-md-1">
+            <button type="button" ng-csv="getArray()" class="btn btn-sm btn-primary" ng-if="permission.marketing_datas.csv==1"
+                    csv-header="['ID', 'Owner Name', 'Company Name', 'Website', 'Phone', 'Email', 'Status']"
+                    filename="marketing_data.csv">Export
+            </button>
+
+        </div>
+    </div>
+
+    <table st-table="data.leads" class="table table-striped">
+        <thead>
+        <tr>
+            <th colspan="2">
+                <form>
+                    <div class="col-md-5">items by page</div>
+                    <div class="col-md-7">
+                        <input class="input-sm form-control" name="items" id="items" type="number" ng-model="itemsByPage">
+                    </div>
+                </form>
+            </th>
+            <!--<th colspan="2"></th>-->
+            <th colspan="2">
+                <div class="col-md-3">Search</div>
+                <div class="col-md-9">
+                    <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <!--<th st-sort="marketing_datas_id">ID</th>-->
+            <th st-sort="owner_name">Owner Name</th>
+            <!--<th st-sort="company_name">Company Name</th>-->
+            <th st-sort="website">Website</th>
+            <th st-sort="phone">Phone</th>
+            <th st-sort="email">Email</th>
+            <th>Status</th>
+            <th ng-if="permission.marketing_datas.edit==1">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in data.leads" ng-if="permission.marketing_datas.edit==1">
+            <!--<td>{{row.marketing_datas_id}}</td>-->
+            <td>{{row.owner_name | uppercase}}</td>
+            <!--<td>{{row.company_name | uppercase}}</td>-->
+            <td><a href="{{row.website }}" target="_blank">{{ row.website }}</a> </td>
+            <td>{{row.phone }}</td>
+            <td><a ng-href="mailto:{{ row.email }}">{{ row.email }}</a></td>
+
+            <td class="v-middle">
+                <!-- editable group (select-remote) -->
+                    <span editable-select="row.leads_statuses_id" e-name="leads_statuses_id" e-form="rowform"
+                          e-ng-options="s.leads_statuses_id as s.leads_statuses_name for s in data.lead_statuses">
+                      {{ showLeadStatus(row) }}
+                    </span>
+            </td>
+
+            <td style="white-space: nowrap" >
+                <!-- form -->
+                <form editable-form name="rowform" onbeforesave="saveMarketingData($data, row.marketing_datas_id)"
+                      ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == row">
+                    <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-sm btn-info">
+                        save
+                    </button>
+                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
+                            class="btn btn-sm btn-default">
+                        cancel
+                    </button>
+                </form>
+                <div class="buttons" ng-show="!rowform.$visible">
+                    <button class="btn btn-sm btn-info" ng-click="rowform.$show()" tooltip="Status edit"> <i class=" icon-pin "></i> </button>
+                    <a href='#/app/marketing_datas/edit/{{ row.marketing_datas_encryt_id }}'><button class="btn btn-sm btn-danger"  tooltip="Edit"><i class=" fa fa-pencil"></i>  </button></a>
+                </div>
+            </td>
+        </tr>
+        <tr ng-repeat="row in data.marketing_datas" ng-if="permission.marketing_datas.edit==0">
+            <!--<td>{{row.marketing_datas_id}}</td>-->
+            <td>{{row.owner_name | uppercase}}</td>
+            <!--<td>{{row.company_name | uppercase}}</td>-->
+            <td><a href="{{row.website }}" target="_blank">{{ row.website }}</a> </td>
+            <td>{{row.phone }}</td>
+            <td><a ng-href="mailto:{{ row.email }}">{{ row.email }}</a></td>
+
+            <td class="v-middle">
+                <!-- editable group (select-remote) -->
+                    <span editable-select="row.leads_statuses_id" e-name="leads_statuses_id" e-form="rowform"
+                          e-ng-options="s.leads_statuses_id as s.leads_statuses_name for s in data.lead_statuses">
+                      {{ showLeadStatus(row) }}
+                    </span>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="20" class="no-margin"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
