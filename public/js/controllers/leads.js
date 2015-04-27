@@ -2,8 +2,8 @@
  * Created by ruchir on 4/7/2015.
  */
 
-app.controller('LeadsController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope', '$interval', '$filter', '$timeout', 'editableOptions', 'editableThemes',
-    function ($scope, $http, $state, Flash, $stateParams, $rootScope, $interval, $filter, $timeout, editableOptions, editableThemes) {
+app.controller('LeadsController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope', '$interval', '$filter', '$timeout', 'editableOptions', 'editableThemes','$modal','$log',
+    function ($scope, $http, $state, Flash, $stateParams, $rootScope, $interval, $filter, $timeout, editableOptions, editableThemes,$modal,$log) {
 
         $scope.data = {
             'lead_statuses': [],
@@ -139,5 +139,69 @@ app.controller('LeadsController', ['$scope', '$http', '$state', 'Flash', '$state
                 Flash.create('danger', 'Server Error');
             });
         };
+
+
+
+
+        var d = new Date();
+        d.setHours( 14 );
+        d.setMinutes( 0 );
+
+        $scope.note = {
+            data_id : null,
+            message: null,
+            note_date: null,
+            note_time: d
+        };
+
+        $scope.open = function (note,id) {
+            $scope.note = note;
+            $scope.note.message
+            console.log($scope.note);
+            $scope.note.data_id = id;
+
+            $modal.open({
+                templateUrl: 'myModalContent.html',
+                backdrop: true,
+                windowClass: 'modal',
+                controller: function ($scope, $modalInstance, $log, user) {
+
+                    $scope.note = note;
+                    $scope.submit = function () {
+                        $http.post('marketing_datas/add-note-edit', {
+                            note: $scope.note
+                        }).success(function (data) {
+                            var d = new Date();
+                            d.setHours( 14 );
+                            d.setMinutes( 0 );
+
+                            $scope.note = {
+                                data_id : null,
+                                message: null,
+                                note_date: null,
+                                note_time: d
+                            };
+                            console.log($scope.note)
+                        }, function (x) {
+                            Flash.create('danger', 'Server Error');
+                        });
+                        $log.log('Submiting user info.');
+                        $log.log(JSON.stringify($scope.note));
+                        $log.log(JSON.stringify($scope.note.data_id));
+                        $modalInstance.dismiss('cancel');
+                    }
+                    $scope.cancel = function () {
+                        $log.log(JSON.stringify(user));
+                        $modalInstance.dismiss('cancel');
+                    };
+                },
+                resolve: {
+                    user: function () {
+                        return $scope.user;
+                    }
+                }
+            });
+        };
+
 
     }]);

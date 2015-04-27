@@ -19,9 +19,10 @@ class MarketingDatasController extends \BaseController
     }
 
 
-    public function getTimezoneWiseDataView($id)
+    public function getTimezoneWiseDataView($id,$countryid)
     {
         $id = Helper::simple_decrypt($id);
+        $countryid = Helper::simple_decrypt($countryid);
 
         $data['timezone'] = Timezone::find($id);
         $time2 = date('Y-m-d H:i:s');
@@ -31,11 +32,11 @@ class MarketingDatasController extends \BaseController
         $data['timezone']->timezones_time = strtotime($pst);
 
 
-
         $data1 = MarketingData::leftJoin('marketing_states', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id')
             ->leftJoin('leads_statuses', 'leads_statuses.leads_statuses_id', '=', 'marketing_datas.leads_statuses_id')
             ->where('leads_statuses.leads_statuses_id', '=', 1)
             ->where('marketing_states.timezones_id', '=', $id)
+            ->where('marketing_states.marketing_countries_id', '=', $countryid)
             ->orderBy('marketing_datas.marketing_datas_id','desc')
             ->get();
         $returndata = [];
@@ -56,7 +57,7 @@ class MarketingDatasController extends \BaseController
         }
 
         $data['aaData'] = $returndata;
-        $data['lead_status'] = LeadsStatus::select('leads_statuses_name', 'leads_statuses_id')->get();
+        $data['lead_status'] = LeadsStatus::select('leads_statuses_name', 'leads_statuses_id')->where('leads_statuses_id','!=',9)->get();
 
 
 
@@ -64,14 +65,16 @@ class MarketingDatasController extends \BaseController
         return $data;
     }
 
-    public function postTimezoneWiseDataFilteredView($id)
+    public function postTimezoneWiseDataFilteredView($id,$countryid)
     {
         $id = Helper::simple_decrypt($id);
+        $countryid = Helper::simple_decrypt($countryid);
         if(Input::get('leads_statuses_id') != '')
         {
             $data1 = MarketingData::leftJoin('marketing_states', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id')
                 ->leftJoin('leads_statuses', 'leads_statuses.leads_statuses_id', '=', 'marketing_datas.leads_statuses_id')
                 ->where('marketing_states.timezones_id', '=', $id)
+                ->where('marketing_states.marketing_countries_id', '=', $countryid)
                 ->where('leads_statuses.leads_statuses_id', '=', Input::get('leads_statuses_id'))
                 ->orderBy('marketing_datas.marketing_datas_id','desc')
                 ->get();
@@ -81,6 +84,8 @@ class MarketingDatasController extends \BaseController
             $data1 = MarketingData::leftJoin('marketing_states', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id')
                 ->leftJoin('leads_statuses', 'leads_statuses.leads_statuses_id', '=', 'marketing_datas.leads_statuses_id')
                 ->where('marketing_states.timezones_id', '=', $id)
+                ->where('leads_statuses.leads_statuses_id','!=',9)
+                ->where('marketing_states.marketing_countries_id', '=', $countryid)
                 ->orderBy('marketing_datas.marketing_datas_id','desc')
                 ->get();
         }
@@ -329,5 +334,4 @@ class MarketingDatasController extends \BaseController
             ]);
         }
     }
-
 }

@@ -87,7 +87,7 @@
                     <a href='#/app/marketing_datas/edit/{{ row.marketing_datas_encryt_id }}'>
                         <button class="btn btn-sm btn-danger" tooltip="Edit"><i class=" fa fa-pencil"></i></button>
                     </a>
-                    <button class="btn btn-rounded btn btn-icon btn-primary" ng-click="open(note,row.marketing_datas_encryt_id)"><i
+                    <button class="btn btn-rounded btn btn-icon btn-primary" ng-click="open({note : {data_id : null,message: null, note_date: null,note_time: ''}},row.marketing_datas_encryt_id)"><i
                             class="fa  fa-book"></i></button>
                 </div>
             </td>
@@ -118,6 +118,7 @@
         </tfoot>
     </table>
 </div>
+
 
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">

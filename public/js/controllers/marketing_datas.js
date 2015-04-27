@@ -51,7 +51,7 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
         };
 
         $scope.create = function () {
-            console.log($scope.data);
+
             $scope.errors = [];
             $http.post('marketing_datas/store-add', {
                 owner_name: $scope.data.owner_name,
@@ -67,6 +67,13 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
 
                 if (data.code == '200') {
 
+                    $scope.data.owner_name = null;
+                    $scope.data.company_name = null;
+                    $scope.data.website = null;
+                    $scope.data.phone = null;
+                    $scope.data.email = null;
+                    $scope.data.marketing_states_id = null;
+                    $scope.data.marketing_categories_id = null;
                     Flash.create('success', data.msg);
                     //$state.go('app.marketing_datas.index');
                 }
@@ -80,7 +87,7 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
         };
 
         $scope.getcountries = function () {
-            console.log($scope.data);
+
             $http.post('marketing_datas/countries-add', {}).success(function (data) {
                 $scope.data.countries = data.countries;
                 $scope.data.categories = data.categories;
@@ -123,8 +130,8 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
         };
 
 
-        $scope.timezone_wise_data = function () {
 
+        $scope.timezone_wise_data = function () {
             $scope.pleaseWork = '';
 
             editableThemes.bs3.inputClass = 'input-sm';
@@ -134,7 +141,7 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
             $scope.itemsByPage = 100;
             $scope.data.marketing_datas = [];
 
-            $http.get('marketing_datas/timezone-wise-data-view/' + $stateParams.id, {})
+            $http.get('marketing_datas/timezone-wise-data-view/' + $stateParams.id+'/'+$stateParams.countryid, {})
                 .success(function (data) {
 
                     $scope.data.marketing_datas = data.aaData;
@@ -151,7 +158,7 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
                     }, 1000);
                     $scope.timezone.timezones_time1 = new Date($scope.timezone.timezones_time * 1000);
 
-                    console.log($scope.timezone.timezones_time1);
+
                     $scope.showLeadStatus = function (row) {
                         //alert(51);
                         var selected = [];
@@ -164,7 +171,7 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
 
                     $scope.saveMarketingData = function (data, id) {
                         //$scope.user not updated yet
-                        console.log(data)
+
                         angular.extend(data, {id: id});
                         return $http.post('marketing_datas/change-lead-status-edit', data)
                             .success(function (data) {
@@ -209,19 +216,19 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
                     leads_statuses_name: value.leads_statuses_name
                 }
             });
-            console.log(log)
+
             return log;
         };
 
         $scope.changeStatus = function () {
             $scope.pleaseWork = '';
-            $http.post('marketing_datas/timezone-wise-data-filtered-view/' + $stateParams.id, {
+            $http.post('marketing_datas/timezone-wise-data-filtered-view/' + $stateParams.id+'/'+$stateParams.countryid, {
                 leads_statuses_id: $scope.data.filter_status
             }).success(function (data) {
                 $scope.data.marketing_datas = data.aaData;
 
                 $scope.pleaseWork = 'tpl/marketing_data_listing.html';
-                console.log(data);
+
             }, function (x) {
                 Flash.create('danger', 'Server Error');
             });
@@ -252,7 +259,7 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
                 $scope.data.email = data.email;
                 $scope.data.marketing_states_name = data.marketing_states_name;
                 $scope.data.marketing_categories_name = data.marketing_categories_name;
-                console.log($scope.data);
+
             }, function (x) {
                 Flash.create('danger', 'Server Error');
             });
@@ -299,7 +306,7 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
         $scope.open = function (note,id) {
             $scope.note = note;
             $scope.note.message
-            console.log($scope.note);
+
             $scope.note.data_id = id;
 
             $modal.open({

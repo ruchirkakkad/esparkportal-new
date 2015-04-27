@@ -1,0 +1,79 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="col-md-11">
+
+        </div>
+
+        <div class="col-md-1">
+            <button type="button" ng-csv="getArray()" class="btn btn-sm btn-primary"
+                    ng-if="permission.followup.csv==1"
+                    csv-header="['Date', 'Time', 'Message', 'Owner Name', 'Website', 'Phone']"
+                    filename="marketing_data.csv">Export
+            </button>
+        </div>
+    </div>
+
+    <table st-table="data.followup" class="table">
+        <thead>
+        <tr>
+            <th colspan="2">
+                <form>
+                    <div class="col-md-5">items by page</div>
+                    <div class="col-md-7">
+                        <input class="input-sm form-control" name="items" id="items" type="number"
+                               ng-model="itemsByPage">
+                    </div>
+                </form>
+            </th>
+            <!--<th colspan="2"></th>-->
+            <th colspan="2">
+                <div class="col-md-3">Search</div>
+                <div class="col-md-9">
+                    <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <th st-sort="note_date">Date</th>
+            <th st-sort="note_time">Time</th>
+            <th st-sort="message">Message</th>
+            <th st-sort="owner_name">Owner Name</th>
+            <th st-sort="website">Website</th>
+            <th st-sort="phone">Phone</th>
+            <th ng-if="permission.followup.edit==1">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in data.followup" ng-if="permission.followup.edit==1" style="background-color: {{ data.dateArray[row.note_date] }}">
+            <td>{{row.note_date}}</td>
+            <td>{{row.note_time}}</td>
+            <td>{{row.message}}</td>
+            <td>{{row.owner_name | uppercase}}</td>
+            <td><a href="{{row.website }}" target="_blank">{{ row.website }}</a></td>
+            <td>{{row.phone }}</td>
+            <td style="white-space: nowrap">
+                <div class="buttons" ng-show="!rowform.$visible">
+                    <a href='#/app/followup/note-edit/{{ row.marketing_datas_encryt_id }}'>
+                        <button class="btn btn-rounded btn btn-icon btn-primary" tooltip="Edit"><i class="fa  fa-book"></i></button>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        <tr ng-repeat="row in data.followup" ng-if="permission.followup.edit==0">
+            <td>{{row.note_date}}</td>
+            <td>{{row.note_time}}</td>
+            <td>{{row.message}}</td>
+            <td>{{row.owner_name | uppercase}}</td>
+            <td><a href="{{row.website }}" target="_blank">{{ row.website }}</a></td>
+            <td>{{row.phone }}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="20" class="no-margin"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

@@ -36,6 +36,11 @@ class MarketingData extends \Eloquent {
 
     public function lead_status()
     {
-        return $this->belongsTo('LeadsStatus');
+        return $this->belongsTo('LeadsStatus','leads_statuses_id','leads_statuses_id');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany('MarketingDatasNote','marketing_datas_id','marketing_datas_id');
     }
 }

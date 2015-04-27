@@ -489,7 +489,7 @@ angular.module('app')
                 //    }
                 //})
                 .state('app.marketing_datas.index-three-view', {
-                    url: '/index-three-view/{id}',
+                    url: '/index-three-view/{id}/{countryid}',
                     templateUrl: 'marketing_datas/index-three-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
@@ -564,6 +564,49 @@ angular.module('app')
                                         return $ocLazyLoad.load({
                                             files: [
                                                 'js/controllers/leads.js',
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+
+                .state('app.followup', {
+                    url: '/followup',
+                    template: '<div ui-view  ng-controller="FollowupController" class="fade-in-right-big"></div>'
+                })
+                .state('app.followup.index-view', {
+                    url: '/index-view',
+                    templateUrl: 'followup/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table', 'xeditable']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/followup.js',
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.followup.note-edit', {
+                    url: '/note-edit/{id}',
+                    templateUrl: 'followup/note-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table', 'xeditable']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/followup.js',
                                             ]
                                         });
                                     }

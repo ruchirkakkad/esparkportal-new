@@ -18,7 +18,7 @@
             <div class="col-md-12">
                 <div class="row row-sm text-center">
                     <div class="col-xs-3" ng-repeat="timezone in data.timezones | orderBy: 'timezones_time' : true ">
-                        <a href="/#/app/marketing_datas/index-three-view/{{ timezone.timezones_id }} " class="block panel padder-v bg-info item">
+                        <a href="/#/app/marketing_datas/index-three-view/{{ timezone.timezones_id }}/{{ $stateParams.id }}" class="block panel padder-v bg-info item">
                             <span class="text-white font-thin h1 block">{{ timezone.timezones_name }}</span>
                             <span class="text-muted h1 ">{{ timezone.timezones_time1  | date:'dd.MM.yyyy h:mm:ss a'  }}</span>
                         </a>
