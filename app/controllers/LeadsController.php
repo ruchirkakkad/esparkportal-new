@@ -28,10 +28,17 @@ class LeadsController extends \BaseController
     {
         $id = Helper::simple_decrypt($id);
         $data['lead_name'] = LeadsStatus::find($id)->leads_statuses_name;
-        $data1 = MarketingData::leftJoin('leads_statuses', 'leads_statuses.leads_statuses_id', '=', 'marketing_datas.leads_statuses_id')
-            ->where('leads_statuses.leads_statuses_id', '=', $id)
-            ->orderBy('marketing_datas.marketing_datas_id', 'desc')
-            ->get();
+
+        $query = MarketingData::leftJoin('leads_statuses', 'leads_statuses.leads_statuses_id', '=', 'marketing_datas.leads_statuses_id')
+            ->where('leads_statuses.leads_statuses_id', '=', $id);
+
+        if(Auth::user()->role_id != Config::get('constants.marketing_admin_id'))
+        {
+            $query->where('marketing_datas.user_id','=',Auth::user()->user_id);
+        }
+        $data1 = $query->orderBy('marketing_datas.marketing_datas_id','desc')->get();
+
+
 
         $returndata = [];
         foreach ($data1 as $k => $v) {

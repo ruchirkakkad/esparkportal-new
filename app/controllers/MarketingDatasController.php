@@ -31,14 +31,18 @@ class MarketingDatasController extends \BaseController
         $pst = $datetimePST->format('d-m-Y h:i:s a');
         $data['timezone']->timezones_time = strtotime($pst);
 
-
-        $data1 = MarketingData::leftJoin('marketing_states', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id')
+        $query = MarketingData::leftJoin('marketing_states', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id')
             ->leftJoin('leads_statuses', 'leads_statuses.leads_statuses_id', '=', 'marketing_datas.leads_statuses_id')
             ->where('leads_statuses.leads_statuses_id', '=', 1)
             ->where('marketing_states.timezones_id', '=', $id)
-            ->where('marketing_states.marketing_countries_id', '=', $countryid)
-            ->orderBy('marketing_datas.marketing_datas_id','desc')
-            ->get();
+            ->where('marketing_states.marketing_countries_id', '=', $countryid);
+
+        if(Auth::user()->role_id != Config::get('constants.marketing_admin_id'))
+        {
+            $query->where('marketing_datas.user_id','=',Auth::user()->user_id);
+        }
+        $data1 = $query->orderBy('marketing_datas.marketing_datas_id','desc')->get();
+
         $returndata = [];
         foreach ($data1 as $k => $v) {
             $id = Helper::simple_encrypt($v->marketing_datas_id);
@@ -51,16 +55,10 @@ class MarketingDatasController extends \BaseController
             $returndata[$k]['email'] = $v->email;
             $returndata[$k]['leads_statuses_id'] = "$v->leads_statuses_id";
             $returndata[$k]['leads_statuses_name'] = "$v->leads_statuses_name";
-//            $returndata[$k]['leads_statuses_id'] = "<button ng-click='changeStatus()' class='stat' >$v->leads_statuses_name</button>";
-//            $returndata[$k]['edit'] = "<a href='#/app/marketing_states/edit/$id'><button class='btn btn-rounded btn-sm btn-icon btn-primary'><i class='fa fa-search-plus'></i></button></a>";
-//            $returndata[$k]['delete'] = "<a href='#/app/marketing_states/delete/$id'><button class='btn btn-sm btn-icon btn-danger'><i class='fa fa-edit'></i></button></i></button></a>";
         }
 
         $data['aaData'] = $returndata;
-        $data['lead_status'] = LeadsStatus::select('leads_statuses_name', 'leads_statuses_id')->where('leads_statuses_id','!=',9)->get();
-
-
-
+        $data['lead_status'] = LeadsStatus::select('leads_statuses_name', 'leads_statuses_id')->get();
 
         return $data;
     }
@@ -69,26 +67,28 @@ class MarketingDatasController extends \BaseController
     {
         $id = Helper::simple_decrypt($id);
         $countryid = Helper::simple_decrypt($countryid);
-        if(Input::get('leads_statuses_id') != '')
-        {
-            $data1 = MarketingData::leftJoin('marketing_states', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id')
+
+        $query = MarketingData::leftJoin('marketing_states', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id')
                 ->leftJoin('leads_statuses', 'leads_statuses.leads_statuses_id', '=', 'marketing_datas.leads_statuses_id')
                 ->where('marketing_states.timezones_id', '=', $id)
-                ->where('marketing_states.marketing_countries_id', '=', $countryid)
-                ->where('leads_statuses.leads_statuses_id', '=', Input::get('leads_statuses_id'))
-                ->orderBy('marketing_datas.marketing_datas_id','desc')
-                ->get();
+                ->where('marketing_states.marketing_countries_id', '=', $countryid);
+
+        if(Auth::user()->role_id != Config::get('constants.marketing_admin_id'))
+        {
+            $query->where('marketing_datas.user_id','=',Auth::user()->user_id);
+        }
+        if(Input::get('leads_statuses_id') != '')
+        {
+            $query->where('leads_statuses.leads_statuses_id', '=', Input::get('leads_statuses_id'));
         }
         else
         {
-            $data1 = MarketingData::leftJoin('marketing_states', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id')
-                ->leftJoin('leads_statuses', 'leads_statuses.leads_statuses_id', '=', 'marketing_datas.leads_statuses_id')
-                ->where('marketing_states.timezones_id', '=', $id)
-                ->where('leads_statuses.leads_statuses_id','!=',9)
-                ->where('marketing_states.marketing_countries_id', '=', $countryid)
-                ->orderBy('marketing_datas.marketing_datas_id','desc')
-                ->get();
+            $query->where('leads_statuses.leads_statuses_id', '!=',9);
         }
+
+        $data1 = $query->orderBy('marketing_datas.marketing_datas_id','desc')->get();
+
+
 
         $returndata = [];
         foreach ($data1 as $k => $v) {
@@ -102,24 +102,24 @@ class MarketingDatasController extends \BaseController
             $returndata[$k]['email'] = $v->email;
             $returndata[$k]['leads_statuses_id'] = "$v->leads_statuses_id";
             $returndata[$k]['leads_statuses_name'] = "$v->leads_statuses_name";
-//            $returndata[$k]['leads_statuses_id'] = "<button ng-click='changeStatus()' class='stat' >$v->leads_statuses_name</button>";
-//            $returndata[$k]['edit'] = "<a href='#/app/marketing_states/edit/$id'><button class='btn btn-rounded btn-sm btn-icon btn-primary'><i class='fa fa-search-plus'></i></button></a>";
-//            $returndata[$k]['delete'] = "<a href='#/app/marketing_states/delete/$id'><button class='btn btn-sm btn-icon btn-danger'><i class='fa fa-edit'></i></button></i></button></a>";
         }
 
         $data['aaData'] = $returndata;
 
-//        $data['lead_status'] = LeadsStatus::select('leads_statuses_name', 'leads_statuses_id')->get();
         return $data;
     }
 
     public function postCountriesView()
     {
-
-        $data['countries'] = MarketingCountry::select(DB::raw('count(marketing_datas.marketing_states_id) as data_count, marketing_countries.*'))
+        $query =  MarketingCountry::select(DB::raw('count(marketing_datas.marketing_states_id) as data_count, marketing_countries.*'))
             ->leftJoin('marketing_states', 'marketing_states.marketing_countries_id', '=', 'marketing_countries.marketing_countries_id')
-            ->leftJoin('marketing_datas', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id')
-            ->groupBy('marketing_countries.marketing_countries_id')->get();
+            ->leftJoin('marketing_datas', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id');
+        if(Auth::user()->role_id != Config::get('constants.marketing_admin_id'))
+        {
+            $query->where('marketing_datas.user_id','=',Auth::user()->user_id);
+        }
+        $data['countries'] = $query->groupBy('marketing_countries.marketing_countries_id')->get();
+
 
         foreach ($data['countries'] as $key => $val) {
             $data['countries'][$key]->marketing_countries_id = Helper::simple_encrypt($data['countries'][$key]->marketing_countries_id);
@@ -144,7 +144,6 @@ class MarketingDatasController extends \BaseController
 
             $data['timezones'][$key]->timezones_id = Helper::simple_encrypt($data['timezones'][$key]->timezones_id);
             $data['timezones'][$key]->timezones_time = strtotime($pst);
-//            $data['timezones'][$key]->timezones_time = ($pst);
         }
 //        $data['categories'] = MarketingCategory::select('marketing_categories_name', 'marketing_categories_id')->get();
         return json_encode($data);
@@ -207,7 +206,6 @@ class MarketingDatasController extends \BaseController
         foreach ($data['countries'] as $key => $val) {
             $data['countries'][$key]->marketing_countries_id = Helper::simple_encrypt($data['countries'][$key]->marketing_countries_id);
         }
-//        $data['categories'] = MarketingCategory::select('marketing_categories_name', 'marketing_categories_id')->get();
         return json_encode($data);
     }
 

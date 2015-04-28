@@ -11,4 +11,7 @@ return [
     'update_record_msg' => 'Updated Successfully!!!',
     'delete_record_msg' => 'Deleted Successfully!!!',
     'error_record_msg' => 'Something went wrong. Please retry with proper data!',
+
+
+    'marketing_admin_id' => 1,
 ];

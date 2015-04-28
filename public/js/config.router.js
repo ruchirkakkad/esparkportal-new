@@ -468,26 +468,6 @@ angular.module('app')
                             }]
                     }
                 })
-                //.state('app.marketing_datas.index-three-view', {
-                //    url: '/index-three-view/{id}',
-                //    templateUrl: 'marketing_datas/index-three-view',
-                //    controller: "AuthCheckCtrl",
-                //    resolve: {
-                //        deps: ['$ocLazyLoad',
-                //            function( $ocLazyLoad ){
-                //                return $ocLazyLoad.load('smart-table').then(
-                //                    function(){
-                //                        return $ocLazyLoad.load({
-                //                            files: [
-                //                                'js/controllers/marketing_datas.js',
-                //                                'js/controllers/table.js'
-                //                            ]
-                //                        });
-                //                    }
-                //                );
-                //            }]
-                //    }
-                //})
                 .state('app.marketing_datas.index-three-view', {
                     url: '/index-three-view/{id}/{countryid}',
                     templateUrl: 'marketing_datas/index-three-view',
@@ -614,6 +594,30 @@ angular.module('app')
                             }]
                     }
                 })
+                .state('app.call_closed', {
+                    url: '/call_closed',
+                    template: '<div ui-view  ng-controller="CallClosedController" class="fade-in-right-big"></div>'
+                })
+                .state('app.call_closed.index-view', {
+                    url: '/index-view',
+                    templateUrl: 'call_closed/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table', 'xeditable']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/call_closed.js',
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+
 
                 .state('app.marketing_categories', {
                     url: '/marketing_categories',

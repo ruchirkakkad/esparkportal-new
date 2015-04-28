@@ -2,8 +2,8 @@
  * Created by ruchir on 4/7/2015.
  */
 
-app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope', '$interval', '$filter', '$timeout', 'editableOptions', 'editableThemes','$modal','$log',
-    function ($scope, $http, $state, Flash, $stateParams, $rootScope, $interval, $filter, $timeout, editableOptions, editableThemes,$modal,$log) {
+app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope', '$interval', '$filter', '$timeout', 'editableOptions', 'editableThemes', '$modal', '$log',
+    function ($scope, $http, $state, Flash, $stateParams, $rootScope, $interval, $filter, $timeout, editableOptions, editableThemes, $modal, $log) {
 
         $scope.data = {
             'marketing_datas_id': null,
@@ -18,6 +18,7 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
             'user_id': null,
             'leads_statuses_id': null,
             'lead_statuses': [],
+            'lead_statusesforfilter': [],
             'marketing_datas': [],
             'filter_status': '',
             'stateparam_id': $stateParams.id
@@ -130,7 +131,6 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
         };
 
 
-
         $scope.timezone_wise_data = function () {
             $scope.pleaseWork = '';
 
@@ -141,13 +141,16 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
             $scope.itemsByPage = 100;
             $scope.data.marketing_datas = [];
 
-            $http.get('marketing_datas/timezone-wise-data-view/' + $stateParams.id+'/'+$stateParams.countryid, {})
+            $http.get('marketing_datas/timezone-wise-data-view/' + $stateParams.id + '/' + $stateParams.countryid, {})
                 .success(function (data) {
 
                     $scope.data.marketing_datas = data.aaData;
 
                     $scope.data.lead_statuses = data.lead_status;
+                    $scope.data.lead_statusesforfilter = data.lead_status;
 
+                    $scope.data.lead_statusesforfilter = $filter('filter')($scope.data.lead_statusesforfilter, {leads_statuses_id: '!9'})
+                    console.log($scope.data.lead_statusesforfilter);
                     $scope.timezone = data.timezone;
 
                     $interval.cancel(timer);
@@ -222,7 +225,7 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
 
         $scope.changeStatus = function () {
             $scope.pleaseWork = '';
-            $http.post('marketing_datas/timezone-wise-data-filtered-view/' + $stateParams.id+'/'+$stateParams.countryid, {
+            $http.post('marketing_datas/timezone-wise-data-filtered-view/' + $stateParams.id + '/' + $stateParams.countryid, {
                 leads_statuses_id: $scope.data.filter_status
             }).success(function (data) {
                 $scope.data.marketing_datas = data.aaData;
@@ -270,11 +273,11 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
 
 
             $http.post('marketing_datas/update-edit/' + $scope.data.marketing_datas_id, {
-                owner_name : $scope.data.owner_name,
-                company_name : $scope.data.company_name,
-                website : $scope.data.website,
-                phone : $scope.data.phone,
-                email : $scope.data.email
+                owner_name: $scope.data.owner_name,
+                company_name: $scope.data.company_name,
+                website: $scope.data.website,
+                phone: $scope.data.phone,
+                email: $scope.data.email
             }).success(function (data) {
 
                 var data = (data);
@@ -293,17 +296,17 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
         };
 
         var d = new Date();
-        d.setHours( 14 );
-        d.setMinutes( 0 );
+        d.setHours(14);
+        d.setMinutes(0);
 
         $scope.note = {
-            data_id : null,
+            data_id: null,
             message: null,
             note_date: null,
             note_time: d
         };
 
-        $scope.open = function (note,id) {
+        $scope.open = function (note, id) {
             $scope.note = note;
             $scope.note.message
 
@@ -315,11 +318,11 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
                 windowClass: 'modal',
                 controller: function ($scope, $modalInstance, $log, user) {
                     var d = new Date();
-                    d.setHours( 14 );
-                    d.setMinutes( 0 );
+                    d.setHours(14);
+                    d.setMinutes(0);
 
                     $scope.note = {
-                        data_id : null,
+                        data_id: null,
                         message: null,
                         note_date: null,
                         note_time: d
@@ -350,5 +353,4 @@ app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash'
                 }
             });
         };
-
     }]);

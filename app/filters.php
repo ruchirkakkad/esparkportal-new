@@ -91,14 +91,14 @@ Route::filter('csrf', function () {
 Route::filter('permission', function () {
     $permission = Session::get('permission');
     $controller = Request::segment(1);
+
     $action = substr(Request::segment(2), strrpos(Request::segment(2), '-') + 1);
     if (!empty($permission)) {
         foreach ($permission as $val) {
 
             if ($val['module_controller'] == $controller) {
                 if ($val[$action] != 1) {
-                return View::make('page_404');
-
+                    return View::make('page_404');
                 }
             }
         }
