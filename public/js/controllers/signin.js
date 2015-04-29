@@ -13,7 +13,8 @@ app.controller('SigninFormController', ['$scope', '$http', '$state','$rootScope'
             // Try to login
             $http.post('checklogin', {email: $scope.user.email, password: $scope.user.password})
                 .success(function (data) {
-
+                    $scope.authError = null;
+                    $scope.authError = null;
                     if (data == '0') {
                         $scope.authError = 'Email or Password not right';
                     } else {

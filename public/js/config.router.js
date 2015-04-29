@@ -618,6 +618,52 @@ angular.module('app')
                     }
                 })
 
+                .state('app.marketing_report', {
+                    url: '/marketing_report',
+                    template: '<div ui-view  ng-controller="MarketingReportController" class="fade-in-right-big"></div>'
+                })
+                .state('app.marketing_report.index-two-view', {
+                    url: '/index-two-view/{id}',
+                    templateUrl: 'marketing_report/index-two-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table', 'xeditable']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/marketing_report.js',
+                                                //'js/controllers/chart.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.marketing_report.index-one-view', {
+                    url: '/index-one-view',
+                    templateUrl: 'marketing_report/index-one-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table', 'xeditable']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/marketing_report.js',
+
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+
+
 
                 .state('app.marketing_categories', {
                     url: '/marketing_categories',

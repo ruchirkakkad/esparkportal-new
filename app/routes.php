@@ -52,6 +52,7 @@ Route::group(['before' => 'permission'], function () {
     Route::controller('leads', 'LeadsController');
     Route::controller('followup', 'FollowupController');
     Route::controller('call_closed', 'CallclosedController');
+    Route::controller('marketing_report', 'MarketingReportController');
 
 //---------------Marketing ends--------------------
 });

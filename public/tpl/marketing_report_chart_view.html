@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading font-bold">Total</div>
+            <div class="panel-body">
+                <div ui-jq="plot" ui-options="
+                              {{total}},
+                              {
+                                series: { pie: { show: true, innerRadius: 0.5, stroke: { width: 0 }, label: { show: true, threshold: 0.05 } } },
+                                colors: ['{{app.color.primary}}','{{app.color.info}}','{{app.color.success}}','{{app.color.dark}}','{{app.color.danger}}'],
+                                grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },
+                                tooltip: true,
+                                tooltipOpts: { content: '%s: %p.0%',defaultTheme: false }
+                              }
+                            " style="height:340px"></div>
+            </div>
+        </div>
+    </div>
+</div>
