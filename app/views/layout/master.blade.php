@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="app">
+<html lang="en" data-ng-app="app" ng-controller="AppCtrl">
 <head>
     <meta charset="utf-8" />
     <title>Be Angular | Bootstrap Admin Web App with AngularJS</title>
@@ -20,7 +20,7 @@
     {{ Html::style('css/ivh-treeview-theme-basic.css') }}
 
 </head>
-<body ng-controller="AppCtrl">
+<body >
 <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':false, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view>
 
 </div>

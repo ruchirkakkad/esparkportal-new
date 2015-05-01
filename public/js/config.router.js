@@ -664,7 +664,6 @@ angular.module('app')
                 })
 
 
-
                 .state('app.marketing_categories', {
                     url: '/marketing_categories',
                     template: '<div ui-view  ng-controller="MarketingCategoriesController" class="fade-in-right-big"></div>'
@@ -841,7 +840,6 @@ angular.module('app')
                 })
 
 
-
                 .state('app.roles', {
                     url: '/roles',
                     template: '<div ui-view  ng-controller="RolesController" class="fade-in-right-big"></div>'
@@ -905,9 +903,6 @@ angular.module('app')
                             });
                     }
                 })
-
-
-
 
 
                 .state('app.permissions', {
@@ -983,7 +978,6 @@ angular.module('app')
                             });
                     }
                 })
-
 
 
                 .state('app.dashboard-v2', {
@@ -1547,9 +1541,9 @@ angular.module('app')
                     url: '/playlist/{fold}',
                     templateUrl: 'tpl/music.playlist.html'
                 })
-                
-                
-                 .state('app.users', {
+
+
+                .state('app.users', {
                     url: '/users',
                     template: '<div ui-view  ng-controller="UsersController" class="fade-in-right-big"></div>'
 
@@ -1578,7 +1572,7 @@ angular.module('app')
                     templateUrl: 'users/create-add',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                         deps: ['$ocLazyLoad',
+                        deps: ['$ocLazyLoad',
                             function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['smart-table']).then(
                                     function () {
@@ -1677,7 +1671,7 @@ angular.module('app')
                             });
                     }
                 })
-                  .state('app.departments', {
+                .state('app.departments', {
                     url: '/departments',
                     template: '<div ui-view  ng-controller="DepartmentsController" class="fade-in-right-big"></div>'
                 })
@@ -1686,7 +1680,7 @@ angular.module('app')
                     templateUrl: 'departments/index-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                         deps: ['$ocLazyLoad',
+                        deps: ['$ocLazyLoad',
                             function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['smart-table']).then(
                                     function () {
@@ -1705,7 +1699,7 @@ angular.module('app')
                     templateUrl: 'departments/create-add',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                      deps: ['$ocLazyLoad',
+                        deps: ['$ocLazyLoad',
                             function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['smart-table']).then(
                                     function () {
@@ -1764,8 +1758,8 @@ angular.module('app')
                             });
                     }
                 })
-                                
-                  .state('app.designations', {
+
+                .state('app.designations', {
                     url: '/designations',
                     template: '<div ui-view  ng-controller="DesignationsController" class="fade-in-right-big"></div>'
                 })
@@ -1774,7 +1768,7 @@ angular.module('app')
                     templateUrl: 'designations/index-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                         deps: ['$ocLazyLoad',
+                        deps: ['$ocLazyLoad',
                             function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['smart-table']).then(
                                     function () {
@@ -1793,7 +1787,7 @@ angular.module('app')
                     templateUrl: 'designations/create-add',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                      deps: ['$ocLazyLoad',
+                        deps: ['$ocLazyLoad',
                             function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['smart-table']).then(
                                     function () {
@@ -1850,6 +1844,175 @@ angular.module('app')
                                     $state.go('app.designations.index');
                                 }
                             });
+                    }
+                })
+
+                .state('app.job_profiles', {
+                    url: '/job_profiles',
+                    template: '<div ui-view  ng-controller="DesignationsController" class="fade-in-right-big"></div>'
+                })
+                .state('app.job_profiles.index', {
+                    url: '/index',
+                    templateUrl: 'job_profiles/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/job_profiles.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.job_profiles.create', {
+                    url: '/create',
+                    templateUrl: 'job_profiles/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/job_profiles.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.job_profiles.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'job_profiles/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/job_profiles.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.job_profiles.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/job_profiles/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.job_profiles.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.job_profiles.index');
+                                }
+                            });
+                    }
+                })
+
+
+                .state('app.password_mgmts', {
+                    url: '/password_mgmts',
+                    template: '<div ui-view  ng-controller="PasswordMgmtsController" class="fade-in-right-big"></div>'
+                })
+                .state('app.password_mgmts.index-view', {
+                    url: '/index-view',
+                    templateUrl: 'password_mgmts/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/password_mgmts.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.password_mgmts.create', {
+                    url: '/create',
+                    templateUrl: 'password_mgmts/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/password_mgmts.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.password_mgmts.show', {
+                    url: '/show/{id}',
+                    templateUrl: 'password_mgmts/show-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/password_mgmts.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.password_mgmts.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'password_mgmts/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/password_mgmts.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
                     }
                 })
         }

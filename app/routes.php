@@ -44,15 +44,22 @@ Route::group(['before' => 'permission'], function () {
     Route::controller('leads_statuses', 'LeadsStatusesController');
     Route::controller('sheets', 'SheetsController');
     Route::controller('marketing_datas', 'MarketingDatasController');
+    Route::controller('leads', 'LeadsController');
+    Route::controller('followup', 'FollowupController');
+    Route::controller('call_closed', 'CallclosedController');
+    Route::controller('marketing_report', 'MarketingReportController');
+//---------------Marketing ends--------------------
+
+
     Route::controller('roles', 'RolesController');
     Route::controller('permissions', 'PermissionsController');
     Route::controller('users', 'UsersController');
     Route::controller('departments', 'DepartmentsController');
     Route::controller('designations', 'DesignationsController');
-    Route::controller('leads', 'LeadsController');
-    Route::controller('followup', 'FollowupController');
-    Route::controller('call_closed', 'CallclosedController');
-    Route::controller('marketing_report', 'MarketingReportController');
+    Route::controller('job_profiles', 'JobProfilesController');
 
-//---------------Marketing ends--------------------
+
+    Route::controller('password_mgmts', 'PasswordMgmtsController');
+
+
 });

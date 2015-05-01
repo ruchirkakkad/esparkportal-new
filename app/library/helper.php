@@ -10,7 +10,8 @@ class Helper
 {
     public static function simple_decrypt($string, $key = null)
     {
-        $key = $_SERVER['REMOTE_ADDR'];
+//        $key = $_SERVER['REMOTE_ADDR'];
+        $key = 'espark-portal';
         $string = base64_decode(base64_decode($string));
         $key = md5($key); //to improve variance
         /* Open module, and create IV */
@@ -33,7 +34,8 @@ class Helper
 
     public static function simple_encrypt($string, $key = null)
     {
-        $key = $_SERVER['REMOTE_ADDR'];
+//        $key = $_SERVER['REMOTE_ADDR'];
+        $key = 'espark-portal';
         srand((double) microtime() * 1000000); //for sake of MCRYPT_RAND
         $key = md5($key); //to improve variance
         /* Open module, and create IV */
