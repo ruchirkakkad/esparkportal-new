@@ -1849,7 +1849,7 @@ angular.module('app')
 
                 .state('app.job_profiles', {
                     url: '/job_profiles',
-                    template: '<div ui-view  ng-controller="DesignationsController" class="fade-in-right-big"></div>'
+                    template: '<div ui-view  ng-controller="JobProfilesController" class="fade-in-right-big"></div>'
                 })
                 .state('app.job_profiles.index', {
                     url: '/index',
@@ -2008,6 +2008,50 @@ angular.module('app')
                                         return $ocLazyLoad.load({
                                             files: [
                                                 'js/controllers/password_mgmts.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+
+
+                .state('app.user_profiles', {
+                    url: '/user_profiles',
+                    template: '<div ui-view  ng-controller="UserProfilesController" class="fade-in-right-big"></div>'
+                })
+                .state('app.user_profiles.index-view', {
+                    url: '/index-view',
+                    templateUrl: 'user_profiles/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/user_profiles.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.user_profiles.edit', {
+                    url: '/edit',
+                    templateUrl: 'user_profiles/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/user_profiles.js'
                                             ]
                                         });
                                     }

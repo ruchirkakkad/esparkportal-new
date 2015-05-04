@@ -59,16 +59,16 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Designation</label>
                                 <div class="col-sm-9">
-                                    <select type="text" class="form-control" placeholder="required field" ng-model="data.userApproveData.users.designation_id" ng-options="selectedItem.designations_id as selectedItem.designations_name for selectedItem in data.userApproveData.designation" required></select>
-                                </div></div>
+                                    <select type="text" class="form-control" placeholder="required field" ng-model="data.userApproveData.users.designation_id" ng-options="data.userApproveData.designation.indexOf(selectedItem) as selectedItem.designations_name for selectedItem in data.userApproveData.designation" required></select>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Job Profile</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="required field" ng-model="data.userApproveData.users.job_profile">
+                                    <select type="text" class="form-control" placeholder="required field" ng-model="data.userApproveData.users.job_profile" ng-options="selectedItem.job_profiles_id as selectedItem.job_profiles_name for selectedItem in data.userApproveData.designation[data.userApproveData.users.designation_id].job_profiles" required></select>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Role</label>
                                 <div class="col-sm-9">

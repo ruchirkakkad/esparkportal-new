@@ -6,34 +6,32 @@ app.controller('UsersController', ['$scope', '$http', '$state', 'Flash', '$state
     function ($scope, $http, $state, Flash, $stateParams, $rootScope) {
 
         $scope.data = {
-            'users_approve':[] ,
-            'userApproveData':[] ,
-            'users':[] ,
+            'users_approve': [],
+            'userApproveData': [],
+            'users': [],
         };
 
-        $scope.approveFind=function()
-        {
-            
+        $scope.approveFind = function () {
+
         }
-          $scope.approve_user_view_file = '';
-        $scope.index = function() {
+        $scope.approve_user_view_file = '';
+        $scope.index = function () {
             $http.get('users/approve-data-edit', {}).success(function (data) {
                 $scope.data.users_approve = data.aaData;
                 $scope.approve_user_view_file = 'tpl/approve_user_view_file.html';
             });
         }
-        
-                $scope.editChangeApproveData = function () {
+
+        $scope.editChangeApproveData = function () {
             $http.post('users/find-change-approve-edit/' + $stateParams.id, {})
                 .success(function (data) {
                     $scope.data.userApproveData = data;
-                    
                 });
         }
-                $scope.saveApprovedUpdate = function () {
-              $http.post('users/update-approve-edit/' + $scope.data.userApproveData.users.user_encrypted_id, {
+        $scope.saveApprovedUpdate = function () {
+            $http.post('users/update-approve-edit/' + $scope.data.userApproveData.users.user_encrypted_id, {
                 department_id: $scope.data.userApproveData.users.department_id,
-                designation_id: $scope.data.userApproveData.users.designation_id,
+                designation_id: $scope.data.userApproveData.designation[$scope.data.userApproveData.users.designation_id]['designations_id'],
                 job_profile: $scope.data.userApproveData.users.job_profile,
                 role_id: $scope.data.userApproveData.users.role_id,
                 email: $scope.data.userApproveData.users.email,
@@ -57,5 +55,5 @@ app.controller('UsersController', ['$scope', '$http', '$state', 'Flash', '$state
             });
         }
 
-        
+
     }]);

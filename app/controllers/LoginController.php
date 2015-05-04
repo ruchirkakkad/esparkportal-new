@@ -81,10 +81,12 @@ class LoginController extends \BaseController
 
         if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'), 'user_status' => 1))) {
             $permission = Permission::leftJoin('modules', 'modules.module_id', '=', 'permissions.page_id')
+                ->where('modules.is_inmenu','=',1)
                 ->where('permissions.role_id', '=', Auth::user()->role_id)->get()->keyBy('page_id')->toArray();
             Session::set('permission', $permission);
 
             $data['permission'] = Permission::leftJoin('modules', 'modules.module_id', '=', 'permissions.page_id')
+                ->where('modules.is_inmenu','=',1)
                 ->where('permissions.role_id', '=', Auth::user()->role_id)->get()->keyBy('module_controller')->toArray();
             $data['user'] = Auth::user();
             return $data;
@@ -97,6 +99,7 @@ class LoginController extends \BaseController
     {
         if (Auth::check()) {
             $data['permission'] = Permission::leftJoin('modules', 'modules.module_id', '=', 'permissions.page_id')
+                ->where('modules.is_inmenu','=',1)
                 ->where('permissions.role_id', '=', Auth::user()->role_id)->get()->keyBy('module_controller')->toArray();
             $data['user'] = Auth::user();
             return $data;

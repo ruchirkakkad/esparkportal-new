@@ -68,7 +68,8 @@ class UsersController extends \BaseController
         $id = Helper::simple_decrypt($id);
 
         $data['department'] = Department::all();
-        $data['designation'] = Designation::all();
+        $data['designation'] = Designation::with('job_profiles')->get();
+
         $data['role'] = Role::all();
         $data['users'] = User::find($id);
 

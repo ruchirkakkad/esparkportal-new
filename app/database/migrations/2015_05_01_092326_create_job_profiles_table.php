@@ -14,8 +14,11 @@ class CreateJobProfilesTable extends Migration {
 	{
 		Schema::create('job_profiles', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->timestamps();
+			$table->increments('job_profiles_id');
+			$table->string('job_profiles_name');
+			$table->integer('designations_id');
+            $table->timestamps();
+            $table->softDeletes();
 		});
 	}
 

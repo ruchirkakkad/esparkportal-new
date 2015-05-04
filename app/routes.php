@@ -59,6 +59,8 @@ Route::group(['before' => 'permission'], function () {
     Route::controller('job_profiles', 'JobProfilesController');
 
 
+    Route::controller('user_profiles', 'UserProfilesController');
+
     Route::controller('password_mgmts', 'PasswordMgmtsController');
 
 
