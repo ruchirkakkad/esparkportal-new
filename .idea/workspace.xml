@@ -5,30 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fc8cf14-5774-494d-9e4a-2a7e8042b9b5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/UserProfilesController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/user_profiles/create.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/job_profiles/create.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/job_profiles/edit.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/user_profiles/edit.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/user_profiles/index.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/controllers/job_profiles.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/tpl/job_profiles_view_file.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/user_profiles/show.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/controllers/user_profiles.js" />
-      <change type="DELETED" beforePath="D:\wamp\www\esparkportal-new\app\views\job_profiles\create.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="D:\wamp\www\esparkportal-new\app\views\job_profiles\edit.blade.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2015_05_01_092326_create_job_profiles_table.php" afterPath="$PROJECT_DIR$/app/database/migrations/2015_05_01_092326_create_job_profiles_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Designation.php" afterPath="$PROJECT_DIR$/app/models/Designation.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/JobProfile.php" afterPath="$PROJECT_DIR$/app/models/JobProfile.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/JobProfilesController.php" afterPath="$PROJECT_DIR$/app/controllers/JobProfilesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/LoginController.php" afterPath="$PROJECT_DIR$/app/controllers/LoginController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/UsersController.php" afterPath="$PROJECT_DIR$/app/controllers/UsersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/approve_change_user.php" afterPath="$PROJECT_DIR$/app/views/users/approve_change_user.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/database/migrations/2015_05_04_123629_create_skills_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/database/migrations/2015_05_04_132512_create_educational_qualifications_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/EducationalQualification.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/EducationalQualificationsController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/Skill.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/SkillsController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/educational_qualifications/create.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/skills/create.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/educational_qualifications/edit.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/skills/edit.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/controllers/educational_qualifications.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/tpl/educational_qualifications_view.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/educational_qualifications/index.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/skills/index.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/educational_qualifications/show.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/skills/show.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/controllers/skills.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/tpl/skills_view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/config.router.js" afterPath="$PROJECT_DIR$/public/js/config.router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layout/header.php" afterPath="$PROJECT_DIR$/app/views/layout/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/job_profiles/index.blade.php" afterPath="$PROJECT_DIR$/app/views/job_profiles/index.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="$PROJECT_DIR$/app/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/users.js" afterPath="$PROJECT_DIR$/public/js/controllers/users.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="esparkportal-new.iws" />
@@ -57,38 +53,28 @@
       <file leaf-file-name="config.router.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/config.router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="39701" max-vertical-offset="41380">
-              <caret line="2043" column="31" selection-start-line="2043" selection-start-column="31" selection-end-line="2043" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="44242" max-vertical-offset="44880">
+              <caret line="2232" column="33" selection-start-line="2232" selection-start-column="33" selection-end-line="2232" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_profiles.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user_profiles.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controllers/user_profiles.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.3333334" vertical-offset="360" max-vertical-offset="3120">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="3120">
+              <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="edit.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/user_profiles/edit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.413794" vertical-offset="9853" max-vertical-offset="10680">
-              <caret line="515" column="91" selection-start-line="515" selection-start-column="77" selection-end-line="515" selection-end-column="91" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserProfilesController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/UserProfilesController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.8965516" vertical-offset="960" max-vertical-offset="1820">
-              <caret line="58" column="48" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.46005508" vertical-offset="9853" max-vertical-offset="10680">
+              <caret line="501" column="47" selection-start-line="501" selection-start-column="47" selection-end-line="501" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -107,22 +93,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/marketing_report/index_one.php" />
-        <option value="$PROJECT_DIR$/public/js/controllers/marketing_report.js" />
-        <option value="$PROJECT_DIR$/app/controllers/MarketingReportController.php" />
-        <option value="$PROJECT_DIR$/public/tpl/marketing_report_chart_view.html" />
-        <option value="$PROJECT_DIR$/app/views/timezones/index.blade.php" />
-        <option value="$PROJECT_DIR$/public/js/controllers/password_mgmt.js" />
-        <option value="$PROJECT_DIR$/app/views/password_mgmts/create.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/password_mgmts/create.php" />
-        <option value="$PROJECT_DIR$/app/views/password_mgmts/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/password_mgmts/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/password_mgmts/edit.php" />
-        <option value="$PROJECT_DIR$/app/library/helper.php" />
-        <option value="$PROJECT_DIR$/public/tpl/password_mgmts_create_file.html" />
-        <option value="$PROJECT_DIR$/app/views/layout/master.php" />
-        <option value="$PROJECT_DIR$/app/views/layout/master.blade.php" />
-        <option value="D:/ruchir/stuff/AngularRouting/plunk-uW4v9T/app.js" />
         <option value="D:/ruchir/stuff/AngularRouting/plunk-uW4v9T/index.html" />
         <option value="$PROJECT_DIR$/app/database/migrations/2015_04_29_055712_create_password_mgmts_table.php" />
         <option value="6e5c86a5/scratch" />
@@ -152,12 +122,28 @@
         <option value="$PROJECT_DIR$/app/views/users/approve_change_user.php" />
         <option value="$PROJECT_DIR$/app/controllers/UsersController.php" />
         <option value="$PROJECT_DIR$/app/controllers/LoginController.php" />
-        <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/controllers/UserProfilesController.php" />
         <option value="$PROJECT_DIR$/app/views/layout/header.php" />
-        <option value="$PROJECT_DIR$/public/js/config.router.js" />
         <option value="$PROJECT_DIR$/app/views/user_profiles/edit.php" />
         <option value="$PROJECT_DIR$/public/js/controllers/user_profiles.js" />
+        <option value="$PROJECT_DIR$/app/controllers/SkillsController.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2015_05_04_123629_create_skills_table.php" />
+        <option value="$PROJECT_DIR$/app/models/Skill.php" />
+        <option value="$PROJECT_DIR$/public/js/controllers/skills.js" />
+        <option value="$PROJECT_DIR$/app/views/skills/index.blade.php" />
+        <option value="$PROJECT_DIR$/public/tpl/skills_view.html" />
+        <option value="$PROJECT_DIR$/app/views/skills/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/skills/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/routes.php" />
+        <option value="$PROJECT_DIR$/app/controllers/EducationalQualificationsController.php" />
+        <option value="$PROJECT_DIR$/app/models/EducationalQualification.php" />
+        <option value="$PROJECT_DIR$/app/views/educational_qualifications/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/educational_qualifications/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/educational_qualifications/index.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/controllers/educational_qualifications.js" />
+        <option value="$PROJECT_DIR$/public/tpl/educational_qualifications_view.html" />
+        <option value="$PROJECT_DIR$/public/js/config.router.js" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2015_05_04_132512_create_educational_qualifications_table.php" />
       </list>
     </option>
   </component>
@@ -315,7 +301,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="database" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -333,33 +319,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="database" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="users" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="esparkportal-new" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="esparkportal-new" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user_profiles" />
+              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -398,11 +362,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\wamp\www\esparkportal-new\app\views\job_profiles" />
+      <recent name="D:\wamp\www\esparkportal-new\public\tpl" />
       <recent name="D:\wamp\www\esparkportal-new\public\js\controllers" />
-      <recent name="D:\wamp\www\esparkportal-new\app\views\marketing_report" />
-      <recent name="D:\wamp\www\esparkportal-new\app\views" />
-      <recent name="D:\wamp\www\esparkportal-new\app\controllers" />
+      <recent name="D:\wamp\www\esparkportal-new\app\views\educational_qualifications" />
+      <recent name="D:\wamp\www\esparkportal-new\app\views\skills" />
+      <recent name="D:\wamp\www\esparkportal-new\app\views\job_profiles" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\wamp\www\esparkportal-new\public\js\controllers" />
@@ -520,7 +484,13 @@
       <option name="project" value="LOCAL" />
       <updated>1430473261654</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="4mar2015 edit profile html built">
+      <created>1430742919487</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1430742919487</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -547,23 +517,23 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3234375" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.228125" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32237872" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22691706" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26626325" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="519" y="149" width="327" height="429" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26626325" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="519" y="149" width="327" height="429" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32394367" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3265625" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32394367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39906102" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -617,7 +587,8 @@
     <MESSAGE value="28apr2015 few uncommited files commiting" />
     <MESSAGE value="29apr2015 marketing module finished with one report" />
     <MESSAGE value="1mar2015 password management module finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="1mar2015 password management module finished" />
+    <MESSAGE value="4mar2015 edit profile html built" />
+    <option name="LAST_COMMIT_MESSAGE" value="4mar2015 edit profile html built" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -626,171 +597,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/layout/master.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.036563072" vertical-offset="20" max-vertical-offset="1740">
-          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_04_29_055712_create_password_mgmts_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.793103" vertical-offset="840" max-vertical-offset="1740">
-          <caret line="63" column="53" selection-start-line="63" selection-start-column="53" selection-end-line="63" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/password_mgmts/create.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4482758" vertical-offset="0" max-vertical-offset="280">
-          <caret line="5" column="45" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/tpl/password_mgmts_create_file.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6896552" vertical-offset="80" max-vertical-offset="8100">
-          <caret line="5" column="75" selection-start-line="0" selection-start-column="0" selection-end-line="399" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Timezone.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4642857" vertical-offset="0" max-vertical-offset="560">
-          <caret line="13" column="0" selection-start-line="6" selection-start-column="4" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/PasswordMgmt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42857143" vertical-offset="0" max-vertical-offset="560">
-          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_ide_helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3510055" vertical-offset="83268" max-vertical-offset="255660">
-          <caret line="4179" column="31" selection-start-line="4179" selection-start-column="31" selection-end-line="4179" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/tpl/password_mgmts_view_file.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.511883" vertical-offset="0" max-vertical-offset="1720">
-          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/password_mgmts/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17152658" vertical-offset="0" max-vertical-offset="583">
-          <caret line="5" column="43" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/password_mgmts/edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13722126" vertical-offset="0" max-vertical-offset="583">
-          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/marketing_datas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7135417" vertical-offset="3989" max-vertical-offset="7220">
-          <caret line="220" column="15" selection-start-line="210" selection-start-column="12" selection-end-line="220" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/tpl/password_mgmts_show_file.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.724138" vertical-offset="8333" max-vertical-offset="8880">
-          <caret line="438" column="7" selection-start-line="438" selection-start-column="7" selection-end-line="438" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/timezones/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.310345" vertical-offset="150" max-vertical-offset="720">
-          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="23" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/tpl/password_mgmts_edit_file.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="8920">
-          <caret line="0" column="77" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/PasswordMgmtsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5831904" vertical-offset="4780" max-vertical-offset="7080">
-          <caret line="256" column="9" selection-start-line="256" selection-start-column="9" selection-end-line="256" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/DepartmentsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.931034" vertical-offset="1938" max-vertical-offset="2520">
-          <caret line="120" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/RolesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2400">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/designations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1920">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/MarketingCategory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10309278" vertical-offset="0" max-vertical-offset="582">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="620">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/marketing_states/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.965517" vertical-offset="300" max-vertical-offset="1060">
-          <caret line="28" column="21" selection-start-line="21" selection-start-column="15" selection-end-line="28" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/marketing_states.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7692308" vertical-offset="540" max-vertical-offset="2620">
-          <caret line="50" column="15" selection-start-line="45" selection-start-column="12" selection-end-line="50" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_05_01_092326_create_job_profiles_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21466905" vertical-offset="240" max-vertical-offset="820">
-          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/tpl/marketing_states_view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1760">
@@ -798,17 +604,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/MarketingState.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71556354" vertical-offset="180" max-vertical-offset="800">
-          <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/job_profiles/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2862254" vertical-offset="0" max-vertical-offset="559">
           <caret line="8" column="48" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -816,6 +616,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.862069" vertical-offset="300" max-vertical-offset="960">
           <caret line="38" column="23" selection-start-line="8" selection-start-column="16" selection-end-line="38" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -823,13 +624,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.689655" vertical-offset="274" max-vertical-offset="980">
           <caret line="35" column="94" selection-start-line="35" selection-start-column="94" selection-end-line="35" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/MarketingStatesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.137931" vertical-offset="120" max-vertical-offset="2760">
-          <caret line="12" column="72" selection-start-line="12" selection-start-column="72" selection-end-line="12" selection-end-column="72" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -837,6 +632,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.52724075" vertical-offset="0" max-vertical-offset="1700">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -911,26 +707,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/UsersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.931034" vertical-offset="3137" max-vertical-offset="4020">
-          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/UserProfilesController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.8965516" vertical-offset="960" max-vertical-offset="1820">
           <caret line="58" column="48" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.103448" vertical-offset="660" max-vertical-offset="1260">
-          <caret line="61" column="36" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -985,26 +765,242 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user_profiles/edit.php">
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_05_04_123629_create_skills_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.413794" vertical-offset="9853" max-vertical-offset="10680">
-          <caret line="515" column="91" selection-start-line="515" selection-start-column="77" selection-end-line="515" selection-end-column="91" />
+        <state vertical-scroll-proportion="0.4293381" vertical-offset="120" max-vertical-offset="800">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Sheet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6797853" vertical-offset="0" max-vertical-offset="800">
+          <caret line="19" column="0" selection-start-line="16" selection-start-column="3" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/skills/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.035778176" vertical-offset="0" max-vertical-offset="559">
+          <caret line="1" column="39" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/tpl/skills_view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21978022" vertical-offset="0" max-vertical-offset="1680">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="620">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/MarketingStatesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.10989011" vertical-offset="300" max-vertical-offset="2760">
+          <caret line="12" column="72" selection-start-line="12" selection-start-column="72" selection-end-line="12" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/MarketingState.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.71556354" vertical-offset="180" max-vertical-offset="800">
+          <caret line="29" column="35" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/UsersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.470483" vertical-offset="1157" max-vertical-offset="4020">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/MarketingDatasNotesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1820">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/MarketingDatasController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.091575" vertical-offset="3540" max-vertical-offset="6800">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/LeadsStatusesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2540251" vertical-offset="961" max-vertical-offset="2420">
+          <caret line="13" column="32" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/LeadsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.62271065" vertical-offset="300" max-vertical-offset="1780">
+          <caret line="32" column="66" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/skills/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4029304" vertical-offset="120" max-vertical-offset="700">
+          <caret line="17" column="108" selection-start-line="17" selection-start-column="108" selection-end-line="17" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/skills.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64484453" vertical-offset="406" max-vertical-offset="1900">
+          <caret line="40" column="27" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/skills/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07029877" vertical-offset="0" max-vertical-offset="720">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/DesignationsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7938144" vertical-offset="1938" max-vertical-offset="2520">
+          <caret line="120" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7061856" vertical-offset="669" max-vertical-offset="1300">
+          <caret line="63" column="49" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/SkillsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.931034" vertical-offset="1938" max-vertical-offset="2520">
+          <caret line="120" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Skill.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3793104" vertical-offset="0" max-vertical-offset="380">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/EducationalQualification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.03436426" vertical-offset="0" max-vertical-offset="582">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/educational_qualifications/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38664323" vertical-offset="0" max-vertical-offset="700">
+          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/educational_qualifications/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59753954" vertical-offset="0" max-vertical-offset="720">
+          <caret line="17" column="128" selection-start-line="17" selection-start-column="128" selection-end-line="17" selection-end-column="128" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/educational_qualifications/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.03436426" vertical-offset="0" max-vertical-offset="582">
+          <caret line="1" column="59" selection-start-line="1" selection-start-column="59" selection-end-line="1" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/tpl/educational_qualifications_view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4029304" vertical-offset="1020" max-vertical-offset="1680">
+          <caret line="62" column="57" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_05_04_132512_create_educational_qualifications_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8601036" vertical-offset="28" max-vertical-offset="800">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/config.router.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="39701" max-vertical-offset="41380">
-          <caret line="2043" column="31" selection-start-line="2043" selection-start-column="31" selection-end-line="2043" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="44242" max-vertical-offset="44880">
+          <caret line="2232" column="33" selection-start-line="2232" selection-start-column="33" selection-end-line="2232" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/EducationalQualificationsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3793104" vertical-offset="0" max-vertical-offset="2500">
+          <caret line="2" column="41" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/educational_qualifications.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17660044" vertical-offset="0" max-vertical-offset="1900">
+          <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers/user_profiles.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3333334" vertical-offset="360" max-vertical-offset="3120">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="3120">
+          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/user_profiles/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46005508" vertical-offset="9853" max-vertical-offset="10680">
+          <caret line="501" column="47" selection-start-line="501" selection-start-column="47" selection-end-line="501" selection-end-column="47" />
           <folding />
         </state>
       </provider>

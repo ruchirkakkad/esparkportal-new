@@ -2059,6 +2059,181 @@ angular.module('app')
                             }]
                     }
                 })
+
+                .state('app.skills', {
+                    url: '/skills',
+                    template: '<div ui-view  ng-controller="SkillsController" class="fade-in-right-big"></div>'
+                })
+                .state('app.skills.index', {
+                    url: '/index',
+                    templateUrl: 'skills/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/skills.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.skills.create', {
+                    url: '/create',
+                    templateUrl: 'skills/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/skills.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.skills.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'skills/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/skills.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.skills.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/skills/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.skills.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.skills.index');
+                                }
+                            });
+                    }
+                })
+                .state('app.educational_qualifications', {
+                    url: '/educational_qualifications',
+                    template: '<div ui-view  ng-controller="EducationalQualificationsController" class="fade-in-right-big"></div>'
+                })
+                .state('app.educational_qualifications.index', {
+                    url: '/index',
+                    templateUrl: 'educational_qualifications/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/educational_qualifications.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.educational_qualifications.create', {
+                    url: '/create',
+                    templateUrl: 'educational_qualifications/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/educational_qualifications.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.educational_qualifications.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'educational_qualifications/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/educational_qualifications.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.educational_qualifications.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/educational_qualifications/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.educational_qualifications.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.educational_qualifications.index');
+                                }
+                            });
+                    }
+                })
         }
     ]
 );
