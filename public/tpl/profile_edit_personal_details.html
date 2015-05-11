@@ -1,0 +1,98 @@
+<style>
+
+    .progress {
+        display: inline-block;
+        width: 100px;
+        border: 3px groove #CCC;
+    }
+
+    .progress div {
+        font-size: smaller;
+        background: orange;
+        width: 0;
+    }
+</style>
+<form name="formValidate" class="form-horizontal form-validation" novalidate enctype="multipart/form-data">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">First Name</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.first_name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Middle Name</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.middle_name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Last Name</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.last_name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Personal Email</label>
+
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" ng-model="data.user.personal_email"
+                           required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Company Email</label>
+
+                <div class="col-sm-9">
+                    <input type="email" class="form-control"
+                           ng-model="data.user.email" required readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Gender</label>
+
+                <div class="col-sm-9">
+                    <div class="radio">
+                        <label class="i-checks">
+                            <input type="radio" name="gender" value="male"
+                                   ng-model="data.user.gender">
+                            <i></i>
+                            Male
+                        </label>
+                        <label class="i-checks">
+                            <input type="radio" name="gender" value="female"
+                                   ng-model="data.user.gender">
+                            <i></i>
+                            Female
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Profile Pic</label>
+
+                <div class="col-sm-9">
+                    <div class="col-sm-6">
+                        <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" required>
+
+                            <span class="progress" ng-show="picFile[0].progress >= 0">
+                                <div style="width:{{picFile[0].progress}}%" ng-bind="picFile[0].progress + '%'"></div>
+                            </span>
+                        <span ng-show="picFile[0].result">Upload Successful</span>
+                    </div>
+                    <div class="col-sm-6"></div>
+                </div>
+            </div>
+        </div>
+        <footer class="panel-footer text-right bg-light lter">
+            <button type="submit" class="btn btn-success" ng-click="savePersonalDetails(picFile)">Submit
+            </button>
+        </footer>
+    </div>
+</form>

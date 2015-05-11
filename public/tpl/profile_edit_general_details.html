@@ -1,0 +1,111 @@
+<form name="formValidate" class="form-horizontal form-validation" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Date of Birth</label>
+
+                <div class="col-sm-9" ng-controller="DatepickerDemoCtrl" >
+                    <div class="input-group w-md">
+                        <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                               ng-model="data.user.user_personal.dob" is-open="opened" datepicker-options="dateOptions"
+                               ng-required="true" close-text="Close"/>
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                                        class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Blood Group</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.user_personal.blood_group">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Marital Status</label>
+
+                <div class="col-sm-9">
+                    <select type="text" class="form-control" placeholder="required field"
+                            ng-model="data.user.user_personal.marital_status"
+                            ng-options="selectedItem.key as selectedItem.value for selectedItem in [{key:'0',value:'Unmarried'},{key:'1',value:'Married'}]"
+                            ng-change="MaritalStatusChange()"
+                            required>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" data-ng-show="MaritalStatusChangeVar">
+                <label class="col-sm-3 control-label">Spouse Name</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.user_personal.spouse_name" required>
+                </div>
+            </div>
+            <div class="form-group" ng-show="MaritalStatusChangeVar">
+                <label class="col-sm-3 control-label">Anniversary date</label>
+
+                <div class="col-sm-9" ng-controller="DatepickerDemoCtrl">
+                    <div class="input-group w-md">
+                        <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                               ng-model="data.user.user_personal.aniversary_date" is-open="opened"
+                               datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                                        class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Driving License No.</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control"
+                           ng-model="data.user.user_personal.driving_licence_no" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Passport number</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control"
+                           ng-model="data.user.user_personal.passport_no" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Skills</label>
+
+                <div class="col-sm-9">
+                    <select ui-jq="chosen" multiple class="w-md" data-placeholder="Select skills"
+                            ng-model="data.user.user_personal.skills"
+                            data-ng-options="user.skills_name for user in data.skills track by user.skills_id">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Languages</label>
+
+                <div class="col-sm-9">
+                    <select ui-jq="chosen" multiple class="w-md" data-placeholder="Select languages"
+                            ng-model="data.user.user_personal.languages"
+                            data-ng-options="user.languages_name for user in data.languages track by user.languages_id">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Bio</label>
+
+                <div class="col-sm-9">
+                    <textarea rows="2" class="form-control" ng-model="data.user.user_personal.bio"></textarea>
+                </div>
+            </div>
+        </div>
+        <footer class="panel-footer text-right bg-light lter">
+            <button type="submit" class="btn btn-success" ng-click="saveGeneralDetails()">Submit
+            </button>
+        </footer>
+    </div>
+</form>

@@ -14,6 +14,13 @@ class UsersController extends \BaseController
        return View::make('users.index');
     }
 
+    public function getUserdataView()
+    {
+        $data['departments'] = Department::all();
+        $data['users'] = User::all();
+        return $data;
+    }
+
     /**
      * Show the form for creating a new resource.
      * GET /users/create
@@ -101,11 +108,10 @@ class UsersController extends \BaseController
 
         if ($save)
         {
-            
              Mail::send('emails.approved_user', ['user' => $user], function($message) use ($user)
                 {
-                    $message->to($user->email, 'EsparkInfo')->subject('Welcome!');
-                    $message->to($user->personal_email, 'EsparkInfo')->subject('Welcome!');
+                    $message->to($user->email, $user->first_name)->subject('Welcome!');
+                    $message->to($user->personal_email, $user->first_name)->subject('Welcome!');
                 });
             return json_encode([
                 'code' => 200,

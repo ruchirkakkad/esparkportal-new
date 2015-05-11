@@ -21,6 +21,7 @@
 
 </head>
 <body >
+<div id="dvLoading" style="display: none;"></div>
 <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':false, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view>
 
 </div>
@@ -54,6 +55,31 @@
 {{ Html::script('bower_components/angular-translate-storage-local/angular-translate-storage-local.js'); }}
 
   <!-- App -->
+
+
+
+<script type="text/javascript">
+    FileAPI = {
+        debug: true
+    };
+</script>
+{{ Html::script('bower_components/ng-file-upload/ng-file-upload-shim.js'); }}
+{{ Html::script('bower_components/ng-file-upload/ng-file-upload.js'); }}
+{{--<script src="js/ng-file-upload/ng-file-upload-shim.js"></script>--}}
+{{--<script src="js/ng-file-upload/ng-file-upload.js"></script>--}}
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/codemirror.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/codemirror.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/mode/htmlmixed/htmlmixed.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/mode/htmlembedded/htmlembedded.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/mode/xml/xml.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/mode/javascript/javascript.min.js"></script>
+
+
+
+
+
+
 
 {{ Html::script('js/app.js'); }}
 {{ Html::script('js/config.js'); }}

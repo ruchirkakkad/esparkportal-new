@@ -1,1 +1,0 @@
-D:\wamp\www\esparkportal-new\app/views/user_profiles/index.blade.php

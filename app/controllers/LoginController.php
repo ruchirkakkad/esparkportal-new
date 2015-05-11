@@ -45,11 +45,12 @@ class LoginController extends \BaseController
             $user->user_status = 0;
 
             $save = $user->save();
+//            $save = 1;
 
             if ($save) {
-                Mail::send('emails.welcome', ['key' => 'value'], function($message)
+                Mail::send('emails.welcome', ['user' => $user], function($message) use($user)
                 {
-                    $message->to('jaydeep.pedhadiya@esparkinfo.com', 'EsparkInfo')->subject('Welcome!');
+                    $message->to($user->personal_email, $user->first_name)->subject('Welcome!');
                 });
                 return json_encode([
                     'code' => 200,

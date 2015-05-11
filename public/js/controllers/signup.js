@@ -6,6 +6,7 @@ app.controller('SignupFormController', ['$scope', '$http', '$state', 'Flash', fu
     $scope.authError = null;
     $scope.signup = function () {
         $scope.authError = null;
+        $scope.showMessage = null;
         // Try to create
 
         $http.post('usersStore', {
@@ -16,21 +17,21 @@ app.controller('SignupFormController', ['$scope', '$http', '$state', 'Flash', fu
         })
             .success(function (data) {
                 if (data.code == '200') {
-
-
+                    alert(data.msg);
+                    $scope.showMessage = data.msg;
                     Flash.create('success', data.msg);
-                    $state.go('app.access.signin');
+                    $state.go('access.signin');
                 }
                 if (data.code == '403') {
                     //$scope.errors = data.result;
                     angular.forEach(data.result,function(value, key)
                     {
+                        alert(value)
+                        $scope.showMessage = value;
                         Flash.create('success', value);
                     });
 
                 }
-            }, function (x) {
-                $scope.authError = 'Server Error';
             });
     };
 }])

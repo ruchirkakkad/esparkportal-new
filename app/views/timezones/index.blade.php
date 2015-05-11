@@ -7,5 +7,5 @@
     <div flash-message="5000"></div>
 
     <div data-ng-include="timezone_view_file" class="fade-in-up-big "></div>
-
+    {{--<div dynamic="timezone_view_file"></div>--}}
 </div>

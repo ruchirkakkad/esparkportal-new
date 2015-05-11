@@ -2,51 +2,50 @@
  * Created by ruchir on 4/7/2015.
  */
 
-app.controller('DesignationsController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope',
+app.controller('LanguagesController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope',
     function ($scope, $http, $state, Flash, $stateParams, $rootScope) {
 
         $scope.data = {
-            'designations_name': '',
-            'designations_id': '',
-            'designations' : []
+            'languages_name': '',
+            'languages_id': '',
+            'languages' : []
         };
-        $scope.department_view_file = '';
+
         $scope.index = function() {
-            $scope.department_view_file = '';
-            $http.get('designations/indexdata-view', {}).success(function (data) {
-                $scope.data.designations = data.aaData;
-                $scope.designation_view_file = 'tpl/designations_view.html';
+            $scope.languages_view = '';
+            $http.get('languages/indexdata-view', {}).success(function (data) {
+                $scope.data.languages = data.aaData;
+                $scope.languages_view = 'tpl/languages_view.html';
             });
         }
         $scope.getArray = function(){
             var csv = [];
-            angular.forEach($scope.data.designations, function(value, key) {
+            angular.forEach($scope.data.languages, function(value, key) {
                 csv[key] = {
-                    id: value.designations_id,
-                    name : value.designations_name
+                    id: value.languages_id,
+                    name : value.languages_name
                 }
             });
             return csv;
         };
         $scope.resetData = function() {
             $scope.data = {
-                'designations_name': '',
-                'designations_id': ''
+                'languages_name': '',
+                'languages_id': ''
             };
         };
 
         $scope.create = function () {
 
-            $http.post('designations/store-add', {
-                designations_name: $scope.data.designations_name
+            $http.post('languages/store-add', {
+                languages_name: $scope.data.languages_name
             }).success(function (data) {
 
                 var data = (data);
 
                 if (data.code == '200') {
-
                     Flash.create('success', data.msg);
-                    $state.go('app.designations.index',{},{reload: true});
+                    $state.go('app.languages.index');
                 }
                 if (data.code == '403') {
                     Flash.create('danger', data.msg);
@@ -58,10 +57,10 @@ app.controller('DesignationsController', ['$scope', '$http', '$state', 'Flash', 
 
 
         $scope.editData = function () {
-            $http.post('designations/find-edit/' + $stateParams.id, {})
+            $http.post('languages/find-edit/' + $stateParams.id, {})
                 .success(function (data) {
-                    $scope.data.designations_name = data.designations_name;
-                    $scope.data.designations_id = data.designations_id;
+                    $scope.data.languages_name = data.languages_name;
+                    $scope.data.languages_id = data.languages_id;
                 });
         }
 
@@ -69,16 +68,15 @@ app.controller('DesignationsController', ['$scope', '$http', '$state', 'Flash', 
         $scope.update = function () {
 
 
-            $http.post('designations/update-edit/' + $scope.data.designations_id, {
-                designations_name: $scope.data.designations_name
+            $http.post('languages/update-edit/' + $scope.data.languages_id, {
+                languages_name: $scope.data.languages_name
             }).success(function (data) {
 
                 var data = (data);
 
                 if (data.code == '200') {
-
                     Flash.create('success', data.msg);
-                    $state.go('app.designations.index',{},{reload: true});
+                    $state.go('app.languages.index');
                 }
                 if (data.code == '403') {
                     Flash.create('danger', data.msg);

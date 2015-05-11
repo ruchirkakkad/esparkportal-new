@@ -1,0 +1,73 @@
+<form name="formValidate" class="form-horizontal form-validation" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div ng-repeat="attechment in data.user.user_attachments">
+                <div class="form-group">
+                    <!--<label class="col-sm-3 control-label">Uploaded : url</label>-->
+
+                    <!--<div class="col-sm-4">-->
+                    <!--{{ attechment.attachment_url }}-->
+
+                    <!--</div>-->
+                    <div class="col-sm-5">
+                        {{ attechment.attachment_name }}
+                    </div>
+                </div>
+            </div>
+            <div ng-repeat="attechment in user_attachments1">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Attachment</label>
+
+                    <div class="col-sm-4 attachment_submit_{{$index }}">
+                        <select type="text" class="form-control" placeholder="required field"
+                                ng-model="attechment.attachment_name"
+                                ng-options="selectedItem.key as selectedItem.value for selectedItem in [
+                                    {key:'Pancard',value:'Pancard'},
+                                    {key:'Licence',value:'Licence'},
+                                    {key:'Aadharcard',value:'Aadharcard'},
+                                    {key:'Passport',value:'Passport'},
+                                    {key:'Votercard',value:'Votercard'}
+                                    ]"
+
+                                required></select>
+
+                    </div>
+                    <div class="col-sm-5">
+                        <button ngf-select ng-model="files" class="attachment_submit_{{$index }}"
+                                ngf-multiple="true">Attach Any File
+                        </button>
+                        {{ attechment.attachment_name }}
+                        <button class="attachment_submit_{{$index }} btn btn-success"
+                                ng-click="saveAttechments(files,attechment.attachment_name,$index)">Submit
+                        </button>
+                            <span class="progress" ng-show="picFile[0].progress >= 0">
+                                <div style="width:{{picFile[0].progress}}%" ng-bind="picFile[0].progress + '%'"></div>
+                            </span>
+                        <span ng-show="picFile[0].result">Upload Successful</span>
+                        <ul style="clear:both" ng-show="rejFiles.length > 0" class="response">
+                            <li class="sel-file" ng-repeat="f in rejFiles">
+                                Rejected file: {{f.name}} - size: {{f.size}}B - type: {{f.type}}
+                            </li>
+                        </ul>
+                        <ul style="clear:both" ng-show="files.length > 0" class="response">
+                            <li class="sel-file" ng-repeat="f in files">
+
+                                {{f.name}} - size: {{f.size}}B - type: {{f.type}}
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3 control-label">
+                    <button type="button" class="btn btn-info" ng-click="addAttechments()">Add More</button>
+                </div>
+            </div>
+            <!--<footer class="panel-footer text-right bg-light lter">-->
+            <!--<button type="submit" class="btn btn-success" ng-click="saveAttechments(data.user.user_attachments)">Submit-->
+            <!--</button>-->
+            <!--</footer>-->
+        </div>
+    </div>
+</form>

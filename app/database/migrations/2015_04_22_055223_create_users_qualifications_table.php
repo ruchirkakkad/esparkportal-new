@@ -21,7 +21,8 @@ class CreateUsersQualificationsTable extends Migration
                 ->references('user_id')->on('users')
                 ->onDelete('cascade');
 
-            $table->string('education_detail');
+            $table->string('educational_qualifications_id');
+            $table->string('degree');
             $table->string('education_university');
             $table->string('passing_year');
             $table->string('grade');

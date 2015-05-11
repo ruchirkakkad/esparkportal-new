@@ -2,14 +2,51 @@
  * Created by ruchir on 4/7/2015.
  */
 
-app.controller('UsersController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope',
-    function ($scope, $http, $state, Flash, $stateParams, $rootScope) {
+app.controller('UsersController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope','$filter',
+    function ($scope, $http, $state, Flash, $stateParams, $rootScope,$filter) {
 
         $scope.data = {
             'users_approve': [],
             'userApproveData': [],
-            'users': [],
+            'users': []
+
         };
+        $scope.user_departments = [];
+        $scope.users_data = [];
+        $scope.user_view_file = '';
+
+        $http.get('js/app/contact/contacts.json').then(function (resp) {
+            $scope.items = resp.data.items;
+            $scope.item = $filter('orderBy')($scope.items, 'first')[0];
+            $scope.item.selected = true;
+        });
+
+        $scope.filter = '';
+        $scope.groups = [
+            {name: 'Coworkers'},
+            {name: 'Family'},
+            {name: 'Friends'},
+            {name: 'Partners'},
+            {name: 'Group'}
+        ];
+
+        $scope.indexViewUser = function(){
+            $http.get('users/userdata-view', {}).success(function (data) {
+                $scope.user_departments = data.departments;
+                $scope.users_data = data.users;
+                $scope.user_view_file = 'tpl/user_view_file.html';
+            });
+        };
+        $scope.selectGroup = function(item){
+            angular.forEach($scope.user_departments, function(item) {
+                item.selected = false;
+            });
+            $scope.user_departments = item;
+            $scope.user_departments.selected = true;
+            $scope.filter = item.departments_id;
+        };
+
+
 
         $scope.approveFind = function () {
 

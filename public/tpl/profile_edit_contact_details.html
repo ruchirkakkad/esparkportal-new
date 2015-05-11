@@ -1,0 +1,96 @@
+<form name="formValidate" class="form-horizontal form-validation" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-body col-sm-6">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Current Address</label>
+
+                <div class="col-sm-9">
+                    <textarea rows="2" class="form-control" ng-model="data.user.user_contact.current_address"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Current City</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.user_contact.current_city">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Current State</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.user_contact.current_state">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Current Zipcode</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.user_contact.current_zipcode">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Personal Contact No.</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.user_contact.current_phone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Current SkypeID</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.user_contact.current_skype">
+                </div>
+            </div>
+        </div>
+        <div class="panel-body col-sm-6">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Permanent Address</label>
+
+                <div class="col-sm-9">
+                    <textarea rows="2" class="form-control" ng-model="data.user.user_contact.permanent_address"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Permanent City</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.user_contact.permanent_city">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Permanent State</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.user_contact.permanent_state">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Permanent Zipcode</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.user_contact.permanent_zipcode">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Permanent Contact No.</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.user_contact.permanent_phone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Permanent SkypeID</label>
+
+                <div class="col-sm-9">
+                    <input class="form-control" ng-model="data.user.user_contact.permanent_skype">
+                </div>
+            </div>
+        </div>
+        <footer class="panel-footer text-right bg-light lter">
+            <button type="submit" class="btn btn-success" ng-click="saveContactDetails()">Submit
+            </button>
+        </footer>
+    </div>
+</form>

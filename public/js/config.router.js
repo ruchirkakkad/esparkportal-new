@@ -36,6 +36,7 @@ angular.module('app')
                 })
                 .state('access.signup', {
                     url: '/signup',
+                    controller: 'GuestCheckCtrl',
                     templateUrl: 'signup',
                     resolve: {
                         deps: ['uiLoad',
@@ -2021,8 +2022,8 @@ angular.module('app')
                     url: '/user_profiles',
                     template: '<div ui-view  ng-controller="UserProfilesController" class="fade-in-right-big"></div>'
                 })
-                .state('app.user_profiles.index-view', {
-                    url: '/index-view',
+                .state('app.user_profiles.index', {
+                    url: '/index',
                     templateUrl: 'user_profiles/index-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
@@ -2230,6 +2231,94 @@ angular.module('app')
                                 if (data.code == '403') {
                                     Flash.create('danger', data.msg);
                                     $state.go('app.educational_qualifications.index');
+                                }
+                            });
+                    }
+                })
+
+                .state('app.languages', {
+                    url: '/languages',
+                    template: '<div ui-view  ng-controller="LanguagesController" class="fade-in-right-big"></div>'
+                })
+                .state('app.languages.index', {
+                    url: '/index',
+                    templateUrl: 'languages/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/languages.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.languages.create', {
+                    url: '/create',
+                    templateUrl: 'languages/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/languages.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.languages.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'languages/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/languages.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.languages.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/languages/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.languages.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.languages.index');
                                 }
                             });
                     }

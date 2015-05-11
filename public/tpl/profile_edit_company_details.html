@@ -1,0 +1,49 @@
+<form name="formValidate" class="form-horizontal form-validation" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Date of joining</label>
+
+                <div class="col-sm-9">
+                    {{ data.user.doj }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Employee id</label>
+
+                <div class="col-sm-9">
+                    {{ data.user.employee_id }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Department</label>
+
+                <div class="col-sm-9">
+                    {{ data.user.department.departments_name }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Designation</label>
+
+                <div class="col-sm-9">
+                    {{ data.user.designation.designations_name }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Job Profile</label>
+
+                <div class="col-sm-9">
+                    {{ data.user.job_profile.job_profiles_name }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Role</label>
+
+                <div class="col-sm-9">
+                    {{ data.user.role.name }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

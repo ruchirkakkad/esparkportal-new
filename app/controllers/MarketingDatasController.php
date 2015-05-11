@@ -131,12 +131,13 @@ class MarketingDatasController extends \BaseController
     public function postTimezonesView($id)
     {
         $id = Helper::simple_decrypt($id);
-
+//        dd($id);
         $data['timezones'] = MarketingState::select(DB::raw('DISTINCT timezones.timezones_name,timezones.timezones_id'))
             ->leftJoin('timezones', 'timezones.timezones_id', '=', 'marketing_states.timezones_id')
             ->where('marketing_states.marketing_countries_id', '=', $id)->get();
 
         foreach ($data['timezones'] as $key => $val) {
+
             $time2 = date('Y-m-d H:i:s');
             $datetimePST = new DateTime($time2);
             $datetimePST->setTimezone(new DateTimeZone($data['timezones'][$key]->timezones_name));

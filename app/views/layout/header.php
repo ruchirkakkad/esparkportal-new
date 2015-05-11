@@ -241,7 +241,7 @@
         <li class="dropdown" dropdown>
             <a href class="dropdown-toggle clear" dropdown-toggle>
                 <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-                    <img src="img/a0.jpg" alt="...">
+                    <img src="{{ user.profile_image }}" alt="...">
                     <i class="on md b-white bottom"></i>
                 </span>
                 <span class="hidden-sm hidden-md">{{user.first_name}} {{user.last_name}}</span> <b class="caret"></b>
@@ -255,7 +255,7 @@
                     </a>
                 </li>
                 <li>
-                    <a ui-sref="app.page.profile">Profile</a>
+                    <a ui-sref="app.user_profiles.index">Profile</a>
                 </li>
                 <li>
                     <a ui-sref="app.user_profiles.edit">Edit Profile</a>

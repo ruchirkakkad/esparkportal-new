@@ -62,6 +62,7 @@ Route::group(['before' => 'permission'], function () {
     Route::controller('user_profiles', 'UserProfilesController');
     Route::controller('skills', 'SkillsController');
     Route::controller('educational_qualifications', 'EducationalQualificationsController');
+    Route::controller('languages', 'LanguagesController');
 
     Route::controller('password_mgmts', 'PasswordMgmtsController');
 

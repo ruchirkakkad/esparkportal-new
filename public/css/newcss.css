@@ -2,3 +2,14 @@
 .dropdown-menu li { position:relative; }
 .dropdown-menu li:hover .subdropdown-menu { display: block; }
 .dropdown-menu li:hover > a { background-color: #edf1f2 }
+
+
+#dvLoading
+{
+    background: #F5F4F4 url('../img/page_loader.gif') no-repeat center center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    opacity: 0.7;
+}

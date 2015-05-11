@@ -1,6 +1,19 @@
 /**
  * Created by ruchir on 4/7/2015.
  */
+app.directive('dynamic', function ($compile) {
+    return {
+        restrict: 'A',
+        replace: true,
+        //templateUrl : 'tpl/timezones_view.html',
+        link: function (scope, ele, attrs) {
+            scope.$watch(attrs.dynamic, function(html) {
+                ele.html(html);
+                $compile(ele.contents())(scope);
+            });
+        }
+    };
+});
 
 app.controller('TimezonesController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope',
     function ($scope, $http, $state, Flash, $stateParams, $rootScope) {
@@ -11,13 +24,18 @@ app.controller('TimezonesController', ['$scope', '$http', '$state', 'Flash', '$s
             'timezones': []
         };
 
-
+        $scope.itemsByPage = 10;
         $scope.timezone_view_file = '';
         $scope.index = function () {
-            $http.get('timezones/indexdata-view', {}).success(function (data) {
-                $scope.data.timezones = data.aaData;
-                $scope.timezone_view_file = 'tpl/timezones_view.html';
-            });
+            //$scope.timezone_view_file = '';
+            $http.get('timezones/indexdata-view', {})
+                .success(function (data) {
+                    $scope.data.timezones = data.aaData;
+                    //$scope.$apply(function () {
+                        $scope.timezone_view_file = 'tpl/timezones_view.html';
+                    //});
+
+                });
         }
         $scope.getArray = function () {
             var csv = [];
@@ -30,7 +48,7 @@ app.controller('TimezonesController', ['$scope', '$http', '$state', 'Flash', '$s
             return csv;
         };
 
-        $scope.resetData = function() {
+        $scope.resetData = function () {
             $scope.data = {
                 'timezones_name': '',
                 'timezones_id': ''
@@ -48,7 +66,7 @@ app.controller('TimezonesController', ['$scope', '$http', '$state', 'Flash', '$s
                 if (data.code == '200') {
 
                     Flash.create('success', data.msg);
-                    $state.go('app.timezones.index');
+                    $state.go('app.timezones.index',{},{reload: true});
                 }
                 if (data.code == '403') {
                     Flash.create('danger', data.msg);
@@ -80,7 +98,7 @@ app.controller('TimezonesController', ['$scope', '$http', '$state', 'Flash', '$s
                 if (data.code == '200') {
 
                     Flash.create('success', data.msg);
-                    $state.go('app.timezones.index');
+                    $state.go('app.timezones.index',{},{reload: true});
                 }
                 if (data.code == '403') {
                     Flash.create('danger', data.msg);

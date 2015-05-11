@@ -1,0 +1,61 @@
+<form name="formValidate" class="form-horizontal form-validation" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div ng-repeat="qualification_detail  in data.user.users_qualification">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Education Detail</label>
+
+                    <div class="col-sm-9">
+                        <select type="text" class="form-control" placeholder="required field"
+                                ng-model="qualification_detail.educational_qualifications_id"
+                                ng-options="selectedItem.educational_qualifications_id as selectedItem.educational_qualifications_name for selectedItem in data.educational_qualifications"
+                                required></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Degree</label>
+
+                    <div class="col-sm-9">
+                        <input class="form-control" ng-model="qualification_detail.degree">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">University</label>
+
+                    <div class="col-sm-9">
+                        <input class="form-control" ng-model="qualification_detail.education_university">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Passing year</label>
+
+                    <div class="col-sm-9">
+                        <input class="form-control" ng-model="qualification_detail.passing_year">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Grade</label>
+
+                    <div class="col-sm-9">
+                        <input class="form-control" ng-model="qualification_detail.grade">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 control-label">
+                        <button type="button" class="btn btn-danger" ng-click="removeQualificationDetails($index)">Remove</button>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3 control-label">
+                    <button type="button" class="btn btn-info" ng-click="addQualificationDetails()">Add More</button>
+                </div>
+            </div>
+            <footer class="panel-footer text-right bg-light lter">
+                <button type="submit" class="btn btn-success" ng-click="saveQualificationDetails()">Submit
+                </button>
+            </footer>
+        </div>
+    </div>
+</form>

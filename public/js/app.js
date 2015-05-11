@@ -14,6 +14,7 @@ angular.module('app', [
     'ui.load',
     'ui.jq',
     'flash',
+    'ngFileUpload',
     'ngCsv',
     'oc.lazyLoad',
     'ivh.treeview',

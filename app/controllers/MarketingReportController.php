@@ -10,7 +10,7 @@ class MarketingReportController extends \BaseController
 
     public function getIndexOneDataView()
     {
-        $data1 = User::where('designation_id', '=', 6)->get();
+        $data1 = User::where('designation_id', '=', 4)->orWhere('designation_id','=',9)->get();
 
         $returndata = [];
         foreach ($data1 as $k => $v) {
