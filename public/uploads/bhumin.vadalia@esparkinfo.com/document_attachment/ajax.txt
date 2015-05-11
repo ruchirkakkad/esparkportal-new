@@ -1,0 +1,19 @@
+function view_user_detail(x)
+    {
+       var user_id = x;
+       alert(user_id);
+     
+        $.ajax({
+         
+            type: 'POST',
+            url: '<?php echo base_url(); ?>user_tracker/display_user_personal_attandance',
+           data: {user_id:user_id},
+            success: function(data) {
+                $('.ShowEntries').html(data);
+
+               //$(".copy_div").append(data);
+
+            }
+
+        });
+     }

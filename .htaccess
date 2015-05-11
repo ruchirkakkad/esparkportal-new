@@ -1,5 +1,5 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /ruchir_testing/esparkportal-new/
+
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
