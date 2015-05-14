@@ -5,6 +5,7 @@ class MarketingCalendarController extends \BaseController
 
     public function getIndexView()
     {
+    
         return View::make('marketing_calendar.index');
     }
 

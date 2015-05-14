@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Config for the router
+ * Config for the router 1
  */
 angular.module('app')
     .run(
@@ -10,7 +10,7 @@ angular.module('app')
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
         }
-    ]
+    ] 
 )
     .config(
     ['$stateProvider', '$urlRouterProvider', 'JQ_CONFIG',
