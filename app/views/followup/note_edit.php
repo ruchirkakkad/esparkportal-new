@@ -94,27 +94,27 @@
             <form>
                 <div class="form-group">
                     <label>Owner Name</label>
-                    <input type="text" value="{{ data.marketing_data.owner_name }}" class="input-sm form-control" disabled>
+                    <input type="text" value="{{ data.marketing_data.owner_name }}" class="input-sm form-control" readonly>
                 </div>
                 <div class="form-group">
                     <label>Company Name</label>
-                    <input type="text"  value="{{ data.marketing_data.company_name }}" class="input-sm form-control" disabled>
+                    <input type="text"  value="{{ data.marketing_data.company_name }}" class="input-sm form-control" readonly>
                 </div>
                 <div class="form-group">
                     <label>Website</label>
-                    <input type="text"  value="{{ data.marketing_data.website }}" class="input-sm form-control" disabled>
+                    <input type="text"  value="{{ data.marketing_data.website }}" class="input-sm form-control" readonly>
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="text"  value="{{ data.marketing_data.email }}" class="input-sm form-control" disabled>
+                    <input type="text"  value="{{ data.marketing_data.email }}" class="input-sm form-control" readonly>
                 </div>
                 <div class="form-group">
                     <label>Phone</label>
-                    <input type="text"  value="{{ data.marketing_data.phone }}" class="input-sm form-control" disabled>
+                    <input type="text"  value="{{ data.marketing_data.phone }}" class="input-sm form-control" readonly>
                 </div>
                 <div class="form-group">
                     <label>Status</label>
-                    <input type="text"  value="{{ data.marketing_data.leads_statuses_name }}" class="input-sm form-control" disabled>
+                    <input type="text"  value="{{ data.marketing_data.leads_statuses_name }}" class="input-sm form-control" readonly>
                 </div>
 
             </form>
