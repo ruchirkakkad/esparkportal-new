@@ -13,6 +13,7 @@
 
 Route::get('/', ['uses' => 'LayoutController@masterView']);
 
+
 Route::get('appView', ['uses' => 'LayoutController@appView']);
 Route::get('headerView', ['uses' => 'LayoutController@headerView']);
 Route::get('asideView', ['uses' => 'LayoutController@asideView']);
@@ -51,21 +52,26 @@ Route::group(['before' => 'permission'], function () {
     Route::controller('marketing_calendar', 'MarketingCalendarController');
 //---------------Marketing ends--------------------
 
-
-    Route::controller('roles', 'RolesController');
-    Route::controller('permissions', 'PermissionsController');
+//---------------HRMS starts--------------------
     Route::controller('users', 'UsersController');
     Route::controller('departments', 'DepartmentsController');
     Route::controller('designations', 'DesignationsController');
     Route::controller('job_profiles', 'JobProfilesController');
-
-
     Route::controller('user_profiles', 'UserProfilesController');
     Route::controller('skills', 'SkillsController');
     Route::controller('educational_qualifications', 'EducationalQualificationsController');
     Route::controller('languages', 'LanguagesController');
+//---------------HRMS ends--------------------
 
+//---------------Password Management starts--------------------
     Route::controller('password_mgmts', 'PasswordMgmtsController');
+//---------------Password Management ends--------------------
 
+
+//---------------Organization starts--------------------
+    Route::controller('company_details', 'CompanyDetailsController');
+    Route::controller('roles', 'RolesController');
+    Route::controller('permissions', 'PermissionsController');
+//---------------Organization ends--------------------
 
 });
