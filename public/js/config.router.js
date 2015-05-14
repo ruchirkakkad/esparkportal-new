@@ -642,7 +642,6 @@ angular.module('app')
                     }
                 })
 
-
                 .state('app.marketing_report', {
                     url: '/marketing_report',
                     template: '<div ui-view  ng-controller="MarketingReportController" class="fade-in-right-big"></div>'
@@ -929,6 +928,27 @@ angular.module('app')
                     }
                 })
 
+                .state('app.company_details', {
+                    url: '/company_details',
+                    template: '<div ui-view  ng-controller="CompanyDetailsController" class="fade-in-right-big"></div>'
+                })
+                .state('app.company_details.index-view', {
+                    url: '/index-view',
+                    templateUrl: 'company_details/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad', 'uiLoad',
+                            function ($ocLazyLoad, uiLoad) {
+                                return uiLoad.load(
+                                    JQ_CONFIG.fullcalendar.concat('js/controllers/company_details.js')
+                                ).then(
+                                    function () {
+                                        return $ocLazyLoad.load('ui.calendar');
+                                    }
+                                )
+                            }]
+                    }
+                })
 
                 .state('app.permissions', {
                     url: '/permissions',
