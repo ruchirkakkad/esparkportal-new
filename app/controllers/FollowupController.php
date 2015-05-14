@@ -60,7 +60,29 @@ class FollowupController extends \BaseController
         $data['marketing_data'] = MarketingData::find($id);
         $data['marketing_data']['leads_statuses_name'] = $data['marketing_data']->lead_status()->get()->first()->leads_statuses_name;
         $data['notes'] = $data['marketing_data']->notes()->orderBy('marketing_datas_notes_id','desc')->get();
+        $data['lead_status'] = LeadsStatus::select('leads_statuses_name', 'leads_statuses_id')->get();
         return $data;
+    }
+
+    public function postChangeStatusEdit($id)
+    {
+        $id = Helper::simple_decrypt($id);
+        $data = MarketingData::find($id);
+        $data->leads_statuses_id = Input::get('leads_statuses_id');
+        $save = $data->save();
+        if ($save) {
+            return json_encode([
+                'code' => 200,
+                'msg' => 'status updated',
+                'result' => null
+            ]);
+        } else {
+            return json_encode([
+                'code' => 403,
+                'msg' => Config::get('constants.error_record_msg'),
+                'result' => null
+            ]);
+        }
     }
 
     public function postAddNoteEdit($id)

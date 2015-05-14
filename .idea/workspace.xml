@@ -5,29 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fc8cf14-5774-494d-9e4a-2a7e8042b9b5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/MarketingCalendarController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/tpl/calender_view.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/marketing_calendar/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/layout.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/controllers/marketing_calendar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/MarketingData.php" afterPath="$PROJECT_DIR$/app/models/MarketingData.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/UsersController.php" afterPath="$PROJECT_DIR$/app/controllers/UsersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tpl/app_calendar.html" afterPath="$PROJECT_DIR$/public/tpl/app_calendar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/bower_components/angular-ui-calendar/src/calendar.js" afterPath="$PROJECT_DIR$/public/bower_components/angular-ui-calendar/src/calendar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app/calendar/calendar.js" afterPath="$PROJECT_DIR$/public/js/app/calendar/calendar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/config.router.js" afterPath="$PROJECT_DIR$/public/js/config.router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app/contact/contact.js" afterPath="$PROJECT_DIR$/public/js/app/contact/contact.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/index.php" afterPath="$PROJECT_DIR$/app/views/users/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tpl/profile_edit_company_details.html" afterPath="$PROJECT_DIR$/public/tpl/profile_edit_company_details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tpl/profile_edit_qualification_details.html" afterPath="$PROJECT_DIR$/public/tpl/profile_edit_qualification_details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="$PROJECT_DIR$/app/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/user_profiles.js" afterPath="$PROJECT_DIR$/public/js/controllers/user_profiles.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tpl/user_view_file.html" afterPath="$PROJECT_DIR$/public/tpl/user_view_file.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/users.js" afterPath="$PROJECT_DIR$/public/js/controllers/users.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/FollowupController.php" afterPath="$PROJECT_DIR$/app/controllers/FollowupController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/followup.js" afterPath="$PROJECT_DIR$/public/js/controllers/followup.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/marketing_calendar.js" afterPath="$PROJECT_DIR$/public/js/controllers/marketing_calendar.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/followup/note_edit.php" afterPath="$PROJECT_DIR$/app/views/followup/note_edit.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\wamp\www\esparkportal-new\app\views\users\edit.blade.php" afterPath="$PROJECT_DIR$/app/views/users/edit.php" />
-      <change type="MOVED" beforePath="D:\wamp\www\esparkportal-new\app\views\users\show.blade.php" afterPath="$PROJECT_DIR$/app/views/users/show.php" />
     </list>
     <ignored path="esparkportal-new.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,51 +44,81 @@
       <file leaf-file-name="config.router.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/config.router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.892857" vertical-offset="12219" max-vertical-offset="48000">
-              <caret line="636" column="49" selection-start-line="636" selection-start-column="49" selection-end-line="636" selection-end-column="49" />
+            <state vertical-scroll-proportion="-7.892857" vertical-offset="12399" max-vertical-offset="48000">
+              <caret line="631" column="55" selection-start-line="631" selection-start-column="55" selection-end-line="631" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="marketing_calendar.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/js/controllers/marketing_calendar.js">
+      <file leaf-file-name="calendar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/app/calendar/calendar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.1666667" vertical-offset="1380" max-vertical-offset="2960">
-              <caret line="95" column="69" selection-start-line="95" selection-start-column="63" selection-end-line="95" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1740" max-vertical-offset="3280">
+              <caret line="112" column="6" selection-start-line="93" selection-start-column="4" selection-end-line="112" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MarketingCalendarController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/MarketingCalendarController.php">
+      <file leaf-file-name="FollowupController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/FollowupController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-34.482758" vertical-offset="0" max-vertical-offset="1180">
-              <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+            <state vertical-scroll-proportion="1.9905213" vertical-offset="1260" max-vertical-offset="2380">
+              <caret line="84" column="9" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
               <folding>
-                <marker date="1431579401826" expanded="true" signature="533:996" placeholder="SELECT * FRO..marketing_datas_notes..." />
-                <marker date="1431579401826" expanded="true" signature="718:831" placeholder="SELECT MAX(m..marketing_datas_notes..." />
+                <marker date="1431598682981" expanded="true" signature="511:1046" placeholder="SELECT * FRO..marketing_datas_notes..." />
+                <marker date="1431598682981" expanded="true" signature="696:809" placeholder="SELECT MAX(m..marketing_datas_notes..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/marketing_calendar/index.php">
+      <file leaf-file-name="note_edit.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/followup/note_edit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.0689654" vertical-offset="0" max-vertical-offset="180">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state vertical-scroll-proportion="-11.103448" vertical-offset="2118" max-vertical-offset="2700">
+              <caret line="122" column="83" selection-start-line="122" selection-start-column="83" selection-end-line="122" selection-end-column="83" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calender_view.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/tpl/calender_view.html">
+      <file leaf-file-name="marketing_datas.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/controllers/marketing_datas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.4482758" vertical-offset="0" max-vertical-offset="1100">
-              <caret line="5" column="21" selection-start-line="3" selection-start-column="12" selection-end-line="5" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5422" max-vertical-offset="7220">
+              <caret line="291" column="17" selection-start-line="284" selection-start-column="16" selection-end-line="291" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="followup.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/controllers/followup.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1702" max-vertical-offset="2980">
+              <caret line="91" column="51" selection-start-line="91" selection-start-column="51" selection-end-line="91" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="marketing_data_listing.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/tpl/marketing_data_listing.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.8965516" vertical-offset="0" max-vertical-offset="3520">
+              <caret line="10" column="106" selection-start-line="10" selection-start-column="106" selection-end-line="10" selection-end-column="106" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MarketingDatasController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/MarketingDatasController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.896552" vertical-offset="2968" max-vertical-offset="6820">
+              <caret line="170" column="9" selection-start-line="155" selection-start-column="8" selection-end-line="170" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -125,9 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/user_profiles/index.blade.php" />
-        <option value="$PROJECT_DIR$/public/tpl/profile_edit_general_details.html" />
-        <option value="$PROJECT_DIR$/public/tpl/profile_edit_work_experience.html" />
         <option value="$PROJECT_DIR$/public/tpl/profile_edit_contact_details.html" />
         <option value="$PROJECT_DIR$/public/tpl/profile_edit_emergency_details.html" />
         <option value="$PROJECT_DIR$/../testing/index.php" />
@@ -168,14 +177,17 @@
         <option value="$PROJECT_DIR$/public/bower_components/angular-ui-calendar/src/calendar.js" />
         <option value="6e5c86a5/scratch" />
         <option value="$PROJECT_DIR$/public/tpl/app_calendar.html" />
-        <option value="$PROJECT_DIR$/public/js/app/calendar/calendar.js" />
         <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/views/marketing_calendar/index.php" />
         <option value="$PROJECT_DIR$/public/js/config.router.js" />
-        <option value="$PROJECT_DIR$/app/controllers/FollowupController.php" />
         <option value="$PROJECT_DIR$/app/controllers/MarketingCalendarController.php" />
         <option value="$PROJECT_DIR$/public/tpl/calender_view.html" />
+        <option value="$PROJECT_DIR$/public/js/app/calendar/calendar.js" />
         <option value="$PROJECT_DIR$/public/js/controllers/marketing_calendar.js" />
+        <option value="$PROJECT_DIR$/public/tpl/marketing_data_listing.html" />
+        <option value="$PROJECT_DIR$/app/views/followup/note_edit.php" />
+        <option value="$PROJECT_DIR$/public/js/controllers/followup.js" />
+        <option value="$PROJECT_DIR$/app/controllers/FollowupController.php" />
       </list>
     </option>
   </component>
@@ -568,7 +580,25 @@
       <option name="project" value="LOCAL" />
       <updated>1431407282265</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="14may2014 marketing calendar done">
+      <created>1431580233966</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1431580233966</updated>
+    </task>
+    <task id="LOCAL-00020" summary="14may2014 still changes in followup-&gt;note_edit">
+      <created>1431597487584</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1431597487584</updated>
+    </task>
+    <task id="LOCAL-00021" summary="14may2014 still changes in followup-&gt;note_edit-&gt; can change lead status done">
+      <created>1431598736922</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1431598736922</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -595,7 +625,8 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5609375" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5602504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2265625" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -603,7 +634,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2647504" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="519" y="149" width="327" height="429" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32394367" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5602504" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32394367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -611,7 +642,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32394367" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39906102" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -671,7 +701,10 @@
     <MESSAGE value="11may2015 till edit users" />
     <MESSAGE value="11may2015 second commit" />
     <MESSAGE value="11may2015 third commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="11may2015 third commit" />
+    <MESSAGE value="14may2014 marketing calendar done" />
+    <MESSAGE value="14may2014 still changes in followup-&gt;note_edit" />
+    <MESSAGE value="14may2014 still changes in followup-&gt;note_edit-&gt; can change lead status done" />
+    <option name="LAST_COMMIT_MESSAGE" value="14may2014 still changes in followup-&gt;note_edit-&gt; can change lead status done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -680,41 +713,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bootstrap/start.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17152658" vertical-offset="240" max-vertical-offset="1400">
-          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60720414" vertical-offset="926" max-vertical-offset="1600">
-          <caret line="68" column="20" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/tpl/page_signin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.034305315" vertical-offset="0" max-vertical-offset="760">
-          <caret line="1" column="36" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/timezones/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2058319" vertical-offset="0" max-vertical-offset="583">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/signup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="860">
-          <caret line="12" column="47" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/approve_user.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2857143" vertical-offset="0" max-vertical-offset="560">
@@ -859,6 +857,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11900">
           <caret line="0" column="22" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -866,6 +865,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7385965" vertical-offset="1899" max-vertical-offset="2860">
           <caret line="116" column="84" selection-start-line="116" selection-start-column="84" selection-end-line="116" selection-end-column="84" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -880,6 +880,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10291595" vertical-offset="0" max-vertical-offset="820">
           <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -887,6 +888,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24561404" vertical-offset="0" max-vertical-offset="1320">
           <caret line="7" column="170" selection-start-line="7" selection-start-column="170" selection-end-line="7" selection-end-column="170" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -915,6 +917,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15789473" vertical-offset="6610" max-vertical-offset="13980">
           <caret line="335" column="0" selection-start-line="335" selection-start-column="0" selection-end-line="335" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -922,6 +925,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28070176" vertical-offset="480" max-vertical-offset="1560">
           <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -935,18 +939,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/followup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="482" max-vertical-offset="2560">
-          <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers/users.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7916667" vertical-offset="11264" max-vertical-offset="11840">
           <caret line="586" column="0" selection-start-line="586" selection-start-column="0" selection-end-line="586" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -954,6 +951,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7916667" vertical-offset="8864" max-vertical-offset="9440">
           <caret line="466" column="0" selection-start-line="466" selection-start-column="0" selection-end-line="466" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -971,49 +969,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app/calendar/calendar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3080">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.60714287" vertical-offset="480" max-vertical-offset="1340">
           <caret line="50" column="41" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="41" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/config.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.892857" vertical-offset="12219" max-vertical-offset="48000">
-          <caret line="636" column="49" selection-start-line="636" selection-start-column="49" selection-end-line="636" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/FollowupController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3508772" vertical-offset="840" max-vertical-offset="1940">
-          <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
-          <folding>
-            <marker date="1431579392850" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..marketing_datas_notes..." />
-            <marker date="1431579392850" expanded="true" signature="-1:-1" placeholder="SELECT MAX(m..marketing_datas_notes..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/MarketingCalendarController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-34.482758" vertical-offset="0" max-vertical-offset="1180">
-          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-          <folding>
-            <marker date="1431579401826" expanded="true" signature="533:996" placeholder="SELECT * FRO..marketing_datas_notes..." />
-            <marker date="1431579401826" expanded="true" signature="718:831" placeholder="SELECT MAX(m..marketing_datas_notes..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1049,11 +1009,97 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/MarketingCalendarController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-34.482758" vertical-offset="0" max-vertical-offset="1180">
+          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+          <folding>
+            <marker date="1431579401826" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..marketing_datas_notes..." />
+            <marker date="1431579401826" expanded="true" signature="-1:-1" placeholder="SELECT MAX(m..marketing_datas_notes..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/config.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.892857" vertical-offset="12399" max-vertical-offset="48000">
+          <caret line="631" column="55" selection-start-line="631" selection-start-column="55" selection-end-line="631" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/calendar/calendar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1740" max-vertical-offset="3280">
+          <caret line="112" column="6" selection-start-line="93" selection-start-column="4" selection-end-line="112" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers/marketing_calendar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.1666667" vertical-offset="1380" max-vertical-offset="2960">
-          <caret line="95" column="69" selection-start-line="95" selection-start-column="63" selection-end-line="95" selection-end-column="69" />
+        <state vertical-scroll-proportion="0.8150573" vertical-offset="1602" max-vertical-offset="3140">
+          <caret line="105" column="6" selection-start-line="105" selection-start-column="6" selection-end-line="105" selection-end-column="6" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/marketing_datas/index_three.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="611">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/tpl/marketing_data_listing.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.8965516" vertical-offset="0" max-vertical-offset="3520">
+          <caret line="10" column="106" selection-start-line="10" selection-start-column="106" selection-end-line="10" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/followup/note_edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.103448" vertical-offset="2118" max-vertical-offset="2700">
+          <caret line="122" column="83" selection-start-line="122" selection-start-column="83" selection-end-line="122" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/marketing_datas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5422" max-vertical-offset="7220">
+          <caret line="291" column="17" selection-start-line="284" selection-start-column="16" selection-end-line="291" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/followup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1702" max-vertical-offset="2980">
+          <caret line="91" column="51" selection-start-line="91" selection-start-column="51" selection-end-line="91" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/MarketingDatasController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.896552" vertical-offset="2968" max-vertical-offset="6820">
+          <caret line="170" column="9" selection-start-line="155" selection-start-column="8" selection-end-line="170" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/FollowupController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.9905213" vertical-offset="1260" max-vertical-offset="2380">
+          <caret line="84" column="9" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
+          <folding>
+            <marker date="1431598682981" expanded="true" signature="511:1046" placeholder="SELECT * FRO..marketing_datas_notes..." />
+            <marker date="1431598682981" expanded="true" signature="696:809" placeholder="SELECT MAX(m..marketing_datas_notes..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -112,9 +112,15 @@
                     <label>Phone</label>
                     <input type="text"  value="{{ data.marketing_data.phone }}" class="input-sm form-control" readonly>
                 </div>
+
                 <div class="form-group">
                     <label>Status</label>
-                    <input type="text"  value="{{ data.marketing_data.leads_statuses_name }}" class="input-sm form-control" readonly>
+<!--                    <input type="text"  value="{{ data.marketing_data.leads_statuses_name }}" class="input-sm form-control" readonly>-->
+                    <select ng-model="data.marketing_data.leads_statuses_id" class="form-control"
+                            ng-options="lead.leads_statuses_id as lead.leads_statuses_name for lead in data.lead_status">
+                        <option value=''>Select Status</option>
+                    </select>
+                    <button class="btn btn-default  btn-sm" ng-click="changeStatus()">Change Status</button>
                 </div>
 
             </form>

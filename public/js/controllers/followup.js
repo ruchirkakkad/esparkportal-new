@@ -79,11 +79,32 @@ app.controller('FollowupController', ['$scope', '$http', '$state', 'Flash', '$st
 
                     $scope.data.marketing_data = data.marketing_data;
                     $scope.data.notes = data.notes;
+                    $scope.data.lead_status = data.lead_status;
 
                 }, function (x) {
                     Flash.create('danger', 'Server Error');
                 });
         };
+
+
+        $scope.changeStatus = function () {
+
+            $http.post('followup/change-status-edit/' + $stateParams.id, {
+                leads_statuses_id: $scope.data.marketing_data.leads_statuses_id
+            }).success(function (data) {
+                if (data.code == '200') {
+
+                    Flash.create('success', data.msg);
+                    $state.go('app.followup.index-view');
+                }
+                if (data.code == '403') {
+                    Flash.create('danger', data.msg);
+                }
+            }, function (x) {
+                Flash.create('danger', 'Server Error');
+            });
+        };
+
 
         //-------------------------- For csv Export ---------------------
         $scope.getArray = function () {
