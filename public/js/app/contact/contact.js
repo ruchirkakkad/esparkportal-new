@@ -21,6 +21,7 @@ app.controller('ContactCtrl', ['$scope', '$http', '$filter', function($scope, $h
   };
 
   $scope.checkItem = function(obj, arr, key){
+      alert('checkItem')
     var i=0;
     angular.forEach(arr, function(item) {
       if(item[key].indexOf( obj[key] ) == 0){
@@ -39,7 +40,8 @@ app.controller('ContactCtrl', ['$scope', '$http', '$filter', function($scope, $h
     $scope.groups.splice($scope.groups.indexOf(item), 1);
   };
 
-  $scope.selectGroup = function(item){    
+  $scope.selectGroup = function(item){
+      alert(item.departments_id);
     angular.forEach($scope.groups, function(item) {
       item.selected = false;
     });

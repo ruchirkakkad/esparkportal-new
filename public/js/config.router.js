@@ -595,6 +595,7 @@ angular.module('app')
                             }]
                     }
                 })
+
                 .state('app.call_closed', {
                     url: '/call_closed',
                     template: '<div ui-view  ng-controller="CallClosedController" class="fade-in-right-big"></div>'
@@ -618,6 +619,29 @@ angular.module('app')
                             }]
                     }
                 })
+
+                .state('app.marketing_calendar', {
+                    url: '/marketing_calendar',
+                    template: '<div ui-view  ng-controller="MarketingCalendarController" class="fade-in-right-big"></div>'
+                })
+                .state('app.marketing_calendar.index-view', {
+                    url: '/index-view',
+                    templateUrl: 'marketing_calendar/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad', 'uiLoad',
+                            function ($ocLazyLoad, uiLoad) {
+                                return uiLoad.load(
+                                    JQ_CONFIG.fullcalendar.concat('js/controllers/marketing_calendar.js')
+                                ).then(
+                                    function () {
+                                        return $ocLazyLoad.load('ui.calendar');
+                                    }
+                                )
+                            }]
+                    }
+                })
+
 
                 .state('app.marketing_report', {
                     url: '/marketing_report',
@@ -1544,13 +1568,13 @@ angular.module('app')
                 })
 
 
-                .state('app.users', {
+                .state('users', {
+                    abstract: true,
                     url: '/users',
-                    template: '<div ui-view  ng-controller="UsersController" class="fade-in-right-big"></div>'
-
+                    templateUrl: 'users/list-layout-view'
                 })
-                .state('app.users.index', {
-                    url: '/index',
+                .state('users.list', {
+                    url: '/list',
                     templateUrl: 'users/index-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
@@ -1568,6 +1592,30 @@ angular.module('app')
                             }]
                     }
                 })
+                .state('app.users', {
+                    url: '/users',
+                    template: '<div ui-view  ng-controller="UsersController" class="fade-in-right-big"></div>'
+
+                })
+                //.state('app.users.index', {
+                //    url: '/index',
+                //    templateUrl: 'users/index-view',
+                //    controller: "AuthCheckCtrl",
+                //    resolve: {
+                //        deps: ['$ocLazyLoad',
+                //            function ($ocLazyLoad) {
+                //                return $ocLazyLoad.load(['smart-table']).then(
+                //                    function () {
+                //                        return $ocLazyLoad.load({
+                //                            files: [
+                //                                'js/controllers/users.js'
+                //                            ]
+                //                        });
+                //                    }
+                //                );
+                //            }]
+                //    }
+                //})
                 .state('app.users.create', {
                     url: '/create',
                     templateUrl: 'users/create-add',
@@ -1589,7 +1637,26 @@ angular.module('app')
                 })
                 .state('app.users.edit', {
                     url: '/edit/{id}',
-                    templateUrl: 'users/edit',
+                    templateUrl: 'users/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/users.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.users.view', {
+                    url: '/view/{id}',
+                    templateUrl: 'users/show-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
                         deps: ['$ocLazyLoad',

@@ -2,48 +2,72 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="form-group">
-                <label class="col-sm-3 control-label">Date of joining</label>
+                <label class="col-sm-3 control-label">Employee ID</label>
 
                 <div class="col-sm-9">
-                    {{ data.user.doj }}
+                    <input class="form-control" placeholder="required field" ng-model="data.user.employee_id" required>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Employee id</label>
+                <label class="col-sm-3 control-label">Date Of Joining</label>
 
-                <div class="col-sm-9">
-                    {{ data.user.employee_id }}
+                <div class="col-sm-9" ng-controller="DatepickerDemoCtrl">
+                    <div class="input-group w-md">
+                        <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="data.user.doj"
+                               is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                        class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">Department</label>
 
                 <div class="col-sm-9">
-                    {{ data.user.department.departments_name }}
+                    <select type="text" class="form-control" placeholder="required field"
+                            ng-model="data.user.department_id"
+                            ng-options="selectedItem.departments_id as selectedItem.departments_name for selectedItem in data.department"
+                            required>
+                    </select>
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-sm-3 control-label">Designation</label>
 
                 <div class="col-sm-9">
-                    {{ data.user.designation.designations_name }}
+                    <select type="text" class="form-control" placeholder="required field"
+                            ng-model="data.user.designation_id"
+                            ng-options="data.designation.indexOf(selectedItem) as selectedItem.designations_name for selectedItem in data.designation"
+                            required></select>
                 </div>
             </div>
+
             <div class="form-group">
-                <label class="col-sm-3 control-label">Job Profile</label>
+                <label class="col-sm-3 control-label">Job Profile {{ data.user.job_profile | json }}</label>
 
                 <div class="col-sm-9">
-                    {{ data.user.job_profile.job_profiles_name }}
+                    <select type="text" class="form-control" placeholder="required field"
+                            ng-model="data.user.job_profile"
+                            ng-options="selectedItem.job_profiles_id as selectedItem.job_profiles_name for selectedItem in data.designation[data.user.designation_id].job_profiles"
+                            required></select>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">Role</label>
 
                 <div class="col-sm-9">
-                    {{ data.user.role.name }}
+                    <select type="text" class="form-control" placeholder="required field" ng-model="data.user.role_id"
+                            ng-options="selectedItem.id as selectedItem.name for selectedItem in data.role"
+                            required></select>
                 </div>
             </div>
         </div>
-
+        <footer class="panel-footer text-right bg-light lter">
+            <button type="submit" class="btn btn-success" ng-click="saveCompanyDetails()">Submit
+            </button>
+        </footer>
     </div>
 </form>

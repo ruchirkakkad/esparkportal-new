@@ -71,7 +71,7 @@ app.controller('UserProfilesController', ['$scope', '$http', '$state', 'Flash', 
             else {
                 $scope.MaritalStatusChangeVar = 1;
             }
-        }
+        };
 
         $scope.addWorkExperience = function () {
             $scope.data.user.user_work_experience.push({
@@ -109,7 +109,7 @@ app.controller('UserProfilesController', ['$scope', '$http', '$state', 'Flash', 
         $scope.removeQualificationDetails = function (index) {
             $scope.data.user.users_qualification.splice(index, 1);
 
-        }
+        };
 
 
         $scope.profile_edit_general_details = '';

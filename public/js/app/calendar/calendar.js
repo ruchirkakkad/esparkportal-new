@@ -2,7 +2,7 @@
  * calendarDemoApp - 0.1.3
  */
 
-app.controller('FullcalendarCtrl', ['$scope', function($scope) {
+app.controller('FullcalendarCtrl', ['$scope','$http', function($scope,$http) {
 
     var date = new Date();
     var d = date.getDate();
@@ -18,18 +18,44 @@ app.controller('FullcalendarCtrl', ['$scope', function($scope) {
 
     /* event source that contains custom events on the scope */
     $scope.events = [
-      {title:'All Day Event', start: new Date(y, m, 1), className: ['b-l b-2x b-info'], location:'New York', info:'This a all day event that will start from 9:00 am to 9:00 pm, have fun!'},
-      {title:'Dance class', start: new Date(y, m, 3), end: new Date(y, m, 4, 9, 30), allDay: false, className: ['b-l b-2x b-danger'], location:'London', info:'Two days dance training class.'},
-      {title:'Game racing', start: new Date(y, m, 6, 16, 0), className: ['b-l b-2x b-info'], location:'Hongkong', info:'The most big racing of this year.'},
-      {title:'Soccer', start: new Date(y, m, 8, 15, 0), className: ['b-l b-2x b-info'], location:'Rio', info:'Do not forget to watch.'},
-      {title:'Family', start: new Date(y, m, 9, 19, 30), end: new Date(y, m, 9, 20, 30), className: ['b-l b-2x b-success'], info:'Family party'},
-      {title:'Long Event', start: new Date(y, m, d - 5), end: new Date(y, m, d - 2), className: ['bg-success bg'], location:'HD City', info:'It is a long long event'},
-      {title:'Play game', start: new Date(y, m, d - 1, 16, 0), className: ['b-l b-2x b-info'], location:'Tokyo', info:'Tokyo Game Racing'},
-      {title:'Birthday Party', start: new Date(y, m, d + 1, 19, 0), end: new Date(y, m, d + 1, 22, 30), allDay: false, className: ['b-l b-2x b-primary'], location:'New York', info:'Party all day'},
-      {title:'Repeating Event', start: new Date(y, m, d + 4, 16, 0), alDay: false, className: ['b-l b-2x b-warning'], location:'Home Town', info:'Repeat every day'},      
-      {title:'Click for Google', start: new Date(y, m, 28), end: new Date(y, m, 29), url: 'http://google.com/', className: ['b-l b-2x b-primary']},
-      {title:'Feed cat', start: new Date(y, m+1, 6, 18, 0), className: ['b-l b-2x b-info']}
-    ];
+      {title:'All Day Event', start: new Date(y-10, m, 1), className: ['b-l b-2x b-info'], location:'New York', info:'This a all day event that will start from 9:00 am to 9:00 pm, have fun!'},
+      ];
+
+
+    $scope.data = {
+        followup: [],
+        lead_status : 0
+    };
+    $scope.calender_view = '';
+    $http.get('followup/calenderdata-view', {})
+        .success(function (data) {
+            //$scope.events = [];
+
+            $scope.data.followup = data.followup;
+            $scope.data.lead_status = data.lead_status;
+            //console.log($scope.data.followup);
+            var counter = 0;
+            angular.forEach($scope.data.followup, function(item) {
+                //var date = new Date(item.note_date);
+                //
+                //var d = date.getDate();
+                //var m = date.getMonth();
+                //var y = date.getFullYear();
+                counter++;
+                $scope.events.push({title:item.owner_name, start: new Date(item.note_date), className: ['b-l b-2x b-info'], location:item.marketing_states_name, info:item.message});
+            });
+
+            if($scope.data.lead_status == counter)
+            {
+                $scope.calender_view = 'tpl/calender_view.html';
+            }
+
+
+        }, function (x) {
+            Flash.create('danger', 'Server Error');
+        });
+
+
 
     /* alert on dayClick */
     $scope.precision = 400;

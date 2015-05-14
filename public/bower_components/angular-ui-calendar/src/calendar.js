@@ -11,7 +11,7 @@
 angular.module('ui.calendar', [])
   .constant('uiCalendarConfig', {})
   .controller('uiCalendarCtrl', ['$scope', '$timeout', function($scope, $timeout){
-
+console.log($scope.eventSources);
       var sourceSerialId = 1,
           eventSerialId = 1,
           sources = $scope.eventSources,
