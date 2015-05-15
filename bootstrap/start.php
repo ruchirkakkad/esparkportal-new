@@ -24,12 +24,14 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
+//$env = $app->detectEnvironment(array(
+//
+//	'local' => array('espark-portal-new.local')
+//));
 
-	'local' => array('homestead'),
-
-));
-
+$env = $app->detectEnvironment(function() {
+    return gethostname() == 'eportal.esparkbiz.com' ? 'production' : 'local';
+});
 /*
 |--------------------------------------------------------------------------
 | Bind Paths
