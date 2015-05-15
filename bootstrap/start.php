@@ -30,7 +30,7 @@ $app = new Illuminate\Foundation\Application;
 //));
 
 $env = $app->detectEnvironment(function() {
-    return gethostname() == 'eportal.esparkbiz.com' ? 'production' : 'local';
+    return gethostname() == 'serv01.siteground138.com' ? 'production' : 'local';
 });
 /*
 |--------------------------------------------------------------------------
