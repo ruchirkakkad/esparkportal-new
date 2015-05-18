@@ -70,6 +70,7 @@ Route::group(['before' => 'permission'], function () {
 
 //---------------Organization starts--------------------
     Route::controller('company_details', 'CompanyDetailsController');
+    Route::controller('work_shifts', 'WorkShiftsController');
     Route::controller('roles', 'RolesController');
     Route::controller('permissions', 'PermissionsController');
 //---------------Organization ends--------------------

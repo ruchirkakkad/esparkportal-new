@@ -51,7 +51,6 @@ angular.module('app')
                     controller: function ($scope, $http, $state) {
                         $http.post('logout', {}).success(function (data) {
                             $state.go('access.signin');
-                        }, function (x) {
                         });
                     }
                 })
@@ -947,6 +946,94 @@ angular.module('app')
                                     }
                                 )
                             }]
+                    }
+                })
+
+                .state('app.work_shifts', {
+                    url: '/work_shifts',
+                    template: '<div ui-view  ng-controller="WorkShiftsController" class="fade-in-right-big"></div>'
+                })
+                .state('app.work_shifts.index-view', {
+                    url: '/index-view',
+                    templateUrl: 'work_shifts/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/work_shifts.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.work_shifts.create', {
+                    url: '/create',
+                    templateUrl: 'work_shifts/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/work_shifts.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.work_shifts.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'work_shifts/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/work_shifts.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.work_shifts.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/work_shifts/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.work_shifts.index-view');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.work_shifts.index-view');
+                                }
+                            });
                     }
                 })
 
