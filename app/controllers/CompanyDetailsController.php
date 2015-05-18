@@ -15,7 +15,7 @@ class CompanyDetailsController extends \BaseController {
 
     public function postUpdateView()
     {
-        $data = CompanyDetail::find(1);
+        $data = CompanyDetail::findOrNew(1);
         $data->company_name = Input::get('company_name');
         $data->company_url = Input::get('company_url');
         $data->company_address = Input::get('company_address');
@@ -24,6 +24,6 @@ class CompanyDetailsController extends \BaseController {
         $data->cp_last_name = Input::get('cp_last_name');
         $data->cp_email = Input::get('cp_email');
         $data->cp_phone = Input::get('cp_phone');
-        $data->save();
+        echo $data->save();
     }
 }
