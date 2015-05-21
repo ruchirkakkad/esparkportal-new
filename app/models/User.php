@@ -69,10 +69,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         return $this->belongsTo('Role','role_id','id');
     }
 
-
-
     public function job_profile()
     {
         return $this->belongsTo('JobProfile','job_profile','job_profiles_id');
+    }
+
+    public function staffing()
+    {
+        return $this->join('work_shifts','users.work_shifts_id','=','work_shifts.work_shifts_id')->pluck('staffing');
     }
 }

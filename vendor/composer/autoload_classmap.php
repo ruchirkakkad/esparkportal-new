@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddWorkShiftsToUserTable' => $baseDir . '/app/database/migrations/2015_05_18_101347_add_work_shifts_to_user_table.php',
     'Barryvdh\\Debugbar\\Console\\ClearCommand' => $vendorDir . '/barryvdh/laravel-debugbar/src/Console/ClearCommand.php',
     'Barryvdh\\Debugbar\\Console\\PublishCommand' => $vendorDir . '/barryvdh/laravel-debugbar/src/Console/PublishCommand.php',
     'Barryvdh\\Debugbar\\Controllers\\AssetController' => $vendorDir . '/barryvdh/laravel-debugbar/src/Controllers/AssetController.php',
@@ -54,6 +55,7 @@ return array(
     'Boris\\Inspector' => $vendorDir . '/d11wtq/boris/lib/Boris/Inspector.php',
     'Boris\\ReadlineClient' => $vendorDir . '/d11wtq/boris/lib/Boris/ReadlineClient.php',
     'Boris\\ShallowParser' => $vendorDir . '/d11wtq/boris/lib/Boris/ShallowParser.php',
+    'Break' => $baseDir . '/app/models/Break.php',
     'CallclosedController' => $baseDir . '/app/controllers/CallclosedController.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'ClassPreloader\\Application' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Application.php',
@@ -68,6 +70,7 @@ return array(
     'ClassPreloader\\Parser\\NodeTraverser' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/NodeTraverser.php',
     'CompanyDetail' => $baseDir . '/app/models/CompanyDetail.php',
     'CompanyDetailsController' => $baseDir . '/app/controllers/CompanyDetailsController.php',
+    'CreateBreaksTable' => $baseDir . '/app/database/migrations/2015_05_18_112036_create_breaks_table.php',
     'CreateCompanyDetailsTable' => $baseDir . '/app/database/migrations/2015_05_14_113210_create_company_details_table.php',
     'CreateDepartmentsTable' => $baseDir . '/app/database/migrations/2015_04_22_085728_create_departments_table.php',
     'CreateDesignationsTable' => $baseDir . '/app/database/migrations/2015_04_22_093503_create_designations_table.php',
@@ -87,6 +90,7 @@ return array(
     'CreateRolesTable' => $baseDir . '/app/database/migrations/2015_04_20_090019_create_roles_table.php',
     'CreateSheetsTable' => $baseDir . '/app/database/migrations/2015_04_08_092914_create_sheets_table.php',
     'CreateSkillsTable' => $baseDir . '/app/database/migrations/2015_05_04_123629_create_skills_table.php',
+    'CreateStaffingsTable' => $baseDir . '/app/database/migrations/2015_05_18_111636_create_staffings_table.php',
     'CreateTimezonesTable' => $baseDir . '/app/database/migrations/2015_04_07_092146_create_timezones_table.php',
     'CreateUsersAttachmentsTable' => $baseDir . '/app/database/migrations/2015_04_22_055354_create_users_attachments_table.php',
     'CreateUsersBankDetailsTable' => $baseDir . '/app/database/migrations/2015_04_22_055323_create_users_bank_details_table.php',
@@ -1124,6 +1128,7 @@ return array(
     'SkillsController' => $baseDir . '/app/controllers/SkillsController.php',
     'Stack\\Builder' => $vendorDir . '/stack/builder/src/Stack/Builder.php',
     'Stack\\StackedHttpKernel' => $vendorDir . '/stack/builder/src/Stack/StackedHttpKernel.php',
+    'Staffing' => $baseDir . '/app/models/Staffing.php',
     'Symfony\\Component\\BrowserKit\\Client' => $vendorDir . '/symfony/browser-kit/Symfony/Component/BrowserKit/Client.php',
     'Symfony\\Component\\BrowserKit\\Cookie' => $vendorDir . '/symfony/browser-kit/Symfony/Component/BrowserKit/Cookie.php',
     'Symfony\\Component\\BrowserKit\\CookieJar' => $vendorDir . '/symfony/browser-kit/Symfony/Component/BrowserKit/CookieJar.php',

@@ -35,6 +35,7 @@ Route::post('logout', ['uses' => 'LoginController@logout']);
 
 Route::controller('general_modules', 'GeneralModulesController');
 Route::controller('modules', 'ModulesController');
+Route::controller('staffing', 'StaffingController');
 
 Route::group(['before' => 'permission'], function () {
 //---------------Marketing-----------------

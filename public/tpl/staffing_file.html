@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Time Tracker : {{ totalStaffing.time }}
+    </div>
+    <div class="list-group">
+        <div class="list-group-item">
+            <alert ng-repeat="entry in entries" type="{{entry.type}}"><b>{{entry.msg}}</b></alert>
+        </div>
+        <div class="list-group-item" ng-if="error.msg != ''"><b style="color: {{ error.type }}">{{ error.msg }}</b></div>
+        <div class="list-group-item" ><b style="color: {{ success.type }}">{{ success.msg }}</b></div>
+
+        <div class="list-group-item" ng-if="error.msg == ''">
+
+            <button ng-click="{{ button.function }}" class="btn m-b-xs w-xs {{ button.class }}" ng-repeat="button in buttons">{{ button.name }}</button>
+            <!--<button ng-click="check_out()" class="btn m-b-xs w-xs btn-danger">Check Out</button>-->
+            <!--<button ng-click="break_in()" class="btn m-b-xs w-xs btn-info">Break In</button>-->
+            <!--<button ng-click="break_out()" class="btn m-b-xs w-xs btn-warning">Break Out</button>-->
+        </div>
+    </div>
+</div>

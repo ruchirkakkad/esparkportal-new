@@ -31,6 +31,7 @@ angular.module('app')
   }])
     .run(function($rootScope,$http) {
         //$rootScope.permission =[];
+
         $http.post('setAngularPermission', {})
             .success(function (data) {
 

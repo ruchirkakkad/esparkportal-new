@@ -14,4 +14,7 @@ return [
 
 
     'marketing_admin_id' => 1,
+
+    'maxAllowedTimeForStaffing' => 15*3600,
+    'minBreakTimeForStaffing' => 40*60,
 ];

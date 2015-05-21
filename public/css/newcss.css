@@ -10,6 +10,26 @@
     height: 100%;
     width: 100%;
     position: fixed;
-    z-index: 1000;
+    z-index: 99999;
     opacity: 0.7;
+}
+
+
+#dvBlockAccess
+{
+    background: #F5F4F4 no-repeat center center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 99999;
+    opacity: 0.9;
+    left:0;
+    top:0;
+
+}
+#dvBlockAccess h1{
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
 }
