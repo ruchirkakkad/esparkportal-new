@@ -8,12 +8,6 @@
  */
 class StaffingController extends \BaseController
 {
-
-    public function __construct()
-    {
-
-    }
-
     public function postStaffingCalculation()
     {
         $user_id = Auth::user()->user_id;
@@ -24,13 +18,15 @@ class StaffingController extends \BaseController
             (SELECT COUNT(*) AS co FROM `staffings`
             WHERE `users_id` = '$user_id'
             AND ( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
-            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date'))
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
             ) = 1
             ,( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
-            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date'))
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
             ,DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date')")
             ->get();
-
+        $current_date = date('Y-m-d H:i:s');
         if (count($status) == 0) {
             return ['time' => '00:00', 'accessStyle' => 'none'];
         } elseif (count($status) == 1) {
@@ -41,49 +37,57 @@ class StaffingController extends \BaseController
             $staffing_id = $status[0]->staffings_id;
             $breaks = Breaks::where("staffings_id", '=', $staffing_id)->get();
             $totalBreaks = 0;
-            foreach ($breaks as $key => $value) {
-                if ($value->break_out == '0000-00-00 00:00:00') {
-                    $totalStaff = strtotime($value->break_in) - strtotime($check_in);
+            if (!empty($breaks)) {
+                foreach ($breaks as $key => $value) {
+                    if ($value->break_out == '0000-00-00 00:00:00') {
+                        $totalStaff = strtotime($value->break_in) - strtotime($check_in);
+                        if ($minBreak > $totalBreaks && $totalBreaks != 0) {
+                            $totalBreaks = $minBreak;
+                        }
+                        $totalTime = (($totalStaff - $totalBreaks) > 0) ? ($totalStaff - $totalBreaks) : 0;
+                        $totalFromCheckedInTime = strtotime($current_date) - strtotime($check_in);
+                        if ($totalTime > $maxTime || ($totalFromCheckedInTime > $maxTime && $status[0]->flag != 'checkedout')) {
+                            return ['time' => gmdate('H:i', $totalTime), 'accessStyle' => 'block'];
+                        } else {
+                            return ['time' => gmdate('H:i', $totalTime), 'accessStyle' => 'none'];
+                        }
 
-                    if($minBreak>$totalBreaks && $totalBreaks != 0)
-                    {
-                        $totalBreaks = $minBreak;
-                    }
-                    $totalTime = (($totalStaff - $totalBreaks) > 0) ? ($totalStaff - $totalBreaks) : 0;
-                    if ($totalTime > $maxTime) {
-                        return ['time' => date('H:i', $totalTime), 'accessStyle' => 'block'];
                     } else {
-                        return ['time' => date('H:i', $totalTime), 'accessStyle' => 'none'];
+                        $totalBreaks += strtotime($value->break_out) - strtotime($value->break_in);
                     }
-
-                } else {
-                    $totalBreaks += strtotime($value->break_out) - strtotime($value->break_in);
                 }
+
             }
             if ($status[0]->flag == 'checkedout') {
                 $check_out = $status[0]->check_out;
                 $totalStaff = strtotime($check_out) - strtotime($check_in);
 
-                if($minBreak>$totalBreaks && $totalBreaks != 0)
-                {
+                if ($minBreak > $totalBreaks && $totalBreaks != 0) {
                     $totalBreaks = $minBreak;
                 }
                 $totalTime = (($totalStaff - $totalBreaks) > 0) ? ($totalStaff - $totalBreaks) : 0;
-                return ['time' => date('H:i', $totalTime), 'accessStyle' => 'none'];
+                $totalFromCheckedInTime = strtotime($current_date) - strtotime($check_in);
+                if ($totalTime > $maxTime || ($totalFromCheckedInTime > $maxTime && $status[0]->flag != 'checkedout')) {
+                    return ['time' => gmdate('H:i', $totalTime), 'accessStyle' => 'block'];
+                } else {
+                    return ['time' => gmdate('H:i', $totalTime), 'accessStyle' => 'none'];
+                }
             } elseif ($status[0]->flag == 'check') {
 
-                $check_out = $status[0]->check_out;
+                $check_in = $status[0]->check_in;
                 $current_date = date('Y-m-d H:i:s');
+
                 $totalStaff = strtotime($current_date) - strtotime($check_in);
-                if($minBreak > $totalBreaks && $totalBreaks != 0)
-                {
+                if ($minBreak > $totalBreaks && $totalBreaks != 0) {
                     $totalBreaks = $minBreak;
                 }
                 $totalTime = (($totalStaff - $totalBreaks) > 0) ? ($totalStaff - $totalBreaks) : 0;
-                if ($totalTime > $maxTime) {
-                    return ['time' => date('H:i', $totalTime), 'accessStyle' => 'block'];
+
+                $totalFromCheckedInTime = strtotime($current_date) - strtotime($check_in);
+                if ($totalTime > $maxTime || ($totalFromCheckedInTime > $maxTime && $status[0]->flag != 'checkedout')) {
+                    return ['time' => gmdate('H:i', $totalTime), 'accessStyle' => 'block'];
                 } else {
-                    return ['time' => date('H:i', $totalTime), 'accessStyle' => 'none'];
+                    return ['time' => gmdate('H:i', $totalTime), 'accessStyle' => 'none'];
                 }
             } else {
                 return ['time' => '00:00', 'accessStyle' => 'none'];
@@ -109,10 +113,12 @@ class StaffingController extends \BaseController
             (SELECT COUNT(*) AS co FROM `staffings`
             WHERE `users_id` = '$user_id'
             AND ( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
-            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date'))
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
             ) = 1
             ,( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
-            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date'))
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
             ,DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date')")
             ->get();
 //        $queries = DB::getQueryLog();
@@ -143,8 +149,7 @@ class StaffingController extends \BaseController
             } elseif ($status[0]->flag == 'checkedout') {
                 $entries[] = ['msg' => 'Check In time is : ' . date('M d, H:i A', strtotime($status[0]->check_out)), 'type' => 'danger'];
                 $success = ['msg' => "Your staffing is added successfully... :)", 'type' => 'green'];
-                if(date('Y-m-d',strtotime($status[0]->check_in)) != $current_date)
-                {
+                if (date('Y-m-d', strtotime($status[0]->check_in)) != $current_date) {
                     $buttons[] = ['name' => 'Check In', 'class' => 'btn-success', 'function' => 'check_in()'];
                 }
             } else {

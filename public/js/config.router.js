@@ -2109,6 +2109,29 @@ angular.module('app')
                     }
                 })
 
+                .state('app.time_tracker', {
+                    url: '/time_tracker',
+                    template: '<div ui-view  ng-controller="TimeTrackerController" class="fade-in-right-big"></div>'
+                })
+                .state('app.time_tracker.user-wise-view', {
+                    url: '/user-wise-view',
+                    templateUrl: 'time_tracker/user-wise-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
 
                 .state('app.password_mgmts', {
                     url: '/password_mgmts',
