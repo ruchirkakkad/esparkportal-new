@@ -2132,6 +2132,25 @@ angular.module('app')
                             }]
                     }
                 })
+                .state('app.time_tracker.user-wise-report-view', {
+                    url: '/user-wise-report-view/{id}',
+                    templateUrl: 'time_tracker/user-wise-report-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
 
                 .state('app.password_mgmts', {
                     url: '/password_mgmts',

@@ -1,0 +1,102 @@
+<div class="panel panel-default">
+
+    <div class="panel-body">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label class="col-sm-3">Select Date</label>
+                <div class="col-sm-8">
+                    <input ui-jq="daterangepicker" ui-options="{format: 'YYYY-MM-DD',startDate: '2013-01-01',
+                endDate: '2013-12-31'}" ng-model="data.dateRangeSearch" class="form-control w-md" />
+                    <input type="daterange" ng-model="data.dateRangeSearch">
+                </div>
+                <div class="col-sm-1">
+                    <button class="btn btn-sm btn-warning" ng-click="userWiseDateRangeSearch()"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <select ng-model="data.monthSearch" name="" class="form-control" ng-options="selectedItem.id as selectedItem.value for selectedItem in data.months" required>
+                        <option value="">-Month-</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <select ng-model="data.yearSearch" name="" class="form-control" ng-options="selectedItem.id as selectedItem.value for selectedItem in data.years" required>
+                        <option value="">-Year-</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <button class="btn btn-sm btn-warning" ng-click="userWiseMonthYearSearch()"><i class="fa fa-search"></i></button>
+        </div>
+        <div class="col-md-2">
+            <button ng-if="permission.time_tracker.csv==1" type="button" ng-csv="getArray()"
+                    class="btn btn-sm btn-primary btn-addon pull-right m-xs"
+                    csv-header="['ID', 'Name']"
+                    filename="staffings.csv">Export
+            </button>
+            </a>
+        </div>
+    </div>
+
+    <table st-table="staffings" class="table">
+        <thead>
+        <tr>
+            <th colspan="4">
+
+            </th>
+            <th colspan="3">
+                <form>
+                    <div class="col-md-5">items by page</div>
+                    <div class="col-md-7">
+                        <input class="input-sm form-control" name="items" id="items" type="number"
+                               ng-model="itemsByPage">
+                    </div>
+                </form>
+            </th>
+        </tr>
+        <tr>
+            <th st-sort="date">Date</th>
+            <th st-sort="check_in">Entry Time</th>
+            <th st-sort="check_out">Exit Time</th>
+            <th st-sort="total_staffing.time">Total Staffing</th>
+            <th st-sort="total_staffing.break_time">Break</th>
+            <th st-sort="total_staffing.actual_break_time">Actual Break</th>
+            <th st-sort="comment">Comment</th>
+            <th ng-if="permission.staffings.edit==1"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in staffings"
+            style="color:#000000; background-color: {{row.flag == 'absent'?'#F06A6A' : ''}} {{row.flag == 'checkedout'?'#55C3E6' : ''}} {{row.flag == 'break'?'#F7DE69' : ''}} {{row.flag == 'check'?'#48D46A' : ''}} !important;">
+            <td>{{row.date}}</td>
+            <td>{{row.check_in}}</td>
+            <td>{{row.check_out}}</td>
+            <td>{{row.total_staffing.time}}</td>
+            <td>{{row.total_staffing.break_time}}</td>
+            <td>{{row.total_staffing.actual_break_time}}</td>
+            <td>{{row.comment}}</td>
+
+            <td ng-if="permission.time_tracker.edit==1">
+                <a href='#/app/staffings/edit/{{ row.edit }}'>
+                    <button class="btn btn-sm bg-dark lter" tooltip="Edit"><i class=" fa fa-pencil"></i></button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="20"
+                     class="no-margin"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

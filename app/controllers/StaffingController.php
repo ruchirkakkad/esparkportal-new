@@ -190,7 +190,7 @@ class StaffingController extends \BaseController
     public function postBreakIn()
     {
         $user_id = Auth::user()->user_id;
-        $staffing_id = Staffing::where('users_id', '=', $user_id)->where('flag', '=', 'check')->pluck('staffings_id');
+        $staffing_id = Staffing::where('users_id', '=', $user_id)->where('flag', '=', 'check')->latest()->pluck('staffings_id');
         $current_date = date('Y-m-d H:i:s');
         $break = new Breaks();
         $break->staffings_id = $staffing_id;
@@ -203,13 +203,12 @@ class StaffingController extends \BaseController
             $staffing->flag = 'break';
             $staffing->save();
         }
-
     }
 
     public function postBreakOut()
     {
         $user_id = Auth::user()->user_id;
-        $staffing_id = Staffing::where('users_id', '=', $user_id)->where('flag', '=', 'break')->pluck('staffings_id');
+        $staffing_id = Staffing::where('users_id', '=', $user_id)->where('flag', '=', 'break')->latest()->pluck('staffings_id');
         $current_date = date('Y-m-d H:i:s');
         $break_id = Breaks::where('staffings_id', '=', $staffing_id)->where('flag', '=', 'breakin')->pluck('breaks_id');
         $break = Breaks::find($break_id);

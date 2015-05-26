@@ -19,7 +19,7 @@ class TimeTrackerController extends \BaseController
         return View::make('time_tracker.user_wise');
     }
 
-    public function getUsersListView()
+    public function postUsersListView()
     {
         $data1 = User::where('role_id', '!=', 1)->get();
 
@@ -34,5 +34,173 @@ class TimeTrackerController extends \BaseController
         $data['users'] = $returndata;
 
         return $data;
+    }
+
+    public function getUserWiseReportView()
+    {
+        return View::make('time_tracker.user_wise_report');
+    }
+
+    public function postUsersReportView($id)
+    {
+        $first_day_this_month = date('Y-m-01');
+        $last_day_this_month = date('Y-m-t');
+        $date = $first_day_this_month;
+        $next_date = date('Y-m-d', strtotime($date .' +1 day'));
+
+
+        $user_id = Helper::simple_decrypt($id);
+        $data['user'] = User::find($user_id);
+
+        $returndata = [];
+        $k = 0;
+        while($date !=$last_day_this_month)
+        {
+            $data1 = Staffing::where('users_id', '=', $user_id)
+                  ->whereRaw("DATE_FORMAT(check_in,'%Y-%m-%d') = '$date'")->get();
+            if(count($data1) == 1)
+            {
+                $id = Helper::simple_encrypt($data1[0]->staffings_id);
+                $returndata[$k]['staffings_id'] = $data1[0]->staffings_id;
+                $returndata[$k]['staffings_encrypt_id'] = $id;
+                $returndata[$k]['date'] = $date;
+                $returndata[$k]['check_in'] = date('M d, H:i', strtotime($data1[0]->check_in));
+                $returndata[$k]['check_out'] = date('M d, H:i', strtotime($data1[0]->check_out));
+                $returndata[$k]['flag'] = $data1[0]->flag;
+                $returndata[$k]['comment'] = $data1[0]->comment;
+                $returndata[$k]['total_staffing'] = $this->tryas($data1[0]->staffings_id,$data1[0]->check_in,$data1[0]->check_out,$data1[0]->flag);
+
+            }
+            else
+            {
+                $returndata[$k]['staffings_id'] = '';
+                $returndata[$k]['staffings_encrypt_id'] = '';
+                $returndata[$k]['date'] = $date;
+                $returndata[$k]['check_in'] = '';
+                $returndata[$k]['check_out'] = '';
+                $returndata[$k]['flag'] = 'absent';
+                $returndata[$k]['comment'] = '';
+                $returndata[$k]['total_staffing'] = ['time' => '', 'break_time' => '', 'actual_break_time' => ''];
+            }
+            $k++;
+            $date = $next_date;
+            $next_date = date('Y-m-d', strtotime($date .' +1 day'));
+        }
+        $data['staffings'] = $returndata;
+        return $data;
+    }
+
+    public function postUsersReportMonthYearView($id)
+    {
+        $year = Input::get('year');
+        $month = Input::get('month');
+        $first_day_this_month = date("$year-$month-01");
+        $last_day_this_month = date("Y-m-t", strtotime($first_day_this_month));
+
+        $date = $first_day_this_month;
+        $user_id = Helper::simple_decrypt($id);
+        $data['user'] = User::find($user_id);
+
+        $returndata = [];
+        $k = 0;
+        while($date !=$last_day_this_month)
+        {
+            $data1 = Staffing::where('users_id', '=', $user_id)
+                ->whereRaw("DATE_FORMAT(check_in,'%Y-%m-%d') = '$date'")->get();
+            if(count($data1) == 1)
+            {
+                $id = Helper::simple_encrypt($data1[0]->staffings_id);
+                $returndata[$k]['staffings_id'] = $data1[0]->staffings_id;
+                $returndata[$k]['staffings_encrypt_id'] = $id;
+                $returndata[$k]['date'] = $date;
+                $returndata[$k]['check_in'] = date('M d, H:i', strtotime($data1[0]->check_in));
+                $returndata[$k]['check_out'] = date('M d, H:i', strtotime($data1[0]->check_out));
+                $returndata[$k]['flag'] = $data1[0]->flag;
+                $returndata[$k]['comment'] = $data1[0]->comment;
+                $returndata[$k]['total_staffing'] = $this->tryas($data1[0]->staffings_id,$data1[0]->check_in,$data1[0]->check_out,$data1[0]->flag);
+
+            }
+            else
+            {
+                $returndata[$k]['staffings_id'] = '';
+                $returndata[$k]['staffings_encrypt_id'] = '';
+                $returndata[$k]['date'] = $date;
+                $returndata[$k]['check_in'] = '';
+                $returndata[$k]['check_out'] = '';
+                $returndata[$k]['flag'] = 'absent';
+                $returndata[$k]['comment'] = '';
+                $returndata[$k]['total_staffing'] = ['time' => '', 'break_time' => '', 'actual_break_time' => ''];
+            }
+            $k++;
+            $next_date = date('Y-m-d', strtotime($date .' +1 day'));
+            $date = $next_date;
+        }
+        $data['staffings'] = $returndata;
+        return $data;
+    }
+
+    public function tryas($staffing_id,$check_in,$check_out,$flag)
+    {
+        $maxTime = Config::get('constants.maxAllowedTimeForStaffing');
+        $minBreak = Config::get('constants.minBreakTimeForStaffing');
+
+        $current_date = date('Y-m-d H:i:s');
+
+        $breaks = Breaks::where("staffings_id", '=', $staffing_id)->get();
+        $totalBreaks = 0;
+        if (!empty($breaks)) {
+            foreach ($breaks as $key => $value) {
+                if ($value->break_out == '0000-00-00 00:00:00') {
+                    $totalStaff = strtotime($value->break_in) - strtotime($check_in);
+                    $actualBreak = $totalBreaks;
+                    if ($minBreak > $totalBreaks && $totalBreaks != 0) {
+                        $totalBreaks = $minBreak;
+                    }
+                    $totalTime = (($totalStaff - $totalBreaks) > 0) ? ($totalStaff - $totalBreaks) : 0;
+                    $totalFromCheckedInTime = strtotime($current_date) - strtotime($check_in);
+                    if ($totalTime > $maxTime || ($totalFromCheckedInTime > $maxTime && $flag != 'checkedout')) {
+                        return ['time' => gmdate('H:i', $totalTime), 'break_time' => gmdate('H:i', $totalBreaks), 'actual_break_time' => gmdate('H:i', $actualBreak)];
+                    } else {
+                        return ['time' => gmdate('H:i', $totalTime), 'break_time' => gmdate('H:i', $totalBreaks), 'actual_break_time' => gmdate('H:i', $actualBreak)];
+                    }
+
+                } else {
+                    $totalBreaks += strtotime($value->break_out) - strtotime($value->break_in);
+                }
+            }
+
+        }
+        if ($flag == 'checkedout') {
+
+            $totalStaff = strtotime($check_out) - strtotime($check_in);
+            $actualBreak = $totalBreaks;
+            if ($minBreak > $totalBreaks && $totalBreaks != 0) {
+                $totalBreaks = $minBreak;
+            }
+            $totalTime = (($totalStaff - $totalBreaks) > 0) ? ($totalStaff - $totalBreaks) : 0;
+            $totalFromCheckedInTime = strtotime($current_date) - strtotime($check_in);
+            if ($totalTime > $maxTime || ($totalFromCheckedInTime > $maxTime && $flag != 'checkedout')) {
+                return ['time' => gmdate('H:i', $totalTime), 'break_time' => gmdate('H:i', $totalBreaks), 'actual_break_time' => gmdate('H:i', $actualBreak)];
+            } else {
+                return ['time' => gmdate('H:i', $totalTime), 'break_time' => gmdate('H:i', $totalBreaks), 'actual_break_time' => gmdate('H:i', $actualBreak)];
+            }
+        } elseif ($flag == 'check') {
+
+            $totalStaff = strtotime($current_date) - strtotime($check_in);
+            $actualBreak = $totalBreaks;
+            if ($minBreak > $totalBreaks && $totalBreaks != 0) {
+                $totalBreaks = $minBreak;
+            }
+            $totalTime = (($totalStaff - $totalBreaks) > 0) ? ($totalStaff - $totalBreaks) : 0;
+
+            $totalFromCheckedInTime = strtotime($current_date) - strtotime($check_in);
+            if ($totalTime > $maxTime || ($totalFromCheckedInTime > $maxTime && $flag != 'checkedout')) {
+                return ['time' => gmdate('H:i', $totalTime), 'break_time' => gmdate('H:i', $totalBreaks), 'actual_break_time' => gmdate('H:i', $actualBreak)];
+            } else {
+                return ['time' => gmdate('H:i', $totalTime), 'break_time' => gmdate('H:i', $totalBreaks), 'actual_break_time' => gmdate('H:i', $actualBreak)];
+            }
+        } else {
+            return ['time' => '00:00', 'break_time' => '00:00'];
+        }
     }
 }
