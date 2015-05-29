@@ -1,0 +1,62 @@
+<div class="panel panel-default">
+
+    <div class="panel-body">
+        <div class="col-md-2">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <select ng-model="data.monthSearch" name="" class="form-control" ng-options="selectedItem.id as selectedItem.value for selectedItem in data.months" required>
+                        <option value="">-Month-</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <select ng-model="data.yearSearch" name="" class="form-control" ng-options="selectedItem.id as selectedItem.value for selectedItem in data.years" required>
+                        <option value="">-Year-</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <button class="btn btn-sm btn-warning" ng-click="attendanceChartMonthYearSearch()"><i class="fa fa-search"></i></button>
+        </div>
+        <div class="col-sm-5"></div>
+        <div class="col-md-2">
+            <button ng-if="permission.time_tracker.csv==1" type="button" ng-csv="getArray()"
+                    class="btn btn-sm btn-primary btn-addon pull-right m-xs"
+                    csv-header="['ID', 'Name']"
+                    filename="staffings.csv">Export
+            </button>
+            </a>
+        </div>
+    </div>
+
+    <table  class="table table-bordered" style="width: 100%">
+        <thead>
+
+        <tr>
+            <th>Name</th>
+            <th style="padding: 8px !important;" ng-repeat="(key, val) in staffings[0].dates">{{ key}}</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in staffings">
+            <td>{{row.first_name}} {{row.last_name}}</td>
+            <td ng-repeat="(key, val) in row.dates"
+                style="font-size: 11px;padding: 8px 0px !important; vertical-align: middle !important;text-align: center !important;color:#000000; background-color: {{val.flag == 'A'?'#F06A6A' : ''}} {{val.flag == 'P'?'#48D46A' : ''}} !important;">{{ val.flag }}</td>
+            <td>{{row.total_present}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td style="text-align: right"><b>Total</b></td>
+                <td ng-repeat="(key, val) in total_present_count_date_wise"
+                    style="font-size: 11px;padding: 8px 0px !important; vertical-align: middle !important;text-align: center !important;color:#000000; ">{{ val }}</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

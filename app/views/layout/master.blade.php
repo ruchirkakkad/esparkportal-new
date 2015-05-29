@@ -15,7 +15,8 @@
     {{ Html::style('css/app.css') }}
     {{ Html::style('css/newcss.css') }}
 
-
+{{--<link rel="stylesheet" type="text/css" href="css/css/bootstrap.min.css">--}}
+<link rel="stylesheet" type="text/css" href="css/css/daterangepicker-bs3.css">
     {{ Html::style('css/ivh-treeview.css') }}
     {{ Html::style('css/ivh-treeview-theme-basic.css') }}
 
@@ -103,6 +104,11 @@
 {{ Html::script('js/controllers/bootstrap.js'); }}
 {{ Html::script('js/controllers/custom.js'); }}
   <!-- Lazy loading -->
+
+<script type="text/javascript" src="js/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/js/moment.min.js"></script>
+<script type="text/javascript" src="js/js/daterangepicker.js"></script>
+<script type="text/javascript" src="js/js/ng-bs-daterangepicker.js"></script>
 
 {{ Html::script('js/ivh-treeview.js'); }}
 

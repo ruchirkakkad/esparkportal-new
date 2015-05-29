@@ -711,13 +711,13 @@
                 format: 'YYYY-MM-DD',
                 startDate: '2013-01-01',
                 endDate: '2013-12-31'
-              }" class="form-control w-md" />
+              }" class="form-control w-md" ng-model="onetwo"/>
           </div>
         </div>
 
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
-          <label class="col-sm-2 control-label">File input</label>
+          <label class="col-sm-2 control-label">File input {{ onetwo }}</label>
           <div class="col-sm-10">
             <input ui-jq="filestyle" type="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline v-middle input-s">
           </div>

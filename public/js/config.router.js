@@ -2151,6 +2151,45 @@ angular.module('app')
                             }]
                     }
                 })
+                .state('app.time_tracker.date-wise-view', {
+                    url: '/date-wise-view',
+                    templateUrl: 'time_tracker/date-wise-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+
+                .state('app.time_tracker.attendance-chart-view', {
+                    url: '/attendance-chart-view',
+                    templateUrl: 'time_tracker/attendance-chart-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
 
                 .state('app.password_mgmts', {
                     url: '/password_mgmts',

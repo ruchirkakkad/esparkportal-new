@@ -5,34 +5,25 @@
             <div class="form-group">
                 <label class="col-sm-3">Select Date</label>
                 <div class="col-sm-8">
-                    <input type="daterange" ng-model="data.dateRangeSearch" class="form-control">
+                    <div class="form-group">
+                        <div class="col-sm-9" ng-controller="DatepickerDemoCtrl">
+                            <div class="input-group w-md">
+                                <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="data.dateWiseSearchVariable"
+                                       is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                        class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-1">
-                    <button class="btn btn-sm btn-warning" ng-click="userWiseDateRangeSearch()"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-sm btn-warning" ng-click="dateWiseDateSearch()"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <select ng-model="data.monthSearch" name="" class="form-control" ng-options="selectedItem.id as selectedItem.value for selectedItem in data.months" required>
-                        <option value="">-Month-</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <select ng-model="data.yearSearch" name="" class="form-control" ng-options="selectedItem.id as selectedItem.value for selectedItem in data.years" required>
-                        <option value="">-Year-</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-1">
-            <button class="btn btn-sm btn-warning" ng-click="userWiseMonthYearSearch()"><i class="fa fa-search"></i></button>
-        </div>
+        <div class="col-sm-5"></div>
         <div class="col-md-2">
             <button ng-if="permission.time_tracker.csv==1" type="button" ng-csv="getArray()"
                     class="btn btn-sm btn-primary btn-addon pull-right m-xs"
@@ -60,7 +51,7 @@
             </th>
         </tr>
         <tr>
-            <th st-sort="date">Date</th>
+            <th st-sort="first_name">Name</th>
             <th st-sort="check_in">Entry Time</th>
             <th st-sort="check_out">Exit Time</th>
             <th st-sort="total_staffing.time">Total Staffing</th>
@@ -73,7 +64,7 @@
         <tbody>
         <tr ng-repeat="row in staffings"
             style="color:#000000; background-color: {{row.flag == 'absent'?'#F06A6A' : ''}} {{row.flag == 'checkedout'?'#55C3E6' : ''}} {{row.flag == 'break'?'#F7DE69' : ''}} {{row.flag == 'check'?'#48D46A' : ''}} !important;">
-            <td>{{row.date}}</td>
+            <td>{{row.first_name}} {{row.last_name}}</td>
             <td>{{row.check_in}}</td>
             <td>{{row.check_out}}</td>
             <td>{{row.total_staffing.time}}</td>

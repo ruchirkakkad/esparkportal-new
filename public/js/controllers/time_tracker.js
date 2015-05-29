@@ -38,7 +38,7 @@ app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval
                     $scope.data.users= data.users;
                 });
         };
-
+        $scope.itemsByPage = 31;
 
 
         $scope.userWiseReportData = function(){
@@ -52,15 +52,13 @@ app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval
         };
 
         $scope.userWiseDateRangeSearch = function(){
-
-            alert($scope.data.dateRangeSearch)
-            //$scope.user_wise_report = "";
-            //$http.post('time_tracker/users-report-view/'+$stateParams.id, {})
-            //    .success(function (data) {
-            //        $scope.data.user= data.user;
-            //        $scope.staffings = data.staffings;
-            //        $scope.user_wise_report = "tpl/user_wise_report.html";
-            //    });
+            $scope.user_wise_report = "";
+            $http.post('time_tracker/users-report-date-range-view/'+$stateParams.id, {dateRangeSearch : $scope.data.dateRangeSearch})
+                .success(function (data) {
+                    $scope.data.user= data.user;
+                    $scope.staffings = data.staffings;
+                    $scope.user_wise_report = "tpl/user_wise_report.html";
+                });
         };
         $scope.userWiseMonthYearSearch= function(){
             $scope.user_wise_report = "";
@@ -70,6 +68,56 @@ app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval
                     $scope.data.user= data.user;
                     $scope.staffings = data.staffings;
                     $scope.user_wise_report = "tpl/user_wise_report.html";
+                });
+        };
+
+        $scope.dateWiseReportData = function(){
+            $scope.date_wise_report = "";
+            var d = new Date();
+            var month = d.getMonth()+1;
+            var day = d.getDate();
+            var today = d.getFullYear() + '-' +(month<10 ? '0' : '') + month + '-' +(day<10 ? '0' : '') + day;
+
+            $http.post('time_tracker/date-wise-report-view', {date : today})
+                .success(function (data) {
+                    $scope.data.user= data.user;
+                    $scope.staffings = data.staffings;
+                    $scope.date_wise_report = "tpl/date_wise_report.html";
+                });
+        };
+
+        $scope.dateWiseDateSearch = function(){
+            $scope.date_wise_report = "";
+            $http.post('time_tracker/date-wise-report-view', {date : $scope.data.dateWiseSearchVariable})
+                .success(function (data) {
+                    $scope.data.user= data.user;
+                    $scope.staffings = data.staffings;
+                    $scope.date_wise_report = "tpl/date_wise_report.html";
+                });
+        };
+
+
+        $scope.attendanceChartReportData = function(){
+            $scope.attendance_chart_report = "";
+            var d = new Date();
+            var month = d.getMonth()+1;
+
+            $http.post('time_tracker/attendance-chart-report-view', {month : (month<10 ? '0' : '') + month,year : d.getFullYear()})
+                .success(function (data) {
+                    $scope.data.user= data.user;
+                    $scope.staffings = data.staffings;
+                    $scope.total_present_count_date_wise = data.total_present_count_date_wise;
+                    $scope.attendance_chart_report = "tpl/attendance_chart_report.html";
+                });
+        };
+        $scope.attendanceChartMonthYearSearch = function(){
+            $scope.attendance_chart_report = "";
+            $http.post('time_tracker/attendance-chart-report-view', {year : $scope.data.yearSearch,month:$scope.data.monthSearch})
+                .success(function (data) {
+                    $scope.data.user= data.user;
+                    $scope.staffings = data.staffings;
+                    $scope.total_present_count_date_wise = data.total_present_count_date_wise;
+                    $scope.attendance_chart_report = "tpl/attendance_chart_report.html";
                 });
         };
     }]);
