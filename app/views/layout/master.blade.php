@@ -17,6 +17,7 @@
 
 {{--<link rel="stylesheet" type="text/css" href="css/css/bootstrap.min.css">--}}
 <link rel="stylesheet" type="text/css" href="css/css/daterangepicker-bs3.css">
+<link rel="stylesheet" href="css/css/datetimepicker.css">
     {{ Html::style('css/ivh-treeview.css') }}
     {{ Html::style('css/ivh-treeview-theme-basic.css') }}
 
@@ -109,7 +110,7 @@
 <script type="text/javascript" src="js/js/moment.min.js"></script>
 <script type="text/javascript" src="js/js/daterangepicker.js"></script>
 <script type="text/javascript" src="js/js/ng-bs-daterangepicker.js"></script>
-
+<script type="text/javascript" src="js/js/datetimepicker.js"></script>
 {{ Html::script('js/ivh-treeview.js'); }}
 
 </body>

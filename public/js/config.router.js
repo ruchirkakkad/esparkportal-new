@@ -2191,6 +2191,27 @@ angular.module('app')
                     }
                 })
 
+                .state('app.time_tracker.edit-staffing-edit', {
+                    url: '/edit-staffing-edit/{id}',
+                    templateUrl: 'time_tracker/edit-staffing-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+
+
                 .state('app.password_mgmts', {
                     url: '/password_mgmts',
                     template: '<div ui-view  ng-controller="PasswordMgmtsController" class="fade-in-right-big"></div>'

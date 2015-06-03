@@ -55,6 +55,9 @@ class Helper
         } //end if
     }
 
-
+    public static function date_ymdhis($date)
+    {
+        return date('Y-m-d H:i:s',strtotime($date));
+    }
 
 }

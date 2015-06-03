@@ -9,6 +9,14 @@ app.controller('FormDemoCtrl', ['$scope', function($scope) {
       return blacklist.indexOf(value) === -1;
     }
 
+
+
+
+    $scope.$watch('val', function () {
+        console.log($scope.val);
+    });
+
+
     $scope.val = 15;
     var updateModel = function(val){
       $scope.$apply(function(){

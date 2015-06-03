@@ -16,6 +16,7 @@ angular.module('app', [
     'flash',
     'ngFileUpload',
     'ngCsv',
+    'ui.bootstrap.datetimepicker',
     'oc.lazyLoad',
     'ivh.treeview',
     'pascalprecht.translate'
