@@ -349,7 +349,7 @@ class TimeTrackerController extends \BaseController
         else
         {
             $check_out = Helper::date_ymdhis($staffing['check_out']);
-            if($flag_is_check_out)
+            if($flag_is_check_out && $flag_is_break_out)
             {
                 $flag = 'checkedout';
             }
@@ -377,16 +377,17 @@ class TimeTrackerController extends \BaseController
                 $break_out =  Helper::date_ymdhis($value['break_out']);
                 $break = new Breaks();
                 $break->break_in = $break_in;
-                $break->break_out = $break_out;
                 $break->staffings_id = $id;
                 if($value['break_out'] == '' || $value['break_out'] == '0000-00-00 00:00:00')
                 {
+                    $break->break_out = '0000-00-00 00:00:00';
                     $break->flag = 'breakin';
                     $break->save();
                     break;
                 }
                 else
                 {
+                    $break->break_out = $break_out;
                     $break->flag = 'breakout';
                     $break->save();
                 }
