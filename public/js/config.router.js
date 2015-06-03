@@ -2211,6 +2211,25 @@ angular.module('app')
                     }
                 })
 
+                .state('app.time_tracker.add-staffing-edit', {
+                    url: '/add-staffing-edit/{date}/{user_id}',
+                    templateUrl: 'time_tracker/add-staffing-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
 
                 .state('app.password_mgmts', {
                     url: '/password_mgmts',

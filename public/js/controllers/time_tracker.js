@@ -127,7 +127,7 @@ app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval
                 });
         };
         $scope.user_breaks = [];
-        $scope.user_staffing = null;
+        $scope.user_staffing = [];
         $scope.getUserStaffing = function () {
             $scope.edit_user_staffing = '';
             $http.post('time_tracker/user-staffing-edit/' + $stateParams.id, {})
@@ -145,6 +145,42 @@ app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval
                     $scope.edit_user_staffing = 'tpl/edit_user_staffing.html';
                 });
         };
+
+
+        $scope.getUserData = function () {
+            $scope.add_user_staffing = '';
+            $http.post('time_tracker/user-data-edit/' + $stateParams.user_id, {})
+                .success(function (data) {
+                    $scope.user_staffing = {
+                        "check_in": "",
+                        "check_out": "",
+                        "user_id": data.user_id,
+                        "first_name": data.first_name,
+                        "middle_name": data.middle_name,
+                        "last_name": data.last_name,
+                        "email": data.email,
+                        "personal_email": data.personal_email,
+                        "password": data.password,
+                        "profile_image": data.profile_image,
+                        "gender": data.gender,
+                        "doj": data.doj,
+                        "employee_id": data.employee_id,
+                        "department_id": data.department_id,
+                        "designation_id": data.designation_id,
+                        "job_profile": data.job_profile,
+                        "role_id": data.role_id,
+                        "user_status": data.user_status,
+                        "deleted_at": data.deleted_at,
+                        "remember_token": data.remember_token,
+                        "work_shifts_id": data.work_shifts_id
+                    };
+                    $scope.user_breaks = [];
+
+                    $scope.staffing_date = $stateParams.date;
+                    $scope.add_user_staffing = 'tpl/add_user_staffing.html';
+                });
+        };
+
 
         $scope.add_break = function () {
             $scope.user_breaks.push({
@@ -167,14 +203,40 @@ app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval
                 return false;
             }
 
-            $http.post('time_tracker/update-staffing-edit/' + $stateParams.id, {
+            $http.post('time_tracker/update-staffing-edit/' + $stateParams.id+'/'+$scope.staffing_date, {
                 staffings: $scope.user_staffing,
                 breaks: $scope.user_breaks
             }).success(function (data) {
                 if (data.code == '200') {
                     Flash.create('success', data.msg);
                     alert(data.alert_msg);
-                    $state.go($state.current,{},{reload:true});
+                    $state.go($state.current, {}, {reload: true});
+                }
+                if (data.code == '403') {
+                    Flash.create('danger', data.msg);
+                    $('body,html').scrollTop(0);
+                }
+            });
+        };
+
+        $scope.addStaffing = function () {
+
+            var check_in = $scope.user_staffing.check_in;
+            var check_out = $scope.user_staffing.check_out;
+
+            if (check_in == '' || check_in == '0000-00-00 00:00:00') {
+                alert('please enter check in date time..');
+                return false;
+            }
+
+            $http.post('time_tracker/add-staffing-edit/' + $stateParams.date+'/'+$stateParams.user_id, {
+                staffings: $scope.user_staffing,
+                breaks: $scope.user_breaks
+            }).success(function (data) {
+                if (data.code == '200') {
+                    Flash.create('success', data.msg);
+                    alert(data.alert_msg);
+                    $state.go($state.current, {}, {reload: true});
                 }
                 if (data.code == '403') {
                     Flash.create('danger', data.msg);
