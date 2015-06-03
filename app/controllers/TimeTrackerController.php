@@ -34,7 +34,7 @@ class TimeTrackerController extends \BaseController
         return View::make('time_tracker.user_wise_report');
     }
 
-    public function postUsersReportView($id)
+    public function postUsersReportView($id = null)
     {
         $first_day_this_month = date('Y-m-01');
         $last_day_this_month = date('Y-m-t');
@@ -62,7 +62,14 @@ class TimeTrackerController extends \BaseController
     private function calculateUserWiseFromDate($user_id, $startDate, $endDate)
     {
         $date = $startDate;
-        $user_id = Helper::simple_decrypt($user_id);
+        if($user_id == 'self')
+        {
+            $user_id = Auth::user()->user_id;
+        }
+        else
+        {
+            $user_id = Helper::simple_decrypt($user_id);
+        }
         $data['user'] = User::find($user_id);
         $returndata = [];
         $k = 0;
@@ -517,5 +524,11 @@ class TimeTrackerController extends \BaseController
                 'alert_msg' => $alert_msg
             ]);
         }
+    }
+
+
+    public function getTimeLogView()
+    {
+        return View::make('time_tracker.time_log');
     }
 }

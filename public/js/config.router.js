@@ -2113,6 +2113,26 @@ angular.module('app')
                     url: '/time_tracker',
                     template: '<div ui-view  ng-controller="TimeTrackerController" class="fade-in-right-big"></div>'
                 })
+                .state('app.time_tracker.time-log-view', {
+                    url: '/time-log-view',
+                    templateUrl: 'time_tracker/time-log-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+
                 .state('app.time_tracker.user-wise-view', {
                     url: '/user-wise-view',
                     templateUrl: 'time_tracker/user-wise-view',
