@@ -26,7 +26,7 @@ app.controller('SigninFormController', ['$scope', '$http', '$state','$rootScope'
                         $state.go('app.dashboard');
                     }
                 }, function (x) {
-                    $scope.authError = 'Server Error';
+                    //$scope.authError = 'Server Error';
                 });
         };
     }]);
