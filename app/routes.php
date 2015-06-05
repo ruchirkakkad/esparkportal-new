@@ -63,6 +63,8 @@ Route::group(['before' => 'permission'], function () {
     Route::controller('skills', 'SkillsController');
     Route::controller('educational_qualifications', 'EducationalQualificationsController');
     Route::controller('languages', 'LanguagesController');
+
+    Route::controller('leave_types', 'LeaveTypesController');
 //---------------HRMS ends--------------------
 
 //---------------Password Management starts--------------------
