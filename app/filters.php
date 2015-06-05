@@ -63,7 +63,6 @@ Route::filter('guest', function () {
 });
 
 Route::filter('check_ip', function () {
-    dd($_SERVER);
     $ips = AllowedIp::lists('allowed_ips_name');
     if(!in_array($_SERVER['REMOTE_ADDR'],$ips))
         return Redirect::to('/noPermission');
