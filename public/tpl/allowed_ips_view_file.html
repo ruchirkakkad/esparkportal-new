@@ -9,25 +9,23 @@
         </div>
 
         <div class="col-md-2">
-            <button ng-if="permission.leave_types.csv==1" type="button" ng-csv="getArray()"
-                    class="btn btn-sm btn-primary btn-addon pull-right m-xs"
+            <button ng-if="permission.allowed_ips.csv==1" type="button" ng-csv="getArray()" class="btn btn-sm btn-primary btn-addon pull-right m-xs"
                     csv-header="['ID', 'Name']"
-                    filename="leave_types.csv">Export
+                    filename="allowed_ips.csv">Export
             </button>
 
-            <a href="#/app/leave_types/create">
-                <button ng-if="permission.leave_types.add==1" class="btn btn-sm btn-primary btn-addon pull-right m-xs"
-                        ng-if="permission.leave_types.add==1">
+            <a href="#/app/allowed_ips/create" >
+                <button ng-if="permission.allowed_ips.add==1" class="btn btn-sm btn-primary btn-addon pull-right m-xs" ng-if="permission.allowed_ips.add==1">
                     <i class="fa fa-plus"></i>Add
                 </button>
             </a>
         </div>
     </div>
 
-    <table st-table="data.leave_types" class="table table-striped">
+    <table st-table="data.allowed_ips" class="table table-striped">
         <thead>
         <tr>
-            <th colspan="2">
+            <th>
                 <form>
                     <div class="col-md-5">items by page</div>
                     <div class="col-md-7">
@@ -37,7 +35,7 @@
                 </form>
             </th>
             <!--<th colspan="2"></th>-->
-            <th colspan="2" >
+            <th>
                 <div class="col-md-3">Search</div>
                 <div class="col-md-9">
                     <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
@@ -45,32 +43,24 @@
             </th>
         </tr>
         <tr>
-            <th st-sort="leave_types_id">Id</th>
-            <th st-sort="leave_name">Name</th>
-            <th st-sort="leave_title">Title</th>
-            <th st-sort="leave_comment">Comment</th>
-            <th st-sort="start_duration">Start After</th>
-            <th st-sort="total_leaves">Total Leaves</th>
-            <th ng-if="permission.leave_types.edit==1">Edit</th>
-            <th ng-if="permission.leave_types.delete==1">Delete</th>
+            <th st-sort="allowed_ips_id">Id</th>
+            <th st-sort="allowed_ips_name">Name</th>
+            <th ng-if="permission.allowed_ips.edit==1">Edit</th>
+            <th ng-if="permission.allowed_ips.delete==1">Delete</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="row in data.leave_types">
-            <td>{{row.leave_types_id}}</td>
-            <td>{{row.leave_name}}</td>
-            <td>{{row.leave_title}}</td>
-            <td>{{row.leave_comment}}</td>
-            <td>{{row.start_duration}} Months</td>
-            <td>{{row.total_leaves}}/{{row.total_leaves_type}}</td>
+        <tr ng-repeat="row in data.allowed_ips">
+            <td>{{row.allowed_ips_id}}</td>
+            <td>{{row.allowed_ips_name}}</td>
 
-            <td ng-if="permission.leave_types.edit==1">
-                <a href='#/app/leave_types/edit/{{ row.edit }}'>
+            <td ng-if="permission.allowed_ips.edit==1">
+                <a href='#/app/allowed_ips/edit/{{ row.edit }}'>
                     <button class="btn btn-sm btn-primary" tooltip="Edit"><i class=" fa fa-pencil"></i></button>
                 </a>
             </td>
-            <td ng-if="permission.leave_types.delete==1">
-                <a href='#/app/leave_types/delete/{{ row.delete }}'>
+            <td ng-if="permission.allowed_ips.delete==1">
+                <a href='#/app/allowed_ips/delete/{{ row.delete }}'>
                     <button class="btn btn-sm btn-danger" tooltip="Delete"><i class=" fa fa-trash-o"></i></button>
                 </a>
             </td>

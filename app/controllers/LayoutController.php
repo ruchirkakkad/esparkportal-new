@@ -3,6 +3,11 @@
 class LayoutController extends \BaseController
 {
 
+    public function noPermission()
+    {
+        return View::make('nopermission');
+    }
+
     public function masterView()
     {
         return View::make('layout.master');

@@ -62,6 +62,13 @@ Route::filter('guest', function () {
     if (Auth::check()) return Redirect::to('/');
 });
 
+Route::filter('check_ip', function () {
+    dd($_SERVER);
+    $ips = AllowedIp::lists('allowed_ips_name');
+    if(!in_array($_SERVER['REMOTE_ADDR'],$ips))
+        return Redirect::to('/noPermission');
+});
+
 
 Route::filter('layout', function () {
     if (Auth::check())

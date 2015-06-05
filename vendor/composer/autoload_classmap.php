@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddWorkShiftsToUserTable' => $baseDir . '/app/database/migrations/2015_05_18_101347_add_work_shifts_to_user_table.php',
+    'AllowedIp' => $baseDir . '/app/models/AllowedIp.php',
     'Barryvdh\\Debugbar\\Console\\ClearCommand' => $vendorDir . '/barryvdh/laravel-debugbar/src/Console/ClearCommand.php',
     'Barryvdh\\Debugbar\\Console\\PublishCommand' => $vendorDir . '/barryvdh/laravel-debugbar/src/Console/PublishCommand.php',
     'Barryvdh\\Debugbar\\Controllers\\AssetController' => $vendorDir . '/barryvdh/laravel-debugbar/src/Controllers/AssetController.php',
@@ -70,6 +71,7 @@ return array(
     'ClassPreloader\\Parser\\NodeTraverser' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/NodeTraverser.php',
     'CompanyDetail' => $baseDir . '/app/models/CompanyDetail.php',
     'CompanyDetailsController' => $baseDir . '/app/controllers/CompanyDetailsController.php',
+    'CreateAllowedIpsTable' => $baseDir . '/app/database/migrations/2015_06_05_151843_create_allowed_ips_table.php',
     'CreateBreaksTable' => $baseDir . '/app/database/migrations/2015_05_18_112036_create_breaks_table.php',
     'CreateCompanyDetailsTable' => $baseDir . '/app/database/migrations/2015_05_14_113210_create_company_details_table.php',
     'CreateDepartmentsTable' => $baseDir . '/app/database/migrations/2015_04_22_085728_create_departments_table.php',

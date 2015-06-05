@@ -3,12 +3,10 @@
   <div class="m-b-lg">
     <div class="wrapper text-center">
       <strong>Sign in to get in touch</strong>
-        <?php print_r(Auth::user()); ?>
     </div>
 
     <form name="form" class="form-validation">
       <div class="text-danger wrapper text-center" ng-show="authError">
-
           {{authError}}
       </div>
       <div class="list-group list-group-sm">

@@ -1112,6 +1112,94 @@ angular.module('app')
                 })
 
 
+                .state('app.allowed_ips', {
+                    url: '/allowed_ips',
+                    template: '<div ui-view  ng-controller="AllowedIpsController" class="fade-in-right-big"></div>'
+                })
+                .state('app.allowed_ips.index', {
+                    url: '/index',
+                    templateUrl: 'allowed_ips/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/allowed_ips.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.allowed_ips.create', {
+                    url: '/create',
+                    templateUrl: 'allowed_ips/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/allowed_ips.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.allowed_ips.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'allowed_ips/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/allowed_ips.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.allowed_ips.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/allowed_ips/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.allowed_ips.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.allowed_ips.index');
+                                }
+                            });
+                    }
+                })
+
                 .state('app.dashboard-v2', {
                     url: '/dashboard-v2',
                     templateUrl: 'tpl/app_dashboard_v2.html',

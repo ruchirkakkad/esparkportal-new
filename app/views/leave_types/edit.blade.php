@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Start Duration</label>
+                    <label class="col-sm-3 control-label">Start After</label>
 
                     <div class="col-sm-9">
                         <input type="text" class="form-control" placeholder="required field"
