@@ -6,8 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddIpAccessExpireTimeToUsers' => $baseDir . '/app/database/migrations/2015_06_05_184959_add_ip_access_expire_time_to_users.php',
     'AddWorkShiftsToUserTable' => $baseDir . '/app/database/migrations/2015_05_18_101347_add_work_shifts_to_user_table.php',
     'AllowedIp' => $baseDir . '/app/models/AllowedIp.php',
+    'AllowedIpsController' => $baseDir . '/app/controllers/AllowedIpsController.php',
     'Barryvdh\\Debugbar\\Console\\ClearCommand' => $vendorDir . '/barryvdh/laravel-debugbar/src/Console/ClearCommand.php',
     'Barryvdh\\Debugbar\\Console\\PublishCommand' => $vendorDir . '/barryvdh/laravel-debugbar/src/Console/PublishCommand.php',
     'Barryvdh\\Debugbar\\Controllers\\AssetController' => $vendorDir . '/barryvdh/laravel-debugbar/src/Controllers/AssetController.php',

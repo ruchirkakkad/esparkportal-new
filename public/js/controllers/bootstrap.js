@@ -328,6 +328,9 @@ app.controller('AuthCheckCtrl', ['$scope', '$http', '$state', function ($scope, 
             if (data == '0') {
                 $state.go('access.signin');
             }
+            if (data == '2') {
+                $state.go('noPermission', {},{refresh:true});
+            }
         }, function (x) {
         });
 }])

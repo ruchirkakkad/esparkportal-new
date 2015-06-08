@@ -112,7 +112,19 @@ class LoginController extends \BaseController
     public function checkAuthentication()
     {
         if (Auth::check()) {
-            return 1;
+            if(date('Y-m-d H:i:s') < date('Y-m-d H:i:s', strtotime(Auth::user()->ip_access_expire_time)))
+            {
+                return 1;
+            }
+            else
+            {
+                $ips = AllowedIp::lists('allowed_ips_name');
+                if(!in_array($_SERVER['REMOTE_ADDR'],$ips))
+                {
+                    return 2;
+                }
+                return 1;
+            }
         } else {
             return 0;
         }

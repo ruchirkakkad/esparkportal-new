@@ -82,6 +82,7 @@ Route::group(['before' => 'check_ip'], function () {
         Route::controller('roles', 'RolesController');
         Route::controller('permissions', 'PermissionsController');
         Route::controller('allowed_ips', 'AllowedIpsController');
+        Route::controller('user_ip_permission', 'UserIpPermissionController');
 //---------------Organization ends--------------------
 
     });

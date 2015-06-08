@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-             'database'  => 'esparkbi_eportal',
+            'database'  => 'esparkbi_eportal',
             'username'  => 'esparkbi_eportal',
             'password'  => 'eitlD{c%by,N',
 			'charset'   => 'utf8',

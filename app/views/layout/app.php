@@ -20,7 +20,7 @@
 
 <!-- footer -->
 <div class="app-footer wrapper b-t bg-light">
-    <span class="pull-right">eSparkBiz Technology Pvt. Ltd.<a href ui-scroll-to="app" class="m-l-sm text-muted"><iclass="fa fa-long-arrow-up"></i></a></span>
+    <span class="pull-right">eSparkBiz Technologies Pvt. Ltd.<a href ui-scroll-to="app" class="m-l-sm text-muted"><iclass="fa fa-long-arrow-up"></i></a></span>
     &copy; 2015 Copyright.
 </div>
 <!-- / footer -->

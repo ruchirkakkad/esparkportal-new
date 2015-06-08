@@ -19,6 +19,10 @@ angular.module('app')
             $urlRouterProvider
                 .otherwise('/access/signin');
             $stateProvider
+                .state('noPermission', {
+                    url: '/noPermission',
+                    templateUrl: 'tpl/noPermission.html'
+                })
                 .state('access', {
                     url: '/access',
                     template: '<div ui-view class="fade-in-right-big smooth"></div>'
@@ -1197,6 +1201,50 @@ angular.module('app')
                                     $state.go('app.allowed_ips.index');
                                 }
                             });
+                    }
+                })
+
+                .state('app.user_ip_permission', {
+                    url: '/user_ip_permission',
+                    template: '<div ui-view  ng-controller="UserIpPermissionController" class="fade-in-right-big"></div>'
+                })
+                .state('app.user_ip_permission.index', {
+                    url: '/index',
+                    templateUrl: 'user_ip_permission/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/user_ip_permission.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+
+                .state('app.user_ip_permission.user-expiration-view', {
+                    url: '/user-expiration-view/{id}',
+                    templateUrl: 'user_ip_permission/user-expiration-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/user_ip_permission.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
                     }
                 })
 
