@@ -82,7 +82,7 @@
                             <div class="hbox h-auto m-b-lg">
                                 <div class="col text-center w-sm">
                                     <div class="thumb-lg avatar inline">
-                                        <img ng-src="{{item.profile_image}}" ng-show="item.profile_image">
+                                        <img ng-src="<?= ImgProxy::link("public/{{item.profile_image}}", 100, 100,100,0); ?>" ng-show="item.profile_image">
                                     </div>
                                 </div>
                                 <div class="col v-middle h1 font-thin">

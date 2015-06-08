@@ -7,7 +7,8 @@
 		"laravel/framework": "4.2.*",
         "way/generators": "~2.0",
         "barryvdh/laravel-debugbar": "~1.8",
-        "barryvdh/laravel-ide-helper": "~1.8"
+        "barryvdh/laravel-ide-helper": "~1.8",
+        "spescina/imgproxy": "2.x"
 	},
 	"autoload": {
 		"classmap": [

@@ -241,7 +241,7 @@
         <li class="dropdown" dropdown>
             <a href class="dropdown-toggle clear" dropdown-toggle>
                 <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-                    <img src="{{ user.profile_image }}" alt="...">
+                    <img src="<?= ImgProxy::link("public/{{ user.profile_image }}", 50, 50,100,0); ?>" alt="...">
                     <i class="on md b-white bottom"></i>
                 </span>
                 <span class="hidden-sm hidden-md">{{user.first_name}} {{user.last_name}}</span> <b class="caret"></b>

@@ -6,7 +6,7 @@
         <div class="row m-t">
             <div class="col-sm-4">
                 <a href class="thumb-lg pull-left m-r">
-                    <img src="{{ data.user.profile_image }}" class="img-circle">
+                    <img src="<?= ImgProxy::link("public/{{ data.user.profile_image }}", 100, 100,100,0); ?>" class="img-circle">
                 </a>
 
                 <div class="clear m-b">

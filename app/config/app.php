@@ -124,6 +124,7 @@ return array(
         'Way\Generators\GeneratorsServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        "Spescina\Imgproxy\ImgproxyServiceProvider"
 	),
 
 	/*

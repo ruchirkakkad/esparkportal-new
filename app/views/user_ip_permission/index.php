@@ -14,7 +14,7 @@
                         <a href="/#/app/user_ip_permission/user-expiration-view/{{ user.user_encryt_id }} "
                            class="block panel padder-v {{user.is_expired == '1'?'bg-danger' : 'bg-info'}} item">
                             <span class="text-muted h1 ">
-                                <img src="{{ user.profile_image }}" width="50px" height="50px" style="border-radius: 100%">
+                                <img src="<?= ImgProxy::link("public/{{ user.profile_image }}", 50, 50,100,0); ?>" width="50px" height="50px" style="border-radius: 100%">
                             </span>
                             <span class="text-white font-thin h2 block">{{ user.first_name }}</span>
                             <span ng-if="user.is_expired == 1" class="text-white font-thin block">{{ user.ip_access_expire_time }}</span>
