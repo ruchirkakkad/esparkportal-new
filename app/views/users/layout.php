@@ -4,8 +4,8 @@
 <!-- / navbar -->
 
 <!-- menu -->
-<div data-ng-include=" '<?php echo url('asideView'); ?>' " class="app-aside hidden-xs {{app.settings.asideColor}}" ng-class="{'hide': app.hideAside }">
-</div>
+<!--<div data-ng-include=" '--><?php //echo url('asideView'); ?><!--' " class="app-aside hidden-xs {{app.settings.asideColor}}" ng-class="{'hide': app.hideAside }">-->
+<!--</div>-->
 <!-- / menu -->
 
 <!-- view -->

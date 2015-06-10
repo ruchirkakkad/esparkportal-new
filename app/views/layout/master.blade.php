@@ -25,9 +25,7 @@
 <body >
 
 <div id="dvLoading" style="display: none;"></div>
-<div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':false, 'app-aside-dock':true, 'container':app.settings.container}" ui-view>
-
-</div>
+<div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':false, 'app-aside-dock':true, 'container':app.settings.container}" ui-view></div>
 
   <!-- jQuery -->
 {{ Html::script('bower_components/jquery/dist/jquery.min.js'); }}

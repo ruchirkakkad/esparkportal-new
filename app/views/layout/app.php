@@ -11,10 +11,10 @@
 <!-- / menu -->
 
 <!-- content -->
-<div class="app-content">
+<div class="app-content" ng-class="{'m-n': app.hideAside, 'h-full': app.hideFooter }">
     <div ui-butterbar></div>
     <a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside"></a>
-    <div class="app-content-body fade-in-up" ui-view></div>
+    <div class="app-content-body app-content-full fade-in-up" ui-view></div>
 </div>
 <!-- /content -->
 
