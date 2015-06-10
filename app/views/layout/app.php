@@ -6,8 +6,8 @@
 
 <!-- menu -->
 <!--<div data-ng-include=" 'tpl/blocks/aside.html' " class="app-aside hidden-xs {{app.settings.asideColor}}">-->
-<div data-ng-include=" '<?php echo url('asideView'); ?>' " class="app-aside hidden-xs bg-black">
-</div>
+<!--<div data-ng-include=" '--><?php //echo url('asideView'); ?><!--' " class="app-aside hidden-xs bg-black">-->
+<!--</div>-->
 <!-- / menu -->
 
 <!-- content -->

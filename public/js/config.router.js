@@ -2475,6 +2475,95 @@ angular.module('app')
                     }
                 })
 
+                .state('app.leaves', {
+                    url: '/leaves',
+                    template: '<div ui-view  ng-controller="LeavesController" class="fade-in-right-big"></div>'
+                })
+                .state('app.leaves.index', {
+                    url: '/index',
+                    templateUrl: 'leaves/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/leaves.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.leaves.create', {
+                    url: '/create',
+                    templateUrl: 'leaves/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/leaves.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.leaves.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'leaves/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/leaves.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.leaves.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/leaves/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.leaves.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.leaves.index');
+                                }
+                            });
+                    }
+                })
+
+
 
                 .state('app.password_mgmts', {
                     url: '/password_mgmts',

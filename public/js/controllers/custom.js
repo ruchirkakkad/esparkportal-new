@@ -6,8 +6,8 @@
 /* Controllers */
 
 
-app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval','$rootScope',
-    function ($scope, $http, $state, $interval,$rootScope) {
+app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval', '$rootScope',
+    function ($scope, $http, $state, $interval, $rootScope) {
 
         $scope.totalStaffing = {
             time: "00:00"
@@ -22,12 +22,10 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval','$rootS
             $http.post('staffing/staffing-calculation', {})
                 .success(function (data) {
                     $scope.totalStaffing = data;
-                    if(data.accessStyle == 'none')
-                    {
+                    if (data.accessStyle == 'none') {
                         $scope.userAccessClass = "none";
                     }
-                    else
-                    {
+                    else {
                         $scope.userAccessClass = "block";
                     }
                 });
@@ -45,12 +43,10 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval','$rootS
                     $http.post('staffing/staffing-calculation', {})
                         .success(function (data) {
                             $scope.totalStaffing = data;
-                            if(data.accessStyle == 'none')
-                            {
+                            if (data.accessStyle == 'none') {
                                 $scope.userAccessClass = "none";
                             }
-                            else
-                            {
+                            else {
                                 $scope.userAccessClass = "block";
                             }
                         });
@@ -79,6 +75,46 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval','$rootS
             $http.post('staffing/break-out', {})
                 .success(function (data) {
                     $state.go($state.current, {}, {reload: true});
+                });
+        };
+    }]);
+
+app.controller('LeaveManagementDashborad', ['$scope', '$http', '$state', '$interval', '$rootScope',
+    function ($scope, $http, $state, $interval, $rootScope) {
+
+        $scope.data = {
+            'leave_name': '',
+            'leaves_id': '',
+            'subject': '',
+            'leave_types_id': '',
+            'leave_date': '',
+            'description': '',
+            'leaves' : [],
+            'leave_types' : []
+        };
+        $scope.leaves_on_dashboard_view = '';
+        $scope.today_leave = function () {
+            $scope.leaves_on_dashboard_view = '';
+            $http.post('leave_manages/leave-request-view', {})
+                .success(function (data) {
+                    $scope.data.leaves = data.aaData;
+                    $scope.leaves_on_dashboard_view = 'tpl/leave_manage_file.html';
+                });
+        };
+        $scope.report = function () {
+            $scope.leaves_on_dashboard_view = '';
+            $http.post('leave_manages/leave-request-view', {})
+                .success(function (data) {
+                    $scope.data.leaves = data.aaData;
+                    $scope.leaves_on_dashboard_view = 'tpl/leave_manage_file.html';
+                });
+        };
+        $scope.leave_request = function () {
+            $scope.leaves_on_dashboard_view = '';
+            $http.post('leave_manages/leave-request-view', {})
+                .success(function (data) {
+                    $scope.data.leaves = data.aaData;
+                    $scope.leaves_on_dashboard_view = 'tpl/leave_manage_file.html';
                 });
         };
     }]);

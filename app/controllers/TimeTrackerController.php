@@ -492,12 +492,14 @@ class TimeTrackerController extends \BaseController
                     $flag = 'break';
                 }
             }
+
             $staffing = new Staffing();
 
             $staffing->check_in = $check_in;
             $staffing->users_id = $user_id;
             $staffing->check_out = $check_out;
             $staffing->flag = $flag;
+            $staffing->comment = '';
             $staffing->save();
             $id = $staffing->staffings_id;
             Breaks::where('staffings_id', '=', $id)->delete();
