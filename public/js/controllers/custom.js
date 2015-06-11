@@ -82,6 +82,7 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval', '$root
 app.controller('LeaveManagementDashborad', ['$scope', '$http', '$state', '$interval', '$rootScope',
     function ($scope, $http, $state, $interval, $rootScope) {
 
+        $scope.itemsByPage = 5;
         $scope.data = {
             'leave_name': '',
             'leaves_id': '',
@@ -89,27 +90,31 @@ app.controller('LeaveManagementDashborad', ['$scope', '$http', '$state', '$inter
             'leave_types_id': '',
             'leave_date': '',
             'description': '',
-            'leaves' : [],
-            'leave_types' : []
+            'leaves': [],
+            'leave_types': []
         };
+        $scope.selected = '';
         $scope.leaves_on_dashboard_view = '';
         $scope.today_leave = function () {
+            $scope.selected = 'today_leave';
             $scope.leaves_on_dashboard_view = '';
-            $http.post('leave_manages/leave-request-view', {})
+            $http.post('leave_manages/today-leave-view', {})
                 .success(function (data) {
                     $scope.data.leaves = data.aaData;
                     $scope.leaves_on_dashboard_view = 'tpl/leave_manage_file.html';
                 });
         };
         $scope.report = function () {
+            $scope.selected = 'report';
             $scope.leaves_on_dashboard_view = '';
-            $http.post('leave_manages/leave-request-view', {})
+            $http.post('leave_manages/leave-report-view', {})
                 .success(function (data) {
                     $scope.data.leaves = data.aaData;
                     $scope.leaves_on_dashboard_view = 'tpl/leave_manage_file.html';
                 });
         };
         $scope.leave_request = function () {
+            $scope.selected = 'leave_request';
             $scope.leaves_on_dashboard_view = '';
             $http.post('leave_manages/leave-request-view', {})
                 .success(function (data) {
@@ -117,4 +122,53 @@ app.controller('LeaveManagementDashborad', ['$scope', '$http', '$state', '$inter
                     $scope.leaves_on_dashboard_view = 'tpl/leave_manage_file.html';
                 });
         };
+
+        $scope.leave_status_true = function (id, selected) {
+
+            $http.post('leave_manages/leave-change-status',
+                {
+                    id: id,
+                    status_type: selected,
+                    status : true
+                })
+                .success(function (data) {
+                    if(selected == 'leave_request')
+                    {
+                        $scope.leave_request();
+                    }
+                    if(selected == 'report')
+                    {
+                        $scope.report();
+                    }
+                    if(selected == 'today_leave')
+                    {
+                        $scope.today_leave();
+                    }
+                });
+        };
+
+        $scope.leave_status_false = function (id, selected) {
+            $http.post('leave_manages/leave-change-status',
+                {
+                    id: id,
+                    status_type: selected,
+                    status : false
+                })
+                .success(function (data) {
+                    if(selected == 'leave_request')
+                    {
+                        $scope.leave_request();
+                    }
+                    if(selected == 'report')
+                    {
+                        $scope.report();
+                    }
+                    if(selected == 'today_leave')
+                    {
+                        $scope.today_leave();
+                    }
+                });
+        };
+
     }]);
+//angular.element('#btn2').triggerHandler('click');
