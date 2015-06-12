@@ -89,5 +89,4 @@ Event::listen('cron.collectJobs', function() {
         });
     });
     Cron::setDisablePreventOverlapping();
-    $report = \Cron::run();
 });
