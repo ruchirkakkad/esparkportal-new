@@ -91,3 +91,5 @@ Event::listen('cron.collectJobs', function() {
 
     Cron::setDisablePreventOverlapping();
 });
+//Cron script on server - command as below for every minute
+//wget http://eportal.esparkbiz.com/cron.php?key=es4g63dGTiuQeuTsz4PqJ9K3ydJhoUxV
