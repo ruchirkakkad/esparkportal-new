@@ -88,5 +88,12 @@ Event::listen('cron.collectJobs', function() {
             $message->to('webdeveloper1011@gmail.com', 'Ruchir')->subject('Welcome!');
         });
     });
+    Cron::add('example1', '0,30 * * * *', function() {
+
+        return Mail::send('emails.auth.reminder', [], function($message)
+        {
+            $message->to('webdeveloper1011@gmail.com', 'Ruchir')->subject('Welcome!');
+        });
+    });
     Cron::setDisablePreventOverlapping();
 });
