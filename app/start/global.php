@@ -88,4 +88,5 @@ Event::listen('cron.collectJobs', function() {
             $message->to('webdeveloper1011@gmail.com', 'Ruchir')->subject('Welcome!');
         });
     });
+    $report = \Cron::run();
 });
