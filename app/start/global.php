@@ -79,3 +79,17 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+Event::listen('cron.collectJobs', function() {
+    Cron::add('example1', '0,30 * * * *', function() {
+
+       return Mail::send('emails.auth.reminder', [], function($message)
+        {
+            $message->to('webdeveloper1011@gmail.com', 'Ruchir')->subject('Welcome!');
+        });
+    });
+
+    Cron::setDisablePreventOverlapping();
+});
+//Cron script on server - command as below for every minute
+//wget http://eportal.esparkbiz.com/cron.php?key=es4g63dGTiuQeuTsz4PqJ9K3ydJhoUxV

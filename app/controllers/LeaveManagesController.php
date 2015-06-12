@@ -6,7 +6,7 @@ class LeaveManagesController extends \BaseController
     public function postLeaveRequestView()
     {
         $data1 = Leave::with('leave_type', 'user')->where('leave_status', '=', 'pending')
-                ->get();
+            ->orderBy('leave_date')->get();
         $returndata = [];
         foreach ($data1 as $k => $v) {
             $id = Helper::simple_encrypt($v->leaves_id);
@@ -28,7 +28,7 @@ class LeaveManagesController extends \BaseController
     public function postLeaveReportView()
     {
         $data1 = Leave::with('leave_type', 'user')->where('leave_status', '=', 'approve')
-            ->orWhere('leave_status', '=', 'reject')->get();
+            ->orWhere('leave_status', '=', 'reject')->orderBy('leave_date')->get();
         $returndata = [];
         foreach ($data1 as $k => $v) {
             $id = Helper::simple_encrypt($v->leaves_id);
@@ -51,7 +51,7 @@ class LeaveManagesController extends \BaseController
     public function postTodayLeaveView()
     {
         $data1 = Leave::with('leave_type', 'user')->where('leave_status', '=', 'approve')
-            ->where('leave_date', '=', date('Y-m-d'))->get();
+            ->where('leave_date', '=', date('Y-m-d'))->orderBy('leave_date')->get();
         $returndata = [];
         foreach ($data1 as $k => $v) {
             $id = Helper::simple_encrypt($v->leaves_id);

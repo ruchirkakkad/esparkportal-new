@@ -124,7 +124,8 @@ return array(
         'Way\Generators\GeneratorsServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-        "Spescina\Imgproxy\ImgproxyServiceProvider"
+        "Spescina\Imgproxy\ImgproxyServiceProvider",
+        'Liebig\Cron\CronServiceProvider'
 	),
 
 	/*
@@ -192,6 +193,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
         'Debugbar' => 'Barryvdh\Debugbar\Facade',
+
 	),
 
 );
