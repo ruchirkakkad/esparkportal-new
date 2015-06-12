@@ -79,7 +79,13 @@ angular.module('app')
                 .state('app.dashboard', {
                     url: '/dashboard',
                     templateUrl: 'dashboard',
-                    controller: "AuthCheckCtrl"
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']);
+                            }]
+                    }
                 })
                 .state('app.modules', {
                     url: '/modules',

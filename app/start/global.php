@@ -79,3 +79,12 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+Event::listen('cron.collectJobs', function() {
+    Cron::add('example1', '* * * * *', function() {
+        Mail::send('emails.auth.reminder', [], function($message)
+        {
+            $message->to('webdeveloper1011@gmail.com', 'Ruchir')->subject('Welcome!');
+        });
+    });
+});
