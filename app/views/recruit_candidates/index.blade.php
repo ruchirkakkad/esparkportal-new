@@ -1,0 +1,1 @@
+C:\wamp\www\esparkportal-new\app/views/recruit_candidates/index.blade.php

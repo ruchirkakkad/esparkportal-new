@@ -75,6 +75,8 @@ Route::group(['before' => 'check_ip'], function () {
         Route::controller('user_ip_permission', 'UserIpPermissionController');
 //---------------Organization ends--------------------
 
+        Route::controller('recruit_candidates', 'RecruitCandidatesController');
+
     });
 });
 Route::controller('leave_manages', 'LeaveManagesController');
