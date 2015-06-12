@@ -108,7 +108,6 @@ return array(
 
     'sendmail' => '/usr/sbin/sendmail -bs',
 
-    'debug' => 2,
     /*
     |--------------------------------------------------------------------------
     | Mail "Pretend"
