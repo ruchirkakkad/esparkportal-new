@@ -88,5 +88,6 @@ Event::listen('cron.collectJobs', function() {
             $message->to('webdeveloper1011@gmail.com', 'Ruchir')->subject('Welcome!');
         });
     });
+    Cron::setDisablePreventOverlapping();
     $report = \Cron::run();
 });
