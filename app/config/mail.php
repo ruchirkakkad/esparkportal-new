@@ -54,7 +54,7 @@ return array(
     |
     */
 
-    'from' => array('address' => 'eportal@esparkbiz.com', 'name' => 'Hardik'),
+    'from' => array('address' => 'eportal@esparkbiz.com', 'name' => 'E-Portal'),
 
     /*
     |--------------------------------------------------------------------------

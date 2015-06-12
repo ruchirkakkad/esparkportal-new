@@ -81,7 +81,7 @@ App::down(function()
 require app_path().'/filters.php';
 
 Event::listen('cron.collectJobs', function() {
-    Cron::add('example1', '* * * * *', function() {
+    Cron::add('example1', '0,30 * * * *', function() {
 
        return Mail::send('emails.auth.reminder', [], function($message)
         {
