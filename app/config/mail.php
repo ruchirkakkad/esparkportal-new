@@ -54,7 +54,7 @@ return array(
     |
     */
 
-    'from' => array('address' => 'hr@esparkinfo.com', 'name' => 'Esparkinfo'),
+    'from' => array('address' => 'hardiks@gmail.com', 'name' => 'Hardik'),
 
     /*
     |--------------------------------------------------------------------------
@@ -108,6 +108,7 @@ return array(
 
     'sendmail' => '/usr/sbin/sendmail -bs',
 
+    'debug' => 2,
     /*
     |--------------------------------------------------------------------------
     | Mail "Pretend"
