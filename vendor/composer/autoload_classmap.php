@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddIpAccessExpireTimeToUsers' => $baseDir . '/app/database/migrations/2015_06_05_184959_add_ip_access_expire_time_to_users.php',
+    'AddLeavesCounterToUsers' => $baseDir . '/app/database/migrations/2015_06_15_111907_add_leaves_counter_to_users.php',
     'AddWorkShiftsToUserTable' => $baseDir . '/app/database/migrations/2015_05_18_101347_add_work_shifts_to_user_table.php',
     'AllowedIp' => $baseDir . '/app/models/AllowedIp.php',
     'AllowedIpsController' => $baseDir . '/app/controllers/AllowedIpsController.php',
@@ -81,6 +82,7 @@ return array(
     'CreateDepartmentsTable' => $baseDir . '/app/database/migrations/2015_04_22_085728_create_departments_table.php',
     'CreateDesignationsTable' => $baseDir . '/app/database/migrations/2015_04_22_093503_create_designations_table.php',
     'CreateEducationalQualificationsTable' => $baseDir . '/app/database/migrations/2015_05_04_132512_create_educational_qualifications_table.php',
+    'CreateExpensesTable' => $baseDir . '/app/database/migrations/2015_06_15_143747_create_expenses_table.php',
     'CreateGeneralModulesTable' => $baseDir . '/app/database/migrations/2015_04_03_050310_create_general_modules_table.php',
     'CreateJobProfilesTable' => $baseDir . '/app/database/migrations/2015_05_01_092326_create_job_profiles_table.php',
     'CreateLanguagesTable' => $baseDir . '/app/database/migrations/2015_05_05_065512_create_languages_table.php',
@@ -183,6 +185,8 @@ return array(
     'DesignationsController' => $baseDir . '/app/controllers/DesignationsController.php',
     'EducationalQualification' => $baseDir . '/app/models/EducationalQualification.php',
     'EducationalQualificationsController' => $baseDir . '/app/controllers/EducationalQualificationsController.php',
+    'Expense' => $baseDir . '/app/models/Expense.php',
+    'ExpensesController' => $baseDir . '/app/controllers/ExpensesController.php',
     'File_ANSI' => $vendorDir . '/phpseclib/phpseclib/phpseclib/File/ANSI.php',
     'File_ASN1' => $vendorDir . '/phpseclib/phpseclib/phpseclib/File/ASN1.php',
     'File_ASN1_Element' => $vendorDir . '/phpseclib/phpseclib/phpseclib/File/ASN1.php',

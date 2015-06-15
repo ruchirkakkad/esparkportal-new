@@ -2393,6 +2393,94 @@ angular.module('app')
                     }
                 })
 
+                .state('app.expenses', {
+                    url: '/expenses',
+                    template: '<div ui-view  ng-controller="ExpensesController" class="fade-in-right-big"></div>'
+                })
+                .state('app.expenses.index-view', {
+                    url: '/index-view',
+                    templateUrl: 'expenses/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/expenses.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.expenses.create', {
+                    url: '/create',
+                    templateUrl: 'expenses/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/expenses.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.expenses.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'expenses/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/expenses.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.expenses.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/expenses/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.expenses.index-view');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.expenses.index-view');
+                                }
+                            });
+                    }
+                })
+
                 .state('app.leave_types', {
                     url: '/leave_types',
                     template: '<div ui-view  ng-controller="LeaveTypesController" class="fade-in-right-big"></div>'

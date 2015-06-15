@@ -59,6 +59,8 @@ Route::group(['before' => 'check_ip'], function () {
 
         Route::controller('leave_types', 'LeaveTypesController');
         Route::controller('leaves', 'LeavesController');
+
+        Route::controller('expenses', 'ExpensesController');
 //---------------HRMS ends--------------------
 
 //---------------Password Management starts--------------------
@@ -80,3 +82,8 @@ Route::group(['before' => 'check_ip'], function () {
     });
 });
 Route::controller('leave_manages', 'LeaveManagesController');
+
+Route::get('migrate',function(){
+    Artisan::call('migrate');
+    echo '<br>done migrate:install';
+});
