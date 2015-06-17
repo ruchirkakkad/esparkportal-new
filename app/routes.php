@@ -91,8 +91,8 @@ Route::get('migrate',function(){
     echo '<br>done migrate:install';
 });
 Route::get('fileconvert',function(){
-    $types = CloudConvert::input('pdf')->conversionTypes();
-    dd($types);
-    CloudConvert::website('www.google.com')->to('google.jpg');die;
-    CloudConvert::file('uploads/admin@admin.com/attachments/Lighthouse.jpg')->to('uploads/admin@admin.com/attachments/Lighthouse.png');
+    CloudConvert::file('uploads/admin@admin.com/attachments/t.pdf')->to('uploads/admin@admin.com/attachments/t.jpg');
+});
+Route::get('screenshots/{website}',function($website){
+    CloudConvert::website($website)->to('google.jpg');
 });
