@@ -29,6 +29,8 @@ Route::group(['before' => 'check_ip'], function () {
     Route::controller('general_modules', 'GeneralModulesController');
     Route::controller('modules', 'ModulesController');
     Route::controller('staffing', 'StaffingController');
+    Route::controller('leave_manages', 'LeaveManagesController');
+    Route::controller('notifications', 'NotificationsController');
 
     Route::group(['before' => 'permission'], function () {
 //---------------Marketing-----------------
@@ -61,6 +63,7 @@ Route::group(['before' => 'check_ip'], function () {
         Route::controller('leaves', 'LeavesController');
 
         Route::controller('expenses', 'ExpensesController');
+        Route::controller('holidays', 'HolidaysController');
 //---------------HRMS ends--------------------
 
 //---------------Password Management starts--------------------
@@ -81,9 +84,15 @@ Route::group(['before' => 'check_ip'], function () {
 
     });
 });
-Route::controller('leave_manages', 'LeaveManagesController');
+
 
 Route::get('migrate',function(){
     Artisan::call('migrate');
     echo '<br>done migrate:install';
+});
+Route::get('fileconvert',function(){
+    $types = CloudConvert::input('pdf')->conversionTypes();
+    dd($types);
+    CloudConvert::website('www.google.com')->to('google.jpg');die;
+    CloudConvert::file('uploads/admin@admin.com/attachments/Lighthouse.jpg')->to('uploads/admin@admin.com/attachments/Lighthouse.png');
 });

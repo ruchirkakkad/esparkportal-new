@@ -2392,6 +2392,93 @@ angular.module('app')
                             }]
                     }
                 })
+                .state('app.holidays', {
+                    url: '/holidays',
+                    template: '<div ui-view  ng-controller="HolidaysController" class="fade-in-right-big"></div>'
+                })
+                .state('app.holidays.index-view', {
+                    url: '/index-view',
+                    templateUrl: 'holidays/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/holidays.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.holidays.create', {
+                    url: '/create',
+                    templateUrl: 'holidays/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/holidays.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.holidays.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'holidays/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/holidays.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.holidays.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/holidays/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.holidays.index-view');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.holidays.index-view');
+                                }
+                            });
+                    }
+                })
 
                 .state('app.expenses', {
                     url: '/expenses',
@@ -3070,6 +3157,30 @@ angular.module('app')
                                 );
                             }]
                     }
+                })
+
+                // mail
+                .state('app.notifications', {
+                    abstract: true,
+                    url: '/notifications',
+                    templateUrl: 'notifications/index',
+                    // use resolve to load other dependences
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load([
+                                    'js/controllers/notifications.js',
+                                    JQ_CONFIG.moment]);
+                            }]
+                    }
+                })
+                .state('app.notifications.list', {
+                    url: '/inbox/{fold}',
+                    templateUrl: 'notifications/list'
+                })
+                .state('app.notifications.detail', {
+                    url: '/detail/{mailId:[0-9]{1,4}}',
+                    templateUrl: 'notifications/detail'
                 })
 
         }

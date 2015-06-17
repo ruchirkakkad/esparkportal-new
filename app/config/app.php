@@ -125,7 +125,8 @@ return array(
         'Barryvdh\Debugbar\ServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         "Spescina\Imgproxy\ImgproxyServiceProvider",
-        'Liebig\Cron\CronServiceProvider'
+        'Liebig\Cron\CronServiceProvider',
+        'RobbieP\CloudConvertLaravel\CloudConvertLaravelServiceProvider'
 	),
 
 	/*
