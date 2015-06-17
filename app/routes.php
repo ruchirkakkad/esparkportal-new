@@ -96,7 +96,7 @@ Route::get('fileconvert',function(){
     CloudConvert::file('/uploads/admin@admin.com/attachments/Lighthouse.jpg')->to('png');
 });
 Route::get('screenshots',function(){
-    CloudConvert::file('http://upload.wikimedia.org/wikipedia/commons/a/aa/Logo_Google_2013_Official.svg')
-        ->to('google.png');
+    dd(CloudConvert::file('/uploads/admin@admin.com/attachments/t.pdf')->to('jpg'));
+
 //    CloudConvert::website('www.google.com')->to('google.jpg');
 });
