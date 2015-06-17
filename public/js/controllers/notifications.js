@@ -47,14 +47,6 @@ app.controller('MailDetailCtrl', ['$scope', 'mails', '$stateParams','$http','$sc
     function($scope, mails, $stateParams,$http,$sce) {
     mails.get($stateParams.mailId).then(function(mail){
         $scope.mail = mail;
-        $http.post('uploads/admin@admin.com/attachments/t.pdf',{}, {responseType:'arraybuffer'})
-            .success(function (response) {
-                var file = new Blob([response], {type: 'application/pdf'});
-                var fileURL = URL.createObjectURL(file);
-                console.log(fileURL);
-                $scope.contentUrl = $sce.trustAsResourceUrl(fileURL);
-                console.log($scope.contentUrl);
-            });
     })
 }]);
 
@@ -88,13 +80,14 @@ app.factory('mails', ['$http', function ($http) {
         });
     };
     factory.get = function (id) {
-        return $http.get(path).then(function(resp){
-            var mails = resp.data.mails;
+        $http.get('notifications/detail-status-change/'+id);
+        return factory.all().then(function(resp){
+            var mails = resp;
             for (var i = 0; i < mails.length; i++) {
                 if (mails[i].id == id) return mails[i];
             }
             return null;
-        })
+        });
     };
     return factory;
 }]);

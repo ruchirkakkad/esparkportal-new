@@ -18,14 +18,7 @@
         <div ng-repeat="attach in mail.attach" class="panel b-a inline m-r-sm m-b-sm bg-light">
             <div class="wrapper-xs b-b"><i class="fa fa-paperclip"></i> {{attach.name}}</div>
             <div class="wrapper-xs w-sm lt">
-                <a ng-href="{{attach.url}}"><img ng-src="{{attach.url}}" class="img-full"></a>
-            </div>
-        </div>
-        <div class="panel b-a inline m-r-sm m-b-sm bg-light">
-            <div class="wrapper-xs b-b"><i class="fa fa-paperclip"></i>Testindg</div>
-            <div class="wrapper-xs w-sm lt">
-<!--                <img ng-src="{{contentUrl}}" class="img-full"></a>-->
-                <embed ng-src="{{contentUrl}}" style="width:140px;height:140px;"></embed>
+                <a ng-href="{{attach.url}}"><img ng-src="<?= ImgProxy::link("public/{{attach.image_url}}",140,140,100,0); ?>" class="img-full"></a>
             </div>
         </div>
     </div>
