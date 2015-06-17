@@ -91,8 +91,8 @@ Route::get('migrate',function(){
     echo '<br>done migrate:install';
 });
 Route::get('fileconvert',function(){
-    CloudConvert::file('uploads/admin@admin.com/attachments/t.pdf')->to('uploads/admin@admin.com/attachments/t.jpg');
+    CloudConvert::file('uploads/admin@admin.com/attachments/initial questions of rippled waters.docx')->to('uploads/admin@admin.com/attachments/t.jpg');
 });
-Route::get('screenshots/{website}',function($website){
-    CloudConvert::website($website)->to('google.jpg');
+Route::get('screenshots',function(){
+    CloudConvert::website('www.google.com')->to('google.jpg');
 });
