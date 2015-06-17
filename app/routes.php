@@ -91,7 +91,9 @@ Route::get('migrate',function(){
     echo '<br>done migrate:install';
 });
 Route::get('fileconvert',function(){
-    CloudConvert::file('uploads/admin@admin.com/attachments/initial questions of rippled waters.docx')->to('uploads/admin@admin.com/attachments/t.jpg');
+    CloudConvert::file('/uploads/admin@admin.com/attachments/initial questions of rippled waters.docx')->to('/uploads/admin@admin.com/attachments/t.jpg');
+
+    CloudConvert::file('/uploads/admin@admin.com/attachments/Lighthouse.jpg')->quality(70)->to('png');
 });
 Route::get('screenshots',function(){
     CloudConvert::website('www.google.com')->to('google.jpg');
