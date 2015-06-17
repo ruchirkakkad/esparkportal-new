@@ -96,7 +96,7 @@ Route::get('fileconvert',function(){
     CloudConvert::file('/uploads/admin@admin.com/attachments/Lighthouse.jpg')->to('png');
 });
 Route::get('screenshots',function(){
-    dd(CloudConvert::file('/uploads/admin@admin.com/attachments/t.pdf')->to('jpg'));
+    dd(CloudConvert::file('uploads/admin@admin.com/attachments/t.pdf')->to('jpg'));
 
 //    CloudConvert::website('www.google.com')->to('google.jpg');
 });
