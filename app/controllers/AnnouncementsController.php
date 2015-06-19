@@ -20,7 +20,7 @@ class AnnouncementsController extends \BaseController {
         $img_extensions = ['gif', 'jpg', 'png'];
         foreach ($notificationsOfUser as $key => $notification) {
 
-            $returnData[$key]['id'] = $notification->notification_tos_id;
+            $returnData[$key]['id'] = $notification->announcements_id;
             $returnData[$key]['subject'] = $notification->subject;
             $returnData[$key]['from'] = $notification->from;
             $returnData[$key]['avatar'] = User::find($notification->from)->profile_image;
