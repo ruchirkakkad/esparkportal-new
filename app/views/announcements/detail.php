@@ -1,7 +1,7 @@
-<div ng-controller="MailDetailCtrl">
+<div ng-controller="MailDetailCtrl123">
     <!-- header -->
     <div class="wrapper bg-light lter b-b">
-        <a ui-sref="app.notifications.list" class="btn btn-sm btn-default w-xxs m-r-sm" tooltip="Back to Inbox"><i class="fa fa-long-arrow-left"></i></a>
+        <a ui-sref="app.announcements.list" class="btn btn-sm btn-default w-xxs m-r-sm" tooltip="Back to Inbox"><i class="fa fa-long-arrow-left"></i></a>
     </div>
     <!-- / header -->
     <div class="wrapper b-b">

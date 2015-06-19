@@ -64,6 +64,8 @@ Route::group(['before' => 'check_ip'], function () {
 
         Route::controller('expenses', 'ExpensesController');
         Route::controller('holidays', 'HolidaysController');
+
+        Route::controller('announcements', 'AnnouncementsController');
 //---------------HRMS ends--------------------
 
 //---------------Password Management starts--------------------

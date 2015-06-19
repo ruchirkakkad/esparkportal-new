@@ -19,5 +19,6 @@ angular.module('app', [
     'ui.bootstrap.datetimepicker',
     'oc.lazyLoad',
     'ivh.treeview',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'textAngular'
 ]);

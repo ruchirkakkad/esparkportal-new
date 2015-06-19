@@ -110,14 +110,18 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-3 control-label">
-                                        <button type="button" class="btn btn-danger" ng-click="removeQualificationDetails($index)">Remove</button>
+                                        <button type="button" class="btn btn-danger"
+                                                ng-click="removeQualificationDetails($index)">Remove
+                                        </button>
                                     </div>
                                 </div>
                                 <hr>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-3 control-label">
-                                    <button type="button" class="btn btn-info" ng-click="addQualificationDetails()">Add</button>
+                                    <button type="button" class="btn btn-info" ng-click="addQualificationDetails()">
+                                        Add
+                                    </button>
                                 </div>
                             </div>
 
@@ -167,9 +171,9 @@
                                     <button ngf-select ng-model="files" class="attachment_submit"
                                             ngf-multiple="true">Attach Any File
                                     </button>
-                            <span class="progress" ng-show="picFile[0].progress >= 0">
-                                <div style="width:{{picFile[0].progress}}%" ng-bind="picFile[0].progress + '%'"></div>
-                            </span>
+                                    <span class="progress" ng-show="picFile[0].progress >= 0">
+                                        <div style="width:{{picFile[0].progress}}%" ng-bind="picFile[0].progress + '%'"></div>
+                                    </span>
                                     <span ng-show="picFile[0].result">Upload Successful</span>
                                     <ul style="clear:both" ng-show="rejFiles.length > 0" class="response">
                                         <li class="sel-file" ng-repeat="f in rejFiles">
@@ -185,7 +189,6 @@
                                     </ul>
                                 </div>
                             </div>
-
 
 
                             <footer class="panel-footer text-right bg-light lter">

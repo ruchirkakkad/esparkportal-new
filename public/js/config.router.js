@@ -3183,6 +3183,34 @@ angular.module('app')
                     templateUrl: 'notifications/detail'
                 })
 
+
+                .state('app.announcements', {
+                    url: '/announcements',
+                    templateUrl: 'announcements/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load([
+                                    'js/controllers/announcements.js',
+                                    JQ_CONFIG.moment]);
+                            }]
+                    }
+                })
+                .state('app.announcements.list', {
+                    url: '/inbox/{fold}',
+                    templateUrl: 'announcements/list-view'
+                })
+                .state('app.announcements.detail', {
+                    url: '/detail/{mailId:[0-9]{1,4}}',
+                    templateUrl: 'announcements/detail-view'
+                })
+                .state('app.announcements.create', {
+                    url: '/create',
+                    templateUrl: 'announcements/create-add'
+                })
+
+
         }
     ]
 );

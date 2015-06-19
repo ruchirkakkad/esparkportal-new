@@ -17,6 +17,7 @@ class NotificationsController extends \BaseController
     {
         $notificationsOfUser = NotificationTo::where('users_id', '=', Auth::user()->user_id)
             ->join('notifications', 'notifications.notifications_id', '=', 'notification_tos.notifications_id')->get();
+
         $returnData = [];
         $img_extensions = ['gif', 'jpg', 'png'];
         foreach ($notificationsOfUser as $key => $notification) {
@@ -40,12 +41,15 @@ class NotificationsController extends \BaseController
                     if (!in_array($extension, $img_extensions)) {
                         $attach['image_url'] = 'img/images.png';
                     }else{
+
                         $attach['image_url'] = $attach['url'];
+
                     }
                     $returnData[$key]['attach'][$k] = $attach;
                 }
             }
         }
+
         return ['mails' => $returnData];
     }
 

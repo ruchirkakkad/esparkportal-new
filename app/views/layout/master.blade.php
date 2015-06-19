@@ -2,7 +2,7 @@
 <html lang="en" data-ng-app="app" ng-controller="AppCtrl">
 <head>
     <meta charset="utf-8"/>
-    <link href="img/favicon.ico" rel="shortcut icon">
+    <link href="img/favicon.ico" rel="icon" size="64x64">
     <title>E-Portal</title>
     <meta name="description"
           content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components"/>
@@ -25,11 +25,19 @@
     {{ Html::style('css/css/datetimepicker.css') }}
     {{ Html::style('css/ivh-treeview.css') }}
     {{ Html::style('css/ivh-treeview-theme-basic.css') }}
+    <link href="css/loader.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
-    
-    <div id="dvLoading" style="display: none;"></div>
+    {{--<div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img src="img/page_loader.gif" /></div></div>--}}
+    <div id="dvLoading" style="display: none;" data-loading></div>
+    {{--<div class="pre-loader" data-loading>--}}
+    	   {{--<div class="box1"></div>--}}
+    	   {{--<div class="box2"></div>--}}
+    	   {{--<div class="box3"></div>--}}
+    	   {{--<div class="box4"></div>--}}
+    	   {{--<div class="box5"></div>--}}
+    	{{--</div>--}}
     <div class="app" id="app"
          ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':false, 'app-aside-dock':true, 'container':app.settings.container}"
          ui-view></div>
@@ -108,7 +116,8 @@
     {{ Html::script('js/controllers/bootstrap.js'); }}
     {{ Html::script('js/controllers/custom.js'); }}
     <!-- Lazy loading -->
-    
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.2/textAngular-sanitize.min.js'></script>
+      <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.2/textAngular.min.js'></script>
     <script type="text/javascript" src="js/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/js/moment.min.js"></script>
     <script type="text/javascript" src="js/js/daterangepicker.js"></script>
