@@ -1965,7 +1965,7 @@ angular.module('app')
                 })
                 .state('app.users.delete', {
                     url: '/delete/{id}',
-                    controller: function ($http, $state, $stateParams, Flash) {
+                    controller: function ($http, $state, $stateParams, Flash,$rootScope) {
 
                         $http.post('checkAuthentication', {})
                             .success(function (data) {
@@ -1980,10 +1980,10 @@ angular.module('app')
                                 if (data.code == '200') {
                                     var message = '<strong>Delete!</strong> You successfully deleted the user.';
                                     Flash.create('success', message);
-                                    $state.go('users.list');
+                                    $state.go($rootScope.previousState);
                                 }
                                 if (data.code == '403') {
-                                    $state.go('users.list');
+                                    $state.go($rootScope.previousState);
                                 }
                             });
                     }

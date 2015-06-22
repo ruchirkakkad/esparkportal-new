@@ -210,7 +210,7 @@ app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval
                 if (data.code == '200') {
                     Flash.create('success', data.msg);
                     alert(data.alert_msg);
-                    $state.go($state.current, {}, {reload: true});
+                    $state.go($rootScope.previousState, {}, {reload: true});
                 }
                 if (data.code == '403') {
                     Flash.create('danger', data.msg);
@@ -236,7 +236,7 @@ app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval
                 if (data.code == '200') {
                     Flash.create('success', data.msg);
                     alert(data.alert_msg);
-                    $state.go('^');
+                    $state.go($rootScope.previousState);
                 }
                 if (data.code == '403') {
                     Flash.create('danger', data.msg);
