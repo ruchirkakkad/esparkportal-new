@@ -44,7 +44,7 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval', '$root
             //            $scope.userAccessClass = "block";
             //        }
             //    });
-        }, 10000);
+        }, 60000);
         $scope.getData = function () {
 
             $scope.staffing_file = "";
