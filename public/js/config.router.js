@@ -1980,10 +1980,10 @@ angular.module('app')
                                 if (data.code == '200') {
                                     var message = '<strong>Delete!</strong> You successfully deleted the user.';
                                     Flash.create('success', message);
-                                    $state.go(data.redirect);
+                                    $state.go('users.list');
                                 }
                                 if (data.code == '403') {
-                                    $state.go(data.redirect);
+                                    $state.go('users.list');
                                 }
                             });
                     }

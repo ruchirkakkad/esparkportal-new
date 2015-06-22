@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddDeletedAtToUsers' => $baseDir . '/app/database/migrations/2015_06_22_174736_add_deleted_at_to_users.php',
     'AddIpAccessExpireTimeToUsers' => $baseDir . '/app/database/migrations/2015_06_05_184959_add_ip_access_expire_time_to_users.php',
     'AddLeavesCounterToUsers' => $baseDir . '/app/database/migrations/2015_06_15_111907_add_leaves_counter_to_users.php',
     'AddWorkShiftsToUserTable' => $baseDir . '/app/database/migrations/2015_05_18_101347_add_work_shifts_to_user_table.php',
