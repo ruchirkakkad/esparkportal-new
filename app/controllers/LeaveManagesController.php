@@ -3,6 +3,10 @@
 class LeaveManagesController extends \BaseController
 {
 
+    public function getIndexView()
+    {
+        return View::make('leave_manages.index');
+    }
     public function postLeaveRequestView()
     {
         $data1 = Leave::with('leave_type', 'user')->where('leave_status', '=', 'pending')

@@ -2743,7 +2743,21 @@ angular.module('app')
                             });
                     }
                 })
-
+                .state('app.leave_manages', {
+                    url: '/leave_manages',
+                    template: '<div ui-view  class="fade-in-right-big"></div>'
+                })
+                .state('app.leave_manages.index', {
+                    url: '/index',
+                    templateUrl: 'leave_manages/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']);
+                            }]
+                    }
+                })
 
 
                 .state('app.password_mgmts', {
