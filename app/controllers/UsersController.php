@@ -333,7 +333,6 @@ class UsersController extends \BaseController
         $user->employee_id = Input::get('employee_id');
         $user->doj =date('Y-m-d',  strtotime(Input::get('doj')));
 
-        dd($user);
         $save = $user->save();
 
         if ($save)
