@@ -128,7 +128,8 @@ class AnnouncementsController extends \BaseController {
         }
 
         if ($uploadSuccess) {
-            $announcements->attach = "/uploads/announcements_attachments/". $filename;
+            $attach=['name'=>$filename,'url'=>"/uploads/announcements_attachments/". $filename];
+            $announcements->attach = '['.json_encode($attach).']';
         }
         $save = $announcements->save();
 
