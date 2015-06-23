@@ -55,6 +55,7 @@ Route::group(['before' => 'check_ip'], function () {
         Route::controller('job_profiles', 'JobProfilesController');
         Route::controller('user_profiles', 'UserProfilesController');
         Route::controller('time_tracker', 'TimeTrackerController');
+        Route::controller('attendance_chart', 'AttendanceChartController');
         Route::controller('skills', 'SkillsController');
         Route::controller('educational_qualifications', 'EducationalQualificationsController');
         Route::controller('languages', 'LanguagesController');
@@ -87,7 +88,6 @@ Route::group(['before' => 'check_ip'], function () {
     });
 });
 
-
 Route::get('migrate',function(){
     Artisan::call('migrate');
     echo '<br>done migrate:install';
@@ -101,4 +101,5 @@ Route::get('screenshots',function(){
     dd(CloudConvert::file('uploads/admin@admin.com/attachments/t.pdf')->to('jpg'));
 
 //    CloudConvert::website('www.google.com')->to('google.jpg');
+
 });

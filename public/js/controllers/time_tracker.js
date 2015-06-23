@@ -102,7 +102,7 @@ app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval
             var d = new Date();
             var month = d.getMonth() + 1;
 
-            $http.post('time_tracker/attendance-chart-report-view', {
+            $http.post('attendance_chart/attendance-chart-report-view', {
                 month: (month < 10 ? '0' : '') + month,
                 year: d.getFullYear()
             })
@@ -115,7 +115,7 @@ app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval
         };
         $scope.attendanceChartMonthYearSearch = function () {
             $scope.attendance_chart_report = "";
-            $http.post('time_tracker/attendance-chart-report-view', {
+            $http.post('attendance_chart/attendance-chart-report-view', {
                 year: $scope.data.yearSearch,
                 month: $scope.data.monthSearch
             })

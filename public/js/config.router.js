@@ -2332,10 +2332,13 @@ angular.module('app')
                             }]
                     }
                 })
-
-                .state('app.time_tracker.attendance-chart-view', {
+                .state('app.attendance_chart', {
+                    url: '/attendance_chart',
+                    template: '<div ui-view  ng-controller="TimeTrackerController" class="fade-in-right-big"></div>'
+                })
+                .state('app.attendance_chart.attendance-chart-view', {
                     url: '/attendance-chart-view',
-                    templateUrl: 'time_tracker/attendance-chart-view',
+                    templateUrl: 'attendance_chart/attendance-chart-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
                         deps: ['$ocLazyLoad',
