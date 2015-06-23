@@ -80,3 +80,10 @@ Route::group(['before' => 'check_ip'], function () {
     });
 });
 Route::controller('leave_manages', 'LeaveManagesController');
+
+Route::get('testing', function(){
+    Mail::send('emails.auth.reminder', [], function($message)
+    {
+        $message->to('iddigital.demo@gmail.com', "Hardik")->subject('Welcome!');
+    });
+});
