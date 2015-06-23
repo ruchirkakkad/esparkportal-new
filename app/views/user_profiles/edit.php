@@ -16,8 +16,8 @@
             <accordion-group heading="Emergency Details" is-open="var_profile_edit_emergency_details">
                 <div ng-include="profile_edit_emergency_details"></div>
             </accordion-group>
-            <accordion-group heading="Company Details" is-open="var_profile_edit_company_details">
-                <div ng-include="profile_edit_company_details"></div>
+<!--            <accordion-group heading="Company Details" is-open="var_profile_edit_company_details">-->
+<!--                <div ng-include="profile_edit_company_details"></div>-->
             </accordion-group>
             <accordion-group heading="Qualification Details" is-open="var_profile_edit_qualification_details">
                 <div ng-include="profile_edit_qualification_details"></div>
