@@ -1,5 +1,5 @@
 <div class="container w-xxl w-auto-xs" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
-  <a href class="navbar-brand block m-t">{{app.name}}</a>
+  <a href class="navbar-brand block m-t"><img src="<?= ImgProxy::link("public/img/login-page-logo.png",150,150); ?>"></a>
   <div class="m-b-lg">
     <div class="wrapper text-center">
       <strong>Sign in to get in touch</strong>

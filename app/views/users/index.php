@@ -73,6 +73,7 @@
                 <div class="m-t-n-xxs m-b-n-xxs m-l-xs">
                     <a class="btn btn-sm btn-default" href="#/app/users/edit/{{ item.user_encrypt_id }}"><i class="fa fa-pencil"></i> Edit</a>
                     <a class="btn btn-sm btn-default" href="#/app/users/view/{{ item.user_encrypt_id }}"><i class="fa fa-eye"></i> View</a>
+                    <a class="btn btn-sm btn-default" href="#/app/users/delete/{{ item.user_encrypt_id }}"><i class="fa fa-close"></i> Delete</a>
                 </div>
             </div>
             <div class="row-row">

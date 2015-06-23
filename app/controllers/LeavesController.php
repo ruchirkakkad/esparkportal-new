@@ -46,6 +46,15 @@ class LeavesController extends \BaseController
         $leave_date = Input::get('leave_date');
         $startDate = Helper::date_ymdhis($leave_date['startDate']);
         $endDate = Helper::date_ymdhis($leave_date['endDate']);
+
+        $to = [];
+        $users = User::whereIn('role_id',[2,16])->get();
+        foreach($users as $key => $user)
+        {
+            $to[$key] = new stdClass();
+            $to[$key]->email = $user->email;
+            $to[$key]->name = $user->first_name;
+        }
         while($startDate<=$endDate)
         {
             $leave = new Leave();
@@ -55,6 +64,28 @@ class LeavesController extends \BaseController
             $leave->leave_date = Helper::date_ymdhis($startDate);
             $leave->description = Input::get('description');
             $save = $leave->save();
+            $data = [
+                'name'=> Auth::user()->first_name,
+                'type'=> LeaveType::find(Input::get('leave_types_id'))->leave_title,
+                'subject' => Input::get('subject'),
+                'description' => Input::get('description'),
+                'date' => Helper::date_dmy($startDate)
+            ];
+            Helper::sendMail('emails.leave_request',$data,$to,"Leave Request - ".Helper::date_dmy($startDate));
+            $notification = new Notification();
+            $notification->subject = "Leave Request - ".Helper::date_dmy($startDate);
+            $notification->content = Input::get('description');
+            $notification->label = 'leave';
+            $notification->from = Auth::user()->user_id;
+            $notification->save();
+            foreach($users as $key => $user)
+            {
+                $notification_tos = new NotificationTo();
+                $notification_tos->notifications_id = $notification->notifications_id;
+                $notification_tos->users_id = $user->user_id;
+                $notification_tos->save();
+            }
+
             $startDate = date('Y-m-d H:i:s',strtotime($startDate.'+1 day'));
         }
         if ($save) {

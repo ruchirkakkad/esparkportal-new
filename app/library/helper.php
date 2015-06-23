@@ -60,4 +60,20 @@ class Helper
         return date('Y-m-d H:i:s',strtotime($date));
     }
 
+    public static function date_dmy($date)
+    {
+        return date('d-m-Y',strtotime($date));
+    }
+
+
+    public static function sendMail($view,$data,$to,$subject)
+    {
+        Mail::send($view, $data, function($message) use ($to,$subject)
+        {
+            foreach($to as $val)
+            {
+                $message->to($val->email, $val->name)->subject($subject);
+            }
+        });
+    }
 }

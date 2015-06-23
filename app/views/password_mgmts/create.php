@@ -3,7 +3,5 @@
 </div>
 <div class="wrapper-md" ng-init="resetData()">
 <div flash-message="5000" ></div>
-  <div ng-include="password_mgmts_create_file">
-
-  </div>
+  <div ng-include="password_mgmts_create_file"></div>
 </div>

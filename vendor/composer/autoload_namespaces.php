@@ -24,6 +24,7 @@ return array(
     'Symfony\\Component\\BrowserKit\\' => array($vendorDir . '/symfony/browser-kit'),
     'Stack' => array($vendorDir . '/stack/builder/src'),
     'Spescina\\Imgproxy' => array($vendorDir . '/spescina/imgproxy/src'),
+    'RobbieP\\CloudConvertLaravel\\' => array($vendorDir . '/robbiep/cloudconvert-laravel/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'Predis' => array($vendorDir . '/predis/predis/lib'),
     'Patchwork' => array($vendorDir . '/patchwork/utf8/class'),

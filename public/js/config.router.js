@@ -1965,7 +1965,7 @@ angular.module('app')
                 })
                 .state('app.users.delete', {
                     url: '/delete/{id}',
-                    controller: function ($http, $state, $stateParams, Flash) {
+                    controller: function ($http, $state, $stateParams, Flash,$rootScope) {
 
                         $http.post('checkAuthentication', {})
                             .success(function (data) {
@@ -1980,10 +1980,10 @@ angular.module('app')
                                 if (data.code == '200') {
                                     var message = '<strong>Delete!</strong> You successfully deleted the user.';
                                     Flash.create('success', message);
-                                    $state.go(data.redirect);
+                                    $state.go($rootScope.previousState);
                                 }
                                 if (data.code == '403') {
-                                    $state.go(data.redirect);
+                                    $state.go($rootScope.previousState);
                                 }
                             });
                     }
@@ -2392,6 +2392,181 @@ angular.module('app')
                             }]
                     }
                 })
+                .state('app.holidays', {
+                    url: '/holidays',
+                    template: '<div ui-view  ng-controller="HolidaysController" class="fade-in-right-big"></div>'
+                })
+                .state('app.holidays.index-view', {
+                    url: '/index-view',
+                    templateUrl: 'holidays/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/holidays.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.holidays.create', {
+                    url: '/create',
+                    templateUrl: 'holidays/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/holidays.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.holidays.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'holidays/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/holidays.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.holidays.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/holidays/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.holidays.index-view');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.holidays.index-view');
+                                }
+                            });
+                    }
+                })
+
+                .state('app.expenses', {
+                    url: '/expenses',
+                    template: '<div ui-view  ng-controller="ExpensesController" class="fade-in-right-big"></div>'
+                })
+                .state('app.expenses.index-view', {
+                    url: '/index-view',
+                    templateUrl: 'expenses/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/expenses.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.expenses.create', {
+                    url: '/create',
+                    templateUrl: 'expenses/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/expenses.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.expenses.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'expenses/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/expenses.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+
+                    }
+                })
+                .state('app.expenses.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams, Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/expenses/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.expenses.index-view');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.expenses.index-view');
+                                }
+                            });
+                    }
+                })
 
                 .state('app.leave_types', {
                     url: '/leave_types',
@@ -2568,7 +2743,21 @@ angular.module('app')
                             });
                     }
                 })
-
+                .state('app.leave_manages', {
+                    url: '/leave_manages',
+                    template: '<div ui-view  class="fade-in-right-big"></div>'
+                })
+                .state('app.leave_manages.index', {
+                    url: '/index',
+                    templateUrl: 'leave_manages/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']);
+                            }]
+                    }
+                })
 
 
                 .state('app.password_mgmts', {
@@ -2983,6 +3172,58 @@ angular.module('app')
                             }]
                     }
                 })
+
+                // mail
+                .state('app.notifications', {
+                    abstract: true,
+                    url: '/notifications',
+                    templateUrl: 'notifications/index',
+                    // use resolve to load other dependences
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load([
+                                    'js/controllers/notifications.js',
+                                    JQ_CONFIG.moment]);
+                            }]
+                    }
+                })
+                .state('app.notifications.list', {
+                    url: '/inbox/{fold}',
+                    templateUrl: 'notifications/list'
+                })
+                .state('app.notifications.detail', {
+                    url: '/detail/{mailId:[0-9]{1,4}}',
+                    templateUrl: 'notifications/detail'
+                })
+
+
+                .state('app.announcements', {
+                    url: '/announcements',
+                    templateUrl: 'announcements/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load([
+                                    'js/controllers/announcements.js',
+                                    JQ_CONFIG.moment]);
+                            }]
+                    }
+                })
+                .state('app.announcements.list', {
+                    url: '/inbox/{fold}',
+                    templateUrl: 'announcements/list-view'
+                })
+                .state('app.announcements.detail', {
+                    url: '/detail/{mailId:[0-9]{1,4}}',
+                    templateUrl: 'announcements/detail-view'
+                })
+                .state('app.announcements.create', {
+                    url: '/create',
+                    templateUrl: 'announcements/create-add'
+                })
+
 
         }
     ]

@@ -46,11 +46,11 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-3 control-label">Job Profile {{ data.user.job_profile | json }}</label>
+                <label class="col-sm-3 control-label">Job Profile</label>
 
                 <div class="col-sm-9">
                     <select type="text" class="form-control" placeholder="required field"
-                            ng-model="data.user.job_profile"
+                                ng-model="data.user.job_profile"
                             ng-options="selectedItem.job_profiles_id as selectedItem.job_profiles_name for selectedItem in data.designation[data.user.designation_id].job_profiles"
                             required></select>
                 </div>

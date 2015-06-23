@@ -1,5 +1,5 @@
     <div class="container w-xxl w-auto-xs" ng-controller="SignupFormController" ng-init="app.settings.container = false;">
-      <a href class="navbar-brand block m-t">{{app.name}}</a>
+      <a href class="navbar-brand block m-t"><img src="<?= ImgProxy::link("public/img/login-page-logo.png",150,150); ?>"></a>
       <div class="m-b-lg">
         <div class="wrapper text-center">
           <strong>Sign up to find interesting thing</strong>
@@ -25,7 +25,7 @@
 <!--            <div class="list-group-item">
               <input ng-pattern="/[0-9]{10}$/"  placeholder="(XXX) XXXX XXX" name="phone" class="form-control no-border" ng-model="user.phone" required>
             </div>-->
-     
+
           </div>
 <!--          <div class="checkbox m-b-md m-t-none">
             <label class="i-checks">

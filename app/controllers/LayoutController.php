@@ -99,6 +99,8 @@ class LayoutController extends \BaseController
 
         }
         $data['modules'] = $modules;
+        $data['notification_count'] = NotificationTo::where('users_id','=',Auth::user()->user_id)
+                                    ->where('status','=','unread')->count();
         return json_decode(json_encode($data), true);
     }
 

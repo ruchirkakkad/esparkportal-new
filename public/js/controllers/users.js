@@ -149,6 +149,7 @@ app.controller('UsersController', ['$scope', '$http', '$state', 'Flash', '$state
 
 
                     $scope.data.user = data.user[0];
+                    $scope.data.user.job_profile = $scope.data.user.job_profile.job_profiles_id;
                     angular.forEach($scope.data.designation, function (value, key) {
                         if($scope.data.user.designation_id == value.designations_id)
                         {
@@ -177,7 +178,6 @@ app.controller('UsersController', ['$scope', '$http', '$state', 'Flash', '$state
                     $scope.profile_edit_attachments = "tpl/profile_edit_attachments.html";
                     $scope.profile_edit_qualification_details = "tpl/profile_edit_qualification_details.html";
 
-                    $('#dvLoading').fadeOut(2000);
                     console.log($scope.data.user);
                 }).then(function () {
                     $timeout(function () {
@@ -191,7 +191,6 @@ app.controller('UsersController', ['$scope', '$http', '$state', 'Flash', '$state
                         $scope.var_profile_edit_bank_details = false;
                         $scope.var_profile_edit_attachments = false;
                     }, 5000);
-                    $('#dvLoading').fadeOut(2000);
                 });
         };
 
@@ -340,7 +339,7 @@ app.controller('UsersController', ['$scope', '$http', '$state', 'Flash', '$state
 
         $scope.saveCompanyDetails = function () {
             //console.log($scope.data.user.user_contact);
-            $('#dvLoading').css("display", "block");
+
 
             $http.post('users/update-company-details-edit/'+$stateParams.id, {
                 employee_id: $scope.data.user.employee_id,
@@ -359,7 +358,6 @@ app.controller('UsersController', ['$scope', '$http', '$state', 'Flash', '$state
                 if (data.code == '403') {
                     Flash.create('danger', data.msg);
                 }
-                $('#dvLoading').fadeOut(1000);
             });
         };
 

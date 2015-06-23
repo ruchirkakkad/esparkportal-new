@@ -29,6 +29,8 @@ Route::group(['before' => 'check_ip'], function () {
     Route::controller('general_modules', 'GeneralModulesController');
     Route::controller('modules', 'ModulesController');
     Route::controller('staffing', 'StaffingController');
+    Route::controller('leave_manages', 'LeaveManagesController');
+    Route::controller('notifications', 'NotificationsController');
 
     Route::group(['before' => 'permission'], function () {
 //---------------Marketing-----------------
@@ -59,6 +61,11 @@ Route::group(['before' => 'check_ip'], function () {
 
         Route::controller('leave_types', 'LeaveTypesController');
         Route::controller('leaves', 'LeavesController');
+
+        Route::controller('expenses', 'ExpensesController');
+        Route::controller('holidays', 'HolidaysController');
+
+        Route::controller('announcements', 'AnnouncementsController');
 //---------------HRMS ends--------------------
 
 //---------------Password Management starts--------------------
@@ -79,11 +86,19 @@ Route::group(['before' => 'check_ip'], function () {
 
     });
 });
-Route::controller('leave_manages', 'LeaveManagesController');
 
-Route::get('testing', function(){
-    Mail::send('emails.auth.reminder', [], function($message)
-    {
-        $message->to('iddigital.demo@gmail.com', "Hardik")->subject('Welcome!');
-    });
+Route::get('migrate',function(){
+    Artisan::call('migrate');
+    echo '<br>done migrate:install';
+});
+Route::get('fileconvert',function(){
+//    CloudConvert::file('/uploads/admin@admin.com/attachments/initial questions of rippled waters.docx')->to('/uploads/admin@admin.com/attachments/t.jpg');
+
+    CloudConvert::file('/uploads/admin@admin.com/attachments/Lighthouse.jpg')->to('png');
+});
+Route::get('screenshots',function(){
+    dd(CloudConvert::file('uploads/admin@admin.com/attachments/t.pdf')->to('jpg'));
+
+//    CloudConvert::website('www.google.com')->to('google.jpg');
+
 });

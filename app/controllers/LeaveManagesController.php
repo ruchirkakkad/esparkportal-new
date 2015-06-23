@@ -3,6 +3,10 @@
 class LeaveManagesController extends \BaseController
 {
 
+    public function getIndexView()
+    {
+        return View::make('leave_manages.index');
+    }
     public function postLeaveRequestView()
     {
         $data1 = Leave::with('leave_type', 'user')->where('leave_status', '=', 'pending')
@@ -73,17 +77,27 @@ class LeaveManagesController extends \BaseController
     public function postLeaveChangeStatus()
     {
         $id = Helper::simple_decrypt(Input::get('id'));
+        $leave = Leave::find($id);
+        $to[0] = new stdClass();
+        $to[0]->email = User::find($leave->users_id)->email;
+        $to[0]->name = User::find($leave->users_id)->first_name;
         $status_type = Input::get('status_type');
         if ($status_type == 'leave_request') {
             if (Input::get('status')) {
                 $status = 'approve';
+                $message = 'Your Leave has been approved';
+                $this->set($status, $message, $to,$leave->users_id);
             } else {
                 $status = 'reject';
+                $message = 'Your Leave has been rejected';
+                $this->set($status, $message, $to,$leave->users_id);
             }
         }
         if ($status_type == 'report') {
             if (Input::get('status')) {
                 $status = 'pending';
+                $message = 'Your Leave has been put on hold. Status - Pending';
+                $this->set($status, $message, $to,$leave->users_id);
             } else {
                 $status = 'final-reject';
             }
@@ -93,10 +107,28 @@ class LeaveManagesController extends \BaseController
                 $status = 'final-approve';
             } else {
                 $status = 'final-reject';
+                $message = 'Your Leave has been cancelled..';
+                $this->set($status, $message, $to,$leave->users_id);
             }
         }
-        $leave = Leave::find($id);
         $leave->leave_status = $status;
         $leave->save();
+    }
+
+    public function set($status, $message, $to,$user_id)
+    {
+        Helper::sendMail('emails.leave_manage', ['message' => $message], $to, "Leave Status - " . ucfirst($status));
+        $notification = new Notification();
+        $notification->subject = "Leave Status - " . ucfirst($status);
+        $notification->content = $message;
+        $notification->label = 'leave';
+        $notification->from = Auth::user()->user_id;
+        $notification->save();
+
+        $notification_tos = new NotificationTo();
+        $notification_tos->notifications_id = $notification->notifications_id;
+        $notification_tos->users_id = $user_id;
+        $notification_tos->save();
+
     }
 }

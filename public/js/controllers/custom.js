@@ -4,8 +4,6 @@
 'use strict';
 
 /* Controllers */
-
-
 app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval', '$rootScope',
     function ($scope, $http, $state, $interval, $rootScope) {
 
@@ -19,8 +17,11 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval', '$root
         $scope.entries = "";
         $scope.success = [];
         $interval(function () {
-            $http.post('staffing/staffing-calculation', {})
-                .success(function (data) {
+            jQuery.ajax({
+                url: "staffing/staffing-calculation?callback=?",
+                dataType: "jsonp",
+                cache: false,
+                success: function (data) {
                     $scope.totalStaffing = data;
                     if (data.accessStyle == 'none') {
                         $scope.userAccessClass = "none";
@@ -28,7 +29,21 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval', '$root
                     else {
                         $scope.userAccessClass = "block";
                     }
-                });
+                },
+                error: function (response) {
+                    console.log("failed");
+                }
+            });
+            //$http.jsonp('staffing/staffing-calculation?callback=JSON_CALLBACK', {})
+            //    .success(function (data) {
+            //        $scope.totalStaffing = data;
+            //        if (data.accessStyle == 'none') {
+            //            $scope.userAccessClass = "none";
+            //        }
+            //        else {
+            //            $scope.userAccessClass = "block";
+            //        }
+            //    });
         }, 60000);
         $scope.getData = function () {
 
@@ -172,3 +187,26 @@ app.controller('LeaveManagementDashborad', ['$scope', '$http', '$state', '$inter
 
     }]);
 //angular.element('#btn2').triggerHandler('click');
+
+app.directive('loading',   ['$http' ,function ($http)
+    {
+        return {
+            restrict: 'A',
+            link: function (scope, elm, attrs)
+            {
+                scope.isLoading = function () {
+                    return $http.pendingRequests.length > 0;
+                };
+
+                scope.$watch(scope.isLoading, function (v)
+                {
+                    if(v){
+                        elm.show();
+                    }else{
+                        elm.hide();
+                    }
+                });
+            }
+        };
+
+    }]);

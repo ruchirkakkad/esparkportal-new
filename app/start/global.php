@@ -81,12 +81,49 @@ App::down(function()
 require app_path().'/filters.php';
 
 Event::listen('cron.collectJobs', function() {
-    Cron::add('example1', '0,30 * * * *', function() {
+    Cron::add('example1', '* * * * *', function() {
 
        return Mail::send('emails.auth.reminder', [], function($message)
         {
             $message->to('webdeveloper1011@gmail.com', 'Ruchir')->subject('Welcome!');
         });
+    });
+
+
+
+//    Cron::add('Add Leaves', '0 0 1 * *', function() {
+    Cron::add('Add Leaves', '* 12 15 * *', function() {
+
+        $users = User::all();
+
+        $leavesType = LeaveType::all();
+        foreach($users as $user)
+        {
+
+            $user_leave_counter = json_decode($user->leaves_counter,true);
+
+            foreach($leavesType as $leave)
+            {
+//                var_dump($leave->leave_title);
+                if(!isset($user_leave_counter[$leave->leave_title]) || $user_leave_counter[$leave->leave_title] == null)
+                {
+                    $user_leave_counter[$leave->leave_title] = 0;
+                }
+//                var_dump($user_leave_counter[$leave->leave_title]);
+
+                if(date('Y-m-d',strtotime($user->doj."+$leave->start_duration months")) <= date('Y-m-d'))
+                {
+                    var_dump($user->first_name."- $leave->leave_title");
+                    $user_leave_counter[$leave->leave_title] = $user_leave_counter[$leave->leave_title] + $leave->total_leaves;
+                }
+//                var_dump($user->doj."  $leave->start_duration");
+//                var_dump(date('Y-m-d',strtotime($user->doj."+$leave->start_duration months")));
+            }
+            var_dump(json_encode($user_leave_counter));
+            echo '<hr>';
+//            User::where('user_id', '=', $user->user_id)->update(array('leaves_counter' => json_encode($user_leave_counter)));
+        }
+
     });
 
     Cron::setDisablePreventOverlapping();
