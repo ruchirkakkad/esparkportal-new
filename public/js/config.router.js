@@ -2251,13 +2251,116 @@ angular.module('app')
                     }
                 })
 
-                .state('app.time_tracker', {
-                    url: '/time_tracker',
+                .state('app.time_log', {
+                    url: '/time_log',
                     template: '<div ui-view  ng-controller="TimeTrackerController" class="fade-in-right-big"></div>'
                 })
-                .state('app.time_tracker.time-log-view', {
+                .state('app.time_log.time-log-view', {
                     url: '/time-log-view',
-                    templateUrl: 'time_tracker/time-log-view',
+                    templateUrl: 'time_log/time-log-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.time_sheet', {
+                    url: '/time_sheet',
+                    template: '<div ui-view  ng-controller="TimeTrackerController" class="fade-in-right-big"></div>'
+                })
+                .state('app.time_sheet.user-wise-report-view', {
+                    url: '/user-wise-report-view/{id}',
+                    templateUrl: 'time_sheet/user-wise-report-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.user_wise_time_sheet', {
+                    url: '/user_wise_time_sheet',
+                    template: '<div ui-view  ng-controller="TimeTrackerController" class="fade-in-right-big"></div>'
+                })
+                .state('app.user_wise_time_sheet.user-wise-view', {
+                    url: '/user-wise-view',
+                    templateUrl: 'user_wise_time_sheet/user-wise-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.user_wise_time_sheet.user-wise-report-view', {
+                    url: '/user-wise-report-view/{id}',
+                    templateUrl: 'user_wise_time_sheet/user-wise-report-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.user_wise_time_sheet.edit-staffing-edit', {
+                    url: '/edit-staffing-edit/{id}',
+                    templateUrl: 'user_wise_time_sheet/edit-staffing-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.user_wise_time_sheet.add-staffing-edit', {
+                    url: '/add-staffing-edit/{date}/{user_id}',
+                    templateUrl: 'user_wise_time_sheet/add-staffing-edit',
                     controller: "AuthCheckCtrl",
                     resolve: {
                         deps: ['$ocLazyLoad',
@@ -2275,47 +2378,14 @@ angular.module('app')
                     }
                 })
 
-                .state('app.time_tracker.user-wise-view', {
-                    url: '/user-wise-view',
-                    templateUrl: 'time_tracker/user-wise-view',
-                    controller: "AuthCheckCtrl",
-                    resolve: {
-                        deps: ['$ocLazyLoad',
-                            function ($ocLazyLoad) {
-                                return $ocLazyLoad.load(['smart-table']).then(
-                                    function () {
-                                        return $ocLazyLoad.load({
-                                            files: [
-                                                'js/controllers/time_tracker.js'
-                                            ]
-                                        });
-                                    }
-                                );
-                            }]
-                    }
+
+                .state('app.date_wise_time_sheet', {
+                    url: '/date_wise_time_sheet',
+                    template: '<div ui-view  ng-controller="TimeTrackerController" class="fade-in-right-big"></div>'
                 })
-                .state('app.time_tracker.user-wise-report-view', {
-                    url: '/user-wise-report-view/{id}',
-                    templateUrl: 'time_tracker/user-wise-report-view',
-                    controller: "AuthCheckCtrl",
-                    resolve: {
-                        deps: ['$ocLazyLoad',
-                            function ($ocLazyLoad) {
-                                return $ocLazyLoad.load(['smart-table']).then(
-                                    function () {
-                                        return $ocLazyLoad.load({
-                                            files: [
-                                                'js/controllers/time_tracker.js'
-                                            ]
-                                        });
-                                    }
-                                );
-                            }]
-                    }
-                })
-                .state('app.time_tracker.date-wise-view', {
+                .state('app.date_wise_time_sheet.date-wise-view', {
                     url: '/date-wise-view',
-                    templateUrl: 'time_tracker/date-wise-view',
+                    templateUrl: 'date_wise_time_sheet/date-wise-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
                         deps: ['$ocLazyLoad',
@@ -2332,6 +2402,45 @@ angular.module('app')
                             }]
                     }
                 })
+                .state('app.date_wise_time_sheet.add-staffing-edit', {
+                    url: '/add-staffing-edit/{date}/{user_id}',
+                    templateUrl: 'date_wise_time_sheet/add-staffing-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+                .state('app.date_wise_time_sheet.edit-staffing-edit', {
+                    url: '/edit-staffing-edit/{id}',
+                    templateUrl: 'date_wise_time_sheet/edit-staffing-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/time_tracker.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
+
                 .state('app.attendance_chart', {
                     url: '/attendance_chart',
                     template: '<div ui-view  ng-controller="TimeTrackerController" class="fade-in-right-big"></div>'
@@ -2356,45 +2465,7 @@ angular.module('app')
                     }
                 })
 
-                .state('app.time_tracker.edit-staffing-edit', {
-                    url: '/edit-staffing-edit/{id}',
-                    templateUrl: 'time_tracker/edit-staffing-edit',
-                    controller: "AuthCheckCtrl",
-                    resolve: {
-                        deps: ['$ocLazyLoad',
-                            function ($ocLazyLoad) {
-                                return $ocLazyLoad.load(['smart-table']).then(
-                                    function () {
-                                        return $ocLazyLoad.load({
-                                            files: [
-                                                'js/controllers/time_tracker.js'
-                                            ]
-                                        });
-                                    }
-                                );
-                            }]
-                    }
-                })
 
-                .state('app.time_tracker.add-staffing-edit', {
-                    url: '/add-staffing-edit/{date}/{user_id}',
-                    templateUrl: 'time_tracker/add-staffing-edit',
-                    controller: "AuthCheckCtrl",
-                    resolve: {
-                        deps: ['$ocLazyLoad',
-                            function ($ocLazyLoad) {
-                                return $ocLazyLoad.load(['smart-table']).then(
-                                    function () {
-                                        return $ocLazyLoad.load({
-                                            files: [
-                                                'js/controllers/time_tracker.js'
-                                            ]
-                                        });
-                                    }
-                                );
-                            }]
-                    }
-                })
                 .state('app.holidays', {
                     url: '/holidays',
                     template: '<div ui-view  ng-controller="HolidaysController" class="fade-in-right-big"></div>'
