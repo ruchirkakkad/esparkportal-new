@@ -43,10 +43,15 @@
         </tr>
         </thead>
         <tbody>
+        <tr>
+            <th></th>
+            <th style="font-size: 11px;padding: 8px 0px !important; vertical-align: middle !important;text-align: center !important;color:#000000;" ng-repeat="(key, val) in staffings[0].dates">{{ val.day }}</th>
+            <th></th>
+        </tr>
         <tr ng-repeat="row in staffings">
             <td>{{row.first_name}} {{row.last_name}}</td>
             <td ng-repeat="(key, val) in row.dates"
-                style="font-size: 11px;padding: 8px 0px !important; vertical-align: middle !important;text-align: center !important;color:#000000; background-color: {{val.flag == 'A'?'#F06A6A' : ''}} {{val.flag == 'P'?'#48D46A' : ''}} !important;">{{ val.flag }}</td>
+                style="font-size: 11px;padding: 8px 0px !important; vertical-align: middle !important;text-align: center !important;color:#000000; background-color: {{val.flag == 'A'?'#F06A6A' : ''}} {{val.flag == 'P'?'#48D46A' : ''}} {{val.flag == 'H'?'#F9D21A' : ''}} {{ (val.flag == 'PL' ||val.flag == 'SL' ||val.flag == 'HD' ) ?'#6254B2' : ''}} !important;">{{ val.flag }}</td>
             <td>{{row.total_present}}</td>
         </tr>
         </tbody>
