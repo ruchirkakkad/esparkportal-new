@@ -1,8 +1,8 @@
 <div ng-init="indexData()">
 <div class="hbox hbox-auto-xs hbox-auto-sm">
 <div class="col">
-<div style="background:url('img/c3.jpg') center center; background-size:cover">
-    <div class="wrapper-lg bg-white-opacity">
+<div style="background:url('img/Our-Team.jpg') center center; background-size:cover">
+    <div class="wrapper-lg bg-black-opacity text-white">
         <div class="row m-t">
             <div class="col-sm-4">
                 <a href class="thumb-lg pull-left m-r">
@@ -11,7 +11,7 @@
 
                 <div class="clear m-b">
                     <div class="m-b m-t-sm">
-                        <span class="h3 text-black">
+                        <span class="h3">
                             {{ data.user.first_name }}.{{ data.user.last_name }}
                         </span>
                         <small class="m-l">{{ data.user.gender }}</small>

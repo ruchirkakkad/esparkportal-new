@@ -8,7 +8,7 @@
         <div class="wrapper hidden-sm hidden-xs" id="email-menu">
             <ul class="nav nav-pills nav-stacked nav-sm">
                 <li ng-repeat="fold in folds" ui-sref-active="active">
-                    <a ui-sref="app.notifications.list({fold:fold.filter})">
+                    <a ui-sref="app.announcements.list({fold:fold.filter})">
                         {{fold.name}}
                     </a>
                 </li>
@@ -16,7 +16,7 @@
             <div class="wrapper">Labels</div>
             <ul class="nav nav-pills nav-stacked nav-sm">
                 <li ng-repeat="label in labels" ui-sref-active="active">
-                    <a ui-sref="app.notifications.list({fold:label.filter})">
+                    <a ui-sref="app.announcements.list({fold:label.filter})">
                         <i class="fa fa-fw fa-circle text-muted" color="{{label.color}}" label-color ></i>
                         {{label.name}}
                     </a>

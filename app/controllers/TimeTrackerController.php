@@ -64,10 +64,12 @@ class TimeTrackerController extends \BaseController
         $date = $startDate;
         if($user_id == 'self')
         {
+            $do_edit = 0;
             $user_id = Auth::user()->user_id;
         }
         else
         {
+            $do_edit = 1;
             $user_id = Helper::simple_decrypt($user_id);
         }
         $data['user'] = User::find($user_id);
@@ -96,6 +98,7 @@ class TimeTrackerController extends \BaseController
                 $returndata[$k]['comment'] = '';
                 $returndata[$k]['total_staffing'] = ['time' => '', 'break_time' => '', 'actual_break_time' => ''];
             }
+            $returndata[$k]['do_edit'] = $do_edit;
             $k++;
             $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
             $date = $next_date;

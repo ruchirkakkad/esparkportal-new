@@ -14,7 +14,7 @@ class AnnouncementsController extends \BaseController {
 
     public function getDataView()
     {
-        $notificationsOfUser = Announcement::all();
+        $notificationsOfUser = Announcement::orderBy('created_at','desc')->get();
 
         $returnData = [];
         $img_extensions = ['gif', 'jpg', 'png'];

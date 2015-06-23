@@ -1,8 +1,8 @@
 <div ng-init="showData()">
 <div class="hbox hbox-auto-xs hbox-auto-sm">
 <div class="col">
-<div style="background:url('img/c3.jpg') center center; background-size:cover">
-    <div class="wrapper-lg bg-white-opacity">
+<div style="background:url('img/Our-Team.jpg') center center; background-size:cover">
+    <div class="wrapper-lg bg-black-opacity text-white">
         <div class="row m-t">
             <div class="col-sm-4">
                 <a href class="thumb-lg pull-left m-r">
@@ -11,7 +11,7 @@
 
                 <div class="clear m-b">
                     <div class="m-b m-t-sm">
-                        <span class="h3 text-black">
+                        <span class="h3">
                             {{ data.user.first_name }}.{{ data.user.last_name }}
                         </span>
                         <small class="m-l">{{ data.user.gender }}</small>
@@ -24,7 +24,7 @@
 
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Date of Birth</label>
+                    <label class="col-sm-6 control-label">Date of Birth : </label>
 
                     <div class="col-sm-6">
                         {{ data.user.user_personal.dob }}
@@ -33,7 +33,7 @@
                 <br>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Blood Group</label>
+                    <label class="col-sm-6 control-label">Blood Group : </label>
 
                     <div class="col-sm-6">
                         {{ data.user.user_personal.blood_group }}
@@ -42,7 +42,7 @@
                 <br>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Marital Status</label>
+                    <label class="col-sm-6 control-label">Marital Status : </label>
 
                     <div class="col-sm-6">
                         <a ng-if="MaritalStatusChangeVarView">Married</a>
@@ -52,7 +52,7 @@
                 <br>
 
                 <div class="form-group" ng-show="MaritalStatusChangeVarView">
-                    <label class="col-sm-6 control-label">Spouse Name</label>
+                    <label class="col-sm-6 control-label">Spouse Name : </label>
 
                     <div class="col-sm-6">
                         {{ data.user.user_personal.spouse_name }}
@@ -61,7 +61,7 @@
                 <br>
 
                 <div class="form-group" ng-show="MaritalStatusChangeVarView">
-                    <label class="col-sm-6 control-label">Anniversary date</label>
+                    <label class="col-sm-6 control-label">Anniversary date : </label>
 
                     <div class="col-sm-6">
                         {{ data.user.user_personal.aniversary_date }}
@@ -70,7 +70,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Driving License No.</label>
+                    <label class="col-sm-6 control-label">Driving License No. : </label>
 
                     <div class="col-sm-6">
                         {{ data.user.user_personal.driving_licence_no }}
@@ -79,7 +79,7 @@
                 <br>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Passport No.</label>
+                    <label class="col-sm-6 control-label">Passport No. : </label>
 
                     <div class="col-sm-6">
                         {{ data.user.user_personal.passport_no }}
@@ -88,7 +88,7 @@
                 <br>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Bio</label>
+                    <label class="col-sm-6 control-label">Bio : </label>
 
                     <div class="col-sm-6">
                         {{ data.user.user_personal.bio }}

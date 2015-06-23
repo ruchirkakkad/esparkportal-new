@@ -1,8 +1,8 @@
 /**
  * Created by ruchir on 5/21/2015.
  */
-app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval', '$rootScope', 'Flash', '$stateParams',
-    function ($scope, $http, $state, $interval, $rootScope, Flash, $stateParams) {
+app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval', '$rootScope', 'Flash', '$stateParams','$window',
+    function ($scope, $http, $state, $interval, $rootScope, Flash, $stateParams,$window) {
 
         $scope.data = {
             users: {},
@@ -209,8 +209,7 @@ app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval
             }).success(function (data) {
                 if (data.code == '200') {
                     Flash.create('success', data.msg);
-                    alert(data.alert_msg);
-                    $state.go($rootScope.previousState, {}, {reload: true});
+                    $rootScope.PreviousState.goToLastState();
                 }
                 if (data.code == '403') {
                     Flash.create('danger', data.msg);
@@ -236,7 +235,7 @@ app.controller('TimeTrackerController', ['$scope', '$http', '$state', '$interval
                 if (data.code == '200') {
                     Flash.create('success', data.msg);
                     alert(data.alert_msg);
-                    $state.go($rootScope.previousState);
+                    $rootScope.PreviousState.goToLastState();
                 }
                 if (data.code == '403') {
                     Flash.create('danger', data.msg);
