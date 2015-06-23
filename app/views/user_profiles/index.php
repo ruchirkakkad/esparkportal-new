@@ -6,7 +6,8 @@
         <div class="row m-t">
             <div class="col-sm-4">
                 <a href class="thumb-lg pull-left m-r">
-                    <img src="<?= ImgProxy::link("public/{{ data.user.profile_image }}", 100, 100,100,0); ?>" class="img-circle">
+                    <img src="<?= ImgProxy::link("public/{{ data.user.profile_image }}", 100, 100, 100, 0); ?>"
+                         class="img-circle">
                 </a>
 
                 <div class="clear m-b">
@@ -251,7 +252,9 @@
 
                                 <div class="col-sm-1">:</div>
                                 <div class="col-sm-6">
-                                    {{ data.educational_qualifications[qualification_detail.educational_qualifications_id] }}
+                                    {{
+                                    data.educational_qualifications[qualification_detail.educational_qualifications_id]
+                                    }}
                                 </div>
                             </div>
                         </a>
@@ -565,16 +568,17 @@
             <div class="panel-body">
                 <div class="list-group">
                     <div ng-repeat="attechment in data.user.user_attachments">
-                        <a href class="list-group-item">
+                        <div class="list-group-item">
                             <div class="form-group">
                                 <label class="col-sm-5 control-label">Attachment_{{ $index }}</label>
 
                                 <div class="col-sm-1">:</div>
                                 <div class="col-sm-6">
-                                    <a href="<?php echo url();?>/user_profiles/download-attachment-view?attachement={{ attechment.attachment_url }}">{{ attechment.attachment_name }}</a>
+                                    <a href="<?php echo url(); ?>/user_profiles/download-attachment-view?attachement={{ attechment.attachment_url }}">{{
+                                        attechment.attachment_name }}</a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                         <br>
                     </div>
                 </div>

@@ -375,7 +375,7 @@
 
                             <div class="col-sm-1">:</div>
                             <div class="col-sm-6">
-                                {{ data.user.user_contact.current_address }}
+                                {{ data.user.user_contact.current_address | htmlToPlaintext }}
                             </div>
                         </div>
                     </a>
@@ -446,7 +446,7 @@
 
                             <div class="col-sm-1">:</div>
                             <div class="col-sm-6">
-                                {{ data.user.user_contact.permanent_address }}
+                                {{ data.user.user_contact.permanent_address | htmlToPlaintext }}
                             </div>
                         </div>
                     </a>
@@ -565,7 +565,7 @@
             <div class="panel-body">
                 <div class="list-group">
                     <div ng-repeat="attechment in data.user.user_attachments">
-                        <a href class="list-group-item">
+                        <div class="list-group-item">
                             <div class="form-group">
                                 <label class="col-sm-5 control-label">Attachment_{{ $index }}</label>
 
@@ -574,7 +574,7 @@
                                     <a href="<?php echo url();?>/user_profiles/download-attachment-view?attachement={{ attechment.attachment_url }}">{{ attechment.attachment_name }}</a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                         <br>
                     </div>
                 </div>
