@@ -56,6 +56,10 @@ Route::group(['before' => 'check_ip'], function () {
         Route::controller('user_profiles', 'UserProfilesController');
         Route::controller('time_tracker', 'TimeTrackerController');
         Route::controller('attendance_chart', 'AttendanceChartController');
+        Route::controller('time_log', 'TimeLogController');
+        Route::controller('time_sheet', 'TimeSheetController');
+        Route::controller('user_wise_time_sheet', 'UserWiseTimeSheetController');
+        Route::controller('date_wise_time_sheet', 'DateWiseTimeSheetController');
         Route::controller('skills', 'SkillsController');
         Route::controller('educational_qualifications', 'EducationalQualificationsController');
         Route::controller('languages', 'LanguagesController');

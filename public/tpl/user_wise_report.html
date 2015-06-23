@@ -67,7 +67,7 @@
             <th st-sort="total_staffing.break_time">Break</th>
             <th st-sort="total_staffing.actual_break_time">Actual Break</th>
             <th st-sort="comment">Comment</th>
-            <th ng-if="permission.staffings.edit==1"></th>
+            <th ng-if="permission.user_wise_time_sheet.edit==1"></th>
         </tr>
         </thead>
         <tbody>
@@ -81,8 +81,8 @@
             <td>{{row.total_staffing.actual_break_time}}</td>
             <td>{{row.comment}}</td>
 
-            <td ng-if="permission.staffings.edit==1 && row.do_edit == 1" >
-                <a href='#/app/time_tracker/{{{true: "add-staffing-edit/"+row.date+"/"+data.user.user_id, false: "edit-staffing-edit/"+row.staffings_encrypt_id }[(row.staffings_encrypt_id == "")] }}'>
+            <td ng-if="permission.user_wise_time_sheet.edit==1" >
+                <a href='#/app/user_wise_time_sheet/{{{true: "add-staffing-edit/"+row.date+"/"+data.user.user_id, false: "edit-staffing-edit/"+row.staffings_encrypt_id }[(row.staffings_encrypt_id == "")] }}'>
                     <button class="btn btn-sm bg-dark lter" tooltip="Edit"><i class=" fa {{{true: 'fa-plus', false: 'fa-pencil'}[(row.staffings_encrypt_id == '')] }}"></i></button>
                 </a>
             </td>
