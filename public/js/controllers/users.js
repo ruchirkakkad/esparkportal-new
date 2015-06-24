@@ -580,5 +580,18 @@ app.controller('UsersController', ['$scope', '$http', '$state', 'Flash', '$state
             });
         }
 
+        $scope.CountDepartments = function(id) {
+            if(id == '')
+            {
+
+            }else {
+                var count = 0;
+                angular.forEach($scope.items, function (items) {
+                    count += items.department_id == id ? 1 : 0;
+                });
+                return count;
+            }
+        }
+
 
     }]);

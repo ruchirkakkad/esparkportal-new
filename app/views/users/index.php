@@ -17,10 +17,10 @@
                 <div class="cell scrollable hover">
                     <div class="cell-inner">
                         <div class="list-group no-radius no-border no-bg m-b-none">
-                            <a class="list-group-item b-b" ng-class="{'focus': (filter == '')}" ng-click="selectGroup({departments_id:''})">ALL Contacts</a>
+                            <a class="list-group-item b-b" ng-class="{'focus': (filter == '')}" ng-click="selectGroup({departments_id:''})">ALL Contacts <span class="badge bg-dark">{{ items.length }}   </span></a>
                             <a ng-repeat="item in groups" ng-dblclick="editItem(item)" class="list-group-item m-l hover-anchor b-a no-select" ng-class="{'focus m-l-none': item.selected}" ng-click="selectGroup(item)">
 <!--                                <span ng-click='deleteGroup(item)' class="pull-right text-muted hover-action"><i class="fa fa-times"></i></span>-->
-                                <span class="block m-l-n" ng-class="{'m-n': item.selected }">{{ item.departments_name ? item.departments_name : 'Untitled' }}</span>
+                                <span class=" m-l-n" ng-class="{'m-n': item.selected }">{{ item.departments_name ? item.departments_name : 'Untitled' }}</span> <span class="badge bg-dark">{{ CountDepartments(item.departments_id) }}   </span>
                             </a>
                         </div>
                     </div>

@@ -16,7 +16,8 @@ class NotificationsController extends \BaseController
     public function getData()
     {
         $notificationsOfUser = NotificationTo::where('users_id', '=', Auth::user()->user_id)
-            ->join('notifications', 'notifications.notifications_id', '=', 'notification_tos.notifications_id')->get();
+            ->join('notifications', 'notifications.notifications_id', '=', 'notification_tos.notifications_id')
+            ->orderBy('notifications.created_at','desc')->get();
 
         $returnData = [];
         $img_extensions = ['gif', 'jpg', 'png'];

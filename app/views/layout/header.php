@@ -65,22 +65,10 @@
             <!-- dropdown -->
             <ul class="dropdown-menu animated fadeInRight w">
                 <li>
-                    <a href>
-                        <span class="badge bg-danger pull-right">30%</span>
-                        <span>Settings</span>
-                    </a>
-                </li>
-                <li>
                     <a ui-sref="app.user_profiles.index">Profile</a>
                 </li>
                 <li>
                     <a ui-sref="app.user_profiles.edit">Edit Profile</a>
-                </li>
-                <li>
-                    <a ui-sref="app.docs">
-                        <span class="label bg-info pull-right">new</span>
-                        Help
-                    </a>
                 </li>
                 <li class="divider"></li>
                 <li>
