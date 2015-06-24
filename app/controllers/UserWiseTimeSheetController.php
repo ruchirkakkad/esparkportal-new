@@ -75,7 +75,12 @@ class UserWiseTimeSheetController extends \BaseController
                 $returndata[$k]['staffings_encrypt_id'] = $id;
                 $returndata[$k]['date'] = $date;
                 $returndata[$k]['check_in'] = date('M d, H:i', strtotime($data1[0]->check_in));
-                $returndata[$k]['check_out'] = date('M d, H:i', strtotime($data1[0]->check_out));
+                if($data1[0]->check_out == '0000-00-00 00:00:00') {
+                    $returndata[$k]['check_out'] = '';
+                }
+                else {
+                    $returndata[$k]['check_out'] = date('M d, H:i', strtotime($data1[0]->check_out));
+                }
                 $returndata[$k]['flag'] = $data1[0]->flag;
                 $returndata[$k]['comment'] = $data1[0]->comment;
                 $returndata[$k]['total_staffing'] = $this->calculateStaffing($data1[0]->staffings_id, $data1[0]->check_in, $data1[0]->check_out, $data1[0]->flag);

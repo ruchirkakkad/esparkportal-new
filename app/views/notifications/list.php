@@ -18,7 +18,7 @@
                     <a ui-sref="app.notifications.detail({mailId:mail.id})" class="text-md">{{mail.subject}}</a>
                     <span class="label {{ labelClass1(mail.label) }} m-l-sm" ng-class="labelClass1(mail.label)">{{mail.label}}</span>
                 </div>
-                <div class="text-ellipsis m-t-xs">{{mail.content | limitTo:100}}</div>
+                <div class="text-ellipsis m-t-xs">{{ mail.content | limitTo:100 | htmlToPlaintext}}</div>
             </div>
         </li>
     </ul>

@@ -145,3 +145,4 @@ app.filter('htmlToPlaintext', function() {
         };
     }
 );
+
