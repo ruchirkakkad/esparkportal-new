@@ -35,6 +35,7 @@ class LeaveManagesController extends \BaseController
             ->orWhere('leave_status', '=', 'reject')->orderBy('leave_date')->get();
         $returndata = [];
         foreach ($data1 as $k => $v) {
+            $today = date('Y-m-d');
             $id = Helper::simple_encrypt($v->leaves_id);
             $returndata[$k]['leaves_id'] = $v->leaves_id;
             $returndata[$k]['description'] = $v->description;
@@ -44,6 +45,10 @@ class LeaveManagesController extends \BaseController
             $returndata[$k]['user_name'] = $v->user->first_name . ' ' . $v->user->last_name;
             $returndata[$k]['approve'] = $id;
             $returndata[$k]['reject'] = $id;
+            if($today>$v->leave_date)
+            {
+                $returndata[$k]['final_approve'] = 1;
+            }
         }
 
         $data['aaData'] = $returndata;

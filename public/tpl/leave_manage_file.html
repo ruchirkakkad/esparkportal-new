@@ -26,6 +26,9 @@
                 <a  ng-click="leave_status_false(row.reject,selected)">
                     <button class="btn btn-sm btn-danger" tooltip="Reject"><i class=" glyphicon glyphicon-remove"></i></button>
                 </a>
+                <a ng-if="row.final_approve == '1'"  ng-click="leave_status_final_approve(row.reject,'report')">
+                    <button class="btn btn-sm btn-info" tooltip="Reject"><i class=" glyphicon glyphicon-ok"></i></button>
+                </a>
             </td>
         </tr>
         </tbody>

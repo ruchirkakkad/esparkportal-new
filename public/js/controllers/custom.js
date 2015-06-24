@@ -185,6 +185,29 @@ app.controller('LeaveManagementDashborad', ['$scope', '$http', '$state', '$inter
                 });
         };
 
+        $scope.leave_status_final_approve = function (id, selected) {
+            $http.post('leave_manages/leave-change-status',
+                {
+                    id: id,
+                    status_type: 'today_leave',
+                    status : true
+                })
+                .success(function (data) {
+                    if(selected == 'leave_request')
+                    {
+                        $scope.leave_request();
+                    }
+                    if(selected == 'report')
+                    {
+                        $scope.report();
+                    }
+                    if(selected == 'today_leave')
+                    {
+                        $scope.today_leave();
+                    }
+                });
+        };
+
     }]);
 //angular.element('#btn2').triggerHandler('click');
 
