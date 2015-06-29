@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Edit Designation</h1>
+  <h1 class="m-n font-thin h3">Edit Leave Type</h1>
 </div>
 <div class="wrapper-md">
 <div flash-message="5000" ></div>
@@ -9,7 +9,7 @@
         <form name="formValidate" class="form-horizontal form-validation" novalidate>
           <div class="panel panel-default">
             <div class="panel-heading">
-              <strong>Edit Designation</strong>
+              <strong>Edit Leave Type</strong>
             </div>
             <div class="panel-body">                    
                 <div class="form-group">
