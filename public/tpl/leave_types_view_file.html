@@ -11,7 +11,7 @@
         <div class="col-md-2">
             <button ng-if="permission.leave_types.csv==1" type="button" ng-csv="getArray()"
                     class="btn btn-sm btn-primary btn-addon pull-right m-xs"
-                    csv-header="['ID', 'Name']"
+                    csv-header="['Id','Name','Title','Comment','Start After','Total Leaves']"
                     filename="leave_types.csv">Export
             </button>
 
@@ -27,7 +27,7 @@
     <table st-table="data.leave_types" class="table table-striped">
         <thead>
         <tr>
-            <th colspan="2">
+            <th colspan="4">
                 <form>
                     <div class="col-md-5">items by page</div>
                     <div class="col-md-7">
@@ -37,7 +37,7 @@
                 </form>
             </th>
             <!--<th colspan="2"></th>-->
-            <th colspan="2" >
+            <th colspan="4" >
                 <div class="col-md-3">Search</div>
                 <div class="col-md-9">
                     <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
@@ -79,7 +79,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="5" class="text-center">
+            <td colspan="8" class="text-center">
                 <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="20"
                      class="no-margin"></div>
             </td>

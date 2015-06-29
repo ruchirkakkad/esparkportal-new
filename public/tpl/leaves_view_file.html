@@ -10,7 +10,7 @@
 
         <div class="col-md-2">
             <button ng-if="permission.leaves.csv==1" type="button" ng-csv="getArray()" class="btn btn-sm btn-primary btn-addon pull-right m-xs"
-                    csv-header="['ID', 'Name']"
+                    csv-header="['Id','User Name','Subject','Leave Type','Date','Status']"
                     filename="leaves.csv">Export
             </button>
 
@@ -25,7 +25,7 @@
     <table st-table="data.leaves" class="table table-striped">
         <thead>
         <tr>
-            <th colspan="3">
+            <th colspan="4">
                 <form>
                     <div class="col-md-5">items by page</div>
                     <div class="col-md-7">
@@ -35,7 +35,7 @@
                 </form>
             </th>
             <!--<th colspan="2"></th>-->
-            <th colspan="3">
+            <th colspan="4">
                 <div class="col-md-3">Search</div>
                 <div class="col-md-9">
                     <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
@@ -49,7 +49,7 @@
             <th st-sort="leave_name">Leave Type</th>
             <th st-sort="leave_date">Date</th>
             <th st-sort="leave_status">Status</th>
-            <th ng-if="permission.leaves.edit==1">Edit</th>
+            <!--<th ng-if="permission.leaves.edit==1">Edit</th>-->
             <th ng-if="permission.leaves.delete==1">Delete</th>
         </tr>
         </thead>
@@ -61,11 +61,11 @@
             <td>{{row.leave_name}}</td>
             <td>{{row.leave_date}}</td>
             <td>{{row.leave_status}}</td>
-            <td ng-if="permission.leaves.edit==1">
-                <a href='#/app/leaves/edit/{{ row.edit }}'>
-                    <button class="btn btn-sm btn-primary" tooltip="Edit"><i class=" fa fa-pencil"></i></button>
-                </a>
-            </td>
+            <!--<td ng-if="permission.leaves.edit==1">-->
+                <!--<a href='#/app/leaves/edit/{{ row.edit }}'>-->
+                    <!--<button class="btn btn-sm btn-primary" tooltip="Edit"><i class=" fa fa-pencil"></i></button>-->
+                <!--</a>-->
+            <!--</td>-->
             <td ng-if="permission.leaves.delete==1">
                 <a href='#/app/leaves/delete/{{ row.delete }}'>
                     <button class="btn btn-sm btn-danger" tooltip="Delete"><i class=" fa fa-trash-o"></i></button>
@@ -76,7 +76,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="5" class="text-center">
+            <td colspan="8" class="text-center">
                 <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="20"
                      class="no-margin"></div>
             </td>
