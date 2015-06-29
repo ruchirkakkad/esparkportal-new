@@ -19,29 +19,28 @@
                 <label class="col-sm-3 control-label">First Name</label>
 
                 <div class="col-sm-9">
-                    <input class="form-control" ng-model="data.user.first_name">
+                    <input class="form-control" ng-pattern="/^(\D)+$/" ng-model="data.user.first_name">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">Middle Name</label>
 
                 <div class="col-sm-9">
-                    <input class="form-control" ng-model="data.user.middle_name">
+                    <input class="form-control" ng-pattern="/^(\D)+$/" ng-model="data.user.middle_name">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">Last Name</label>
 
                 <div class="col-sm-9">
-                    <input class="form-control" ng-model="data.user.last_name">
+                    <input class="form-control" ng-pattern="/^(\D)+$/" ng-model="data.user.last_name">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">Personal Email</label>
 
                 <div class="col-sm-9">
-                    <input type="email" class="form-control" ng-model="data.user.personal_email"
-                           required>
+                    <input type="email" class="form-control" ng-model="data.user.personal_email">
                 </div>
             </div>
 
@@ -79,7 +78,7 @@
 
                 <div class="col-sm-9">
                     <div class="col-sm-6">
-                        <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" required>
+                        <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" >
 
                             <span class="progress" ng-show="picFile[0].progress >= 0">
                                 <div style="width:{{picFile[0].progress}}%" ng-bind="picFile[0].progress + '%'"></div>
@@ -91,7 +90,7 @@
             </div>
         </div>
         <footer class="panel-footer text-right bg-light lter">
-            <button type="submit" class="btn btn-success" ng-click="savePersonalDetails(picFile)">Submit
+            <button type="submit" ng-disabled="!formValidate.$valid" class="btn btn-success" ng-click="savePersonalDetails(picFile)">Submit
             </button>
         </footer>
     </div>

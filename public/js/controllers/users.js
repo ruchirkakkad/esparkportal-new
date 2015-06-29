@@ -215,15 +215,17 @@ app.controller('UsersController', ['$scope', '$http', '$state', 'Flash', '$state
         $scope.removeWorkExperience = function (index) {
             $scope.data.user.user_work_experience.splice(index, 1);
 
-        }
+        };
 
         $scope.addAttechments = function () {
-            alert('k')
             $scope.user_attachments1.push({
                 attachment_name: '',
                 attachment_url: ''
             });
+        };
 
+        $scope.removeAttechments = function (index) {
+            $scope.user_attachments1.splice(index, 1);
         };
 
 

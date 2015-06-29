@@ -26,7 +26,11 @@ app.controller('LeavesController', ['$scope', '$http', '$state', 'Flash', '$stat
             angular.forEach($scope.data.leaves, function(value, key) {
                 csv[key] = {
                     id: value.leaves_id,
-                    name : value.leaves_name
+                    user_name : value.user_name,
+                    subject : value.subject,
+                    leave_name : value.leave_name,
+                    leave_date : value.leave_date,
+                    leave_status : value.leave_status,
                 }
             });
             return csv;

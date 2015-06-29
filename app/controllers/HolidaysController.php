@@ -9,7 +9,7 @@ class HolidaysController extends \BaseController {
 
     public function getIndexdataView()
     {
-        $data1 = Holiday::all();
+        $data1 = Holiday::orderBy('holidays_date','asc')->get();
         $data['aaData'] = $data1;
         $returndata = json_decode(json_encode($data), true);
         foreach ($returndata as $key => $val) {

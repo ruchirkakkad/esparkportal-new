@@ -26,18 +26,30 @@
     {{ Html::style('css/ivh-treeview.css') }}
     {{ Html::style('css/ivh-treeview-theme-basic.css') }}
     <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <link href="css/loader1.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
     {{--<div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img src="img/page_loader.gif" /></div></div>--}}
-    <div id="dvLoading" style="display: none;" data-loading></div>
-    {{--<div class="pre-loader" data-loading>--}}
-    	   {{--<div class="box1"></div>--}}
-    	   {{--<div class="box2"></div>--}}
-    	   {{--<div class="box3"></div>--}}
-    	   {{--<div class="box4"></div>--}}
-    	   {{--<div class="box5"></div>--}}
-    	{{--</div>--}}
+    {{--<div id="dvLoading" style="display: none;" data-loading></div>--}}
+    <div class="pre-loader" data-loading>
+    	   <div class="box1"></div>
+    	   <div class="box2"></div>
+    	   <div class="box3"></div>
+    	   <div class="box4"></div>
+    	   <div class="box5"></div>
+    	</div>
+
+    	{{--<div id="ss-loading" data-loading>--}}
+            {{--<div id="ss-loading-center">--}}
+                {{--<div id="ss-loading-center-absolute">--}}
+                    {{--<div id="object_one" class="object"></div>--}}
+                    {{--<div id="object_two" class="object"></div>--}}
+                    {{--<div id="object_three" class="object"></div>--}}
+                    {{--<div id="object_four" class="object"></div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
     <div class="app" id="app"
          ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':false, 'app-aside-dock':true, 'container':app.settings.container}"
          ui-view></div>
@@ -124,6 +136,5 @@
     <script type="text/javascript" src="js/js/ng-bs-daterangepicker.js"></script>
     <script type="text/javascript" src="js/js/datetimepicker.js"></script>
     {{ Html::script('js/ivh-treeview.js'); }}
-
 </body>
 </html>

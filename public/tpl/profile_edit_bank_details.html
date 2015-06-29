@@ -5,7 +5,7 @@
                 <label class="col-sm-3 control-label">Bank Name</label>
 
                 <div class="col-sm-9">
-                    <input class="form-control" ng-model="data.user.user_bank_details.bank_name">
+                    <input class="form-control" ng-pattern="/^(\D)+$/" ng-model="data.user.user_bank_details.bank_name">
                 </div>
             </div>
             <div class="form-group">
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <footer class="panel-footer text-right bg-light lter">
-                <button type="submit" class="btn btn-success" ng-click="saveBankDetails()">Submit
+                <button type="submit" ng-disabled="!formValidate.$valid"  class="btn btn-success" ng-click="saveBankDetails()">Submit
                 </button>
             </footer>
         </div>

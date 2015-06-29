@@ -11,13 +11,13 @@
           </div>
           <div class="list-group list-group-sm">
             <div class="list-group-item">
-              <input placeholder="First name" name="first_name" class="form-control no-border" ng-model="user.first_name" required>
+              <input placeholder="First name" ng-pattern="/^(\D)+$/"  name="first_name" class="form-control no-border" ng-model="user.first_name" required>
             </div>
             <div class="list-group-item">
-              <input placeholder="Middle name" name="middle_name" class="form-control no-border" ng-model="user.middle_name" required>
+              <input placeholder="Middle name" ng-pattern="/^(\D)+$/"  name="middle_name" class="form-control no-border" ng-model="user.middle_name" required>
             </div>
             <div class="list-group-item">
-              <input placeholder="Last name" name="last_name" class="form-control no-border" ng-model="user.last_name" required>
+              <input placeholder="Last name" ng-pattern="/^(\D)+$/"  name="last_name" class="form-control no-border" ng-model="user.last_name" required>
             </div>
             <div class="list-group-item">
               <input type="email" placeholder="Email" name="email" class="form-control no-border" ng-model="user.email" required>

@@ -1,15 +1,15 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n font-thin h3">Add Holiday</h1>
+    <h1 class="m-n font-thin h3">Edit Skill</h1>
 </div>
-<div class="wrapper-md" ng-init="resetData()">
+<div class="wrapper-md">
     <div flash-message="5000"></div>
     <div>
-        <div class="row">
+        <div class="row" ng-init="editData()">
             <div class="col-sm-6">
                 <form name="formValidate" class="form-horizontal form-validation" novalidate>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <strong>Add Holiday</strong>
+                            <strong>Edit Skill</strong>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
@@ -32,10 +32,12 @@
                                                        ng-model="data.holidays_date"
                                                        is-open="opened" datepicker-options="dateOptions"
                                                        ng-required="true" close-text="Close"/>
-                                                <span class="input-group-btn">
-                                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i
-                                                            class="glyphicon glyphicon-calendar"></i></button>
-                                                </span>
+                                                              <span class="input-group-btn">
+                                                                  <button type="button" class="btn btn-default"
+                                                                          ng-click="open($event)"><i
+                                                                          class="glyphicon glyphicon-calendar"></i>
+                                                                  </button>
+                                                              </span>
                                             </div>
                                         </div>
                                     </div>
@@ -43,9 +45,10 @@
                             </div>
 
                             <footer class="panel-footer text-right bg-light lter">
-                                <button type="submit" class="btn btn-success" ng-disabled="!formValidate.$valid" ng-click="create()">Submit</button>
+                                <button type="submit" class="btn btn-success" ng-disabled="!formValidate.$valid" ng-click="update()">Submit</button>
                             </footer>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>

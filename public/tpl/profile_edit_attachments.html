@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Attachment</label>
 
-                    <div class="col-sm-4 attachment_submit_{{$index }}">
+                    <div class="col-sm-3 attachment_submit_{{$index }}">
                         <select type="text" class="form-control" placeholder="required field"
                                 ng-model="attechment.attachment_name"
                                 ng-options="selectedItem.key as selectedItem.value for selectedItem in [
@@ -32,7 +32,7 @@
                                 required></select>
 
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                         <button ngf-select ng-model="files" class="attachment_submit_{{$index }}"
                                 ngf-multiple="true">Attach Any File
                         </button>
@@ -56,6 +56,10 @@
 
                             </li>
                         </ul>
+                    </div>
+                    <div class="col-sm-3 control-label">
+                        <button type="button" class="btn btn-danger" ng-click="removeAttechments($index)">Remove
+                        </button>
                     </div>
                 </div>
             </div>

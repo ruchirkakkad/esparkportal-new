@@ -51,8 +51,8 @@
                                 <label class="col-sm-3 control-label">Amount</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="required field"
-                                           ng-model="data.amount">
+                                    <input type="text" ng-pattern="/^(\d)+$/"  class="form-control" placeholder="required field"
+                                           ng-model="data.amount" required="">
                                 </div>
                             </div>
 
@@ -87,7 +87,7 @@
                             </div>
 
                             <footer class="panel-footer text-right bg-light lter">
-                                <button type="submit" class="btn btn-success" ng-click="create()">Submit</button>
+                                <button type="submit" ng-disabled="!formValidate.$valid" class="btn btn-success" ng-click="create()">Submit</button>
                             </footer>
                         </div>
                 </form>

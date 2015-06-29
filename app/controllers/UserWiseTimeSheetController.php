@@ -36,6 +36,7 @@ class UserWiseTimeSheetController extends \BaseController
     {
         $first_day_this_month = date('Y-m-01');
         $last_day_this_month = date('Y-m-t');
+        $last_day_this_month = date("Y-m-d", strtotime($last_day_this_month . ' +1 day'));
         return $this->calculateUserWiseFromDate($id, $first_day_this_month, $last_day_this_month);
     }
 

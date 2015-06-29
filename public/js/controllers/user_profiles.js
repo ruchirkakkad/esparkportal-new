@@ -94,7 +94,9 @@ app.controller('UserProfilesController', ['$scope', '$http', '$state', 'Flash', 
             });
 
         };
-
+        $scope.removeAttechments = function (index) {
+            $scope.user_attachments1.splice(index, 1);
+        };
 
         $scope.addQualificationDetails = function () {
             $scope.data.user.users_qualification.push({

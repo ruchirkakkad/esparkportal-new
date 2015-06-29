@@ -16,7 +16,7 @@
                                 <label class="col-sm-3 control-label">Name</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="required field"
+                                    <input type="text" ng-pattern="/^(\D)+$/"  class="form-control" placeholder="required field"
                                            ng-model="data.job_profiles_name">
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <footer class="panel-footer text-right bg-light lter">
-                                <button type="submit" class="btn btn-success" ng-click="update()">Submit</button>
+                                <button type="submit" ng-disabled="!formValidate.$valid" class="btn btn-success" ng-click="update()">Submit</button>
                             </footer>
                         </div>
                     </div>

@@ -40,7 +40,7 @@
                     <label class="col-sm-3 control-label">Start After</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" placeholder="required field"
+                        <input type="text" class="form-control"  ng-pattern="/^(\d)+$/" placeholder="required field"
                                ng-model="data.start_duration">
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <label class="col-sm-3 control-label">Total Leaves</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" placeholder="required field"
+                        <input type="text" class="form-control"  ng-pattern="/^(\d)+$/" placeholder="required field"
                                ng-model="data.total_leaves">
                     </div>
                 </div>
@@ -56,11 +56,11 @@
                     <label class="col-sm-3 control-label">Total Leaves Type</label>
 
                     <div class="col-sm-9">
-                        <select class="form-control" ng-model="data.total_leaves_type" ng-options="item.key as item.value for item in [{key:'month',value:'Month'},{key:'year',value:'Year'}]"></select>
+                        <select class="form-control"  ng-model="data.total_leaves_type" ng-options="item.key as item.value for item in [{key:'month',value:'Month'},{key:'year',value:'Year'}]"></select>
                     </div>
                 </div>
             <footer class="panel-footer text-right bg-light lter">
-              <button type="submit" class="btn btn-success" ng-click="update()">Submit</button>
+              <button type="submit" ng-disabled="!formValidate.$valid" class="btn btn-success" ng-click="update()">Submit</button>
             </footer>
           </div>
           </div>

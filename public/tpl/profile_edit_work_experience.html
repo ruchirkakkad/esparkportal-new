@@ -41,14 +41,14 @@
                     <label class="col-sm-3 control-label">Company Name</label>
 
                     <div class="col-sm-9">
-                        <input class="form-control" ng-model="work_experience.company_name">
+                        <input class="form-control" ng-pattern="/^(\D)+$/" ng-model="work_experience.company_name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Company Number</label>
 
                     <div class="col-sm-9">
-                        <input class="form-control" ng-model="work_experience.company_number">
+                        <input class="form-control" ng-pattern="/^(\d)+$/" ng-model="work_experience.company_number">
                     </div>
                 </div>
                 <div class="form-group">
@@ -60,7 +60,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-3 control-label">
-                        <button type="button" class="btn btn-danger" ng-click="removeWorkExperience($index)">Remove</button>
+                        <button type="button" class="btn btn-danger" ng-disabled="!formValidate.$valid" ng-click="removeWorkExperience($index)">Remove</button>
                     </div>
                 </div>
                 <hr>

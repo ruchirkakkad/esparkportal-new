@@ -19,7 +19,11 @@ app.controller('LeaveTypesController', ['$scope', '$http', '$state', 'Flash', '$
             angular.forEach($scope.data.leave_types, function(value, key) {
                 csv[key] = {
                     id: value.leave_types_id,
-                    name : value.leave_types_name
+                    leave_name : value.leave_name,
+                    leave_title : value.leave_title,
+                    leave_comment : value.leave_comment,
+                    start_duration : value.start_duration,
+                    total_leaves : value.total_leaves+'/'+value.total_leaves_type
                 }
             });
             return csv;

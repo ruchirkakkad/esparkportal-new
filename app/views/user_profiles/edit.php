@@ -3,7 +3,7 @@
         <h1 class="m-n font-thin h3">Edit Profile</h1>
     </div>
     <div class="wrapper-md">
-        <accordion close-others="false">
+        <accordion close-others="">
             <accordion-group heading="Personal Details" is-open="var_profile_edit_personal_details">
                 <div ng-include="profile_edit_personal_details"></div>
             </accordion-group>

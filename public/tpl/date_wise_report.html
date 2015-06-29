@@ -74,7 +74,7 @@
 
             <td ng-if="permission.date_wise_time_sheet.edit==1">
                 <a href='#/app/date_wise_time_sheet/{{{true: "add-staffing-edit/"+row.date+"/"+row.user_id, false: "edit-staffing-edit/"+row.staffings_encrypt_id }[(row.staffings_encrypt_id == "")] }}'>
-                    <button class="btn btn-sm bg-dark lter" tooltip="Edit"><i class=" fa {{{true: 'fa-plus', false: 'fa-pencil'}[(row.staffings_encrypt_id == '')] }}"></i></button>
+                    <button class="btn btn-sm bg-dark lter" tooltip="{{{true: 'Add', false: 'Edit'}[(row.staffings_encrypt_id == '')] }}"><i class=" fa {{{true: 'fa-plus', false: 'fa-pencil'}[(row.staffings_encrypt_id == '')] }}"></i></button>
                 </a>
             </td>
         </tr>
