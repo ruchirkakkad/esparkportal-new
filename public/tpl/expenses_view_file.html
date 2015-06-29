@@ -64,8 +64,8 @@
             <td>{{row.amount_type}}</td>
             <td>{{row.cheque_number}}</td>
             <td>{{row.reason}}</td>
-            <td ng-if="row.expense_type == 'credit'" ng-init="data.income = data.income + row.amount">{{row.amount}}</td>
-            <td ng-if="row.expense_type == 'debit'" ng-init="data.expense = data.expense + row.amount">{{row.amount}}</td>
+            <td ng-if="row.expense_type == 'credit'" ng-init="data.income =  1 * data.income +  1 * row.amount">{{row.amount}}</td>
+            <td ng-if="row.expense_type == 'debit'" ng-init="data.expense =  1 * data.expense +  1 * row.amount">{{row.amount}}</td>
 
             <td ng-if="permission.expenses.edit==1">
                 <a href='#/app/expenses/edit/{{ row.edit }}'>
@@ -87,7 +87,7 @@
             <td><b>Total Expense</b></td>
             <td><b>{{ data.expense }}</b></td>
             <td><b>Remaining Balance</b></td>
-            <td><b>{{ data.income - data.expense }}</b></td>
+            <td><b>{{  1 * data.income -  1 * data.expense }}</b></td>
             <td></td>
             <td></td>
         </tr>
