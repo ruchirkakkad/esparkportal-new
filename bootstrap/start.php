@@ -29,7 +29,14 @@ $app = new Illuminate\Foundation\Application;
 //	'local' => array('espark-portal-new.local')
 //));
 
-$env = $app->detectEnvironment(function() {
+$env = $app->detectEnvironment(function () {
+    if (gethostname() == 'serv01.siteground138.com') {
+        return 'production';
+    } elseif (gethostname() == 'serv01.m38.siteground.biz') {
+        return 'staging';
+    } else {
+        return 'local';
+    }
     return gethostname() == 'serv01.siteground138.com' ? 'production' : 'local';
 });
 /*
@@ -43,7 +50,7 @@ $env = $app->detectEnvironment(function() {
 |
 */
 
-$app->bindInstallPaths(require __DIR__.'/paths.php');
+$app->bindInstallPaths(require __DIR__ . '/paths.php');
 
 /*
 |--------------------------------------------------------------------------
@@ -56,10 +63,10 @@ $app->bindInstallPaths(require __DIR__.'/paths.php');
 |
 */
 
-$framework = $app['path.base'].
-                 '/vendor/laravel/framework/src';
+$framework = $app['path.base'] .
+    '/vendor/laravel/framework/src';
 
-require $framework.'/Illuminate/Foundation/start.php';
+require $framework . '/Illuminate/Foundation/start.php';
 
 /*
 |--------------------------------------------------------------------------
