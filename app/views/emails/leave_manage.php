@@ -1,2 +1,2 @@
 Hello,
-<?php print_r($message); ?>
+<?php print_r($messageas); ?>

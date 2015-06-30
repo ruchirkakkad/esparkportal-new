@@ -129,7 +129,8 @@ class UsersController extends \BaseController
 
         if ($save)
         {
-            $to = new stdClass(); //TODO not tested the mail, check it before live
+            $to[0] = new stdClass(); //TODO not tested the mail, check it before live
+            $to[1] = new stdClass(); //TODO not tested the mail, check it before live
             $to[0]->email = $user->email;
             $to[0]->name = $user->first_name;
             $to[1]->email = $user->personal_email;

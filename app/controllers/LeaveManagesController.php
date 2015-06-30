@@ -122,7 +122,7 @@ class LeaveManagesController extends \BaseController
 
     public function set($status, $message, $to,$user_id)
     {
-        Helper::sendMail('emails.leave_manage', ['message' => $message], $to, "Leave Status - " . ucfirst($status));
+//        Helper::sendMail('emails.leave_manage', ['messageas' => $message], $to, "Leave Status - " . ucfirst($status));
         $notification = new Notification();
         $notification->subject = "Leave Status - " . ucfirst($status);
         $notification->content = $message;
