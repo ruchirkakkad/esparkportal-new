@@ -47,9 +47,9 @@ class StaffingController extends \BaseController
                         $totalTime = (($totalStaff - $totalBreaks) > 0) ? ($totalStaff - $totalBreaks) : 0;
                         $totalFromCheckedInTime = strtotime($current_date) - strtotime($check_in);
                         if ($totalTime > $maxTime || ($totalFromCheckedInTime > $maxTime && $status[0]->flag != 'checkedout')) {
-                            return Response::json(['time' => gmdate('H:i', $totalTime), 'accessStyle' => 'block'])->setCallback(Input::get('callback'));
+                            return Response::json(['time' => Helper::time_hm($totalTime), 'accessStyle' => 'block'])->setCallback(Input::get('callback'));
                         } else {
-                            return Response::json(['time' => gmdate('H:i', $totalTime), 'accessStyle' => 'none'])->setCallback(Input::get('callback'));
+                            return Response::json(['time' => Helper::time_hm($totalTime), 'accessStyle' => 'none'])->setCallback(Input::get('callback'));
                         }
 
                     } else {
@@ -68,9 +68,9 @@ class StaffingController extends \BaseController
                 $totalTime = (($totalStaff - $totalBreaks) > 0) ? ($totalStaff - $totalBreaks) : 0;
                 $totalFromCheckedInTime = strtotime($current_date) - strtotime($check_in);
                 if ($totalTime > $maxTime || ($totalFromCheckedInTime > $maxTime && $status[0]->flag != 'checkedout')) {
-                    return Response::json(['time' => gmdate('H:i', $totalTime), 'accessStyle' => 'block'])->setCallback(Input::get('callback'));
+                    return Response::json(['time' => Helper::time_hm($totalTime), 'accessStyle' => 'block'])->setCallback(Input::get('callback'));
                 } else {
-                    return Response::json(['time' => gmdate('H:i', $totalTime), 'accessStyle' => 'none'])->setCallback(Input::get('callback'));
+                    return Response::json(['time' => Helper::time_hm($totalTime), 'accessStyle' => 'none'])->setCallback(Input::get('callback'));
                 }
             } elseif ($status[0]->flag == 'check') {
 
@@ -85,9 +85,9 @@ class StaffingController extends \BaseController
 
                 $totalFromCheckedInTime = strtotime($current_date) - strtotime($check_in);
                 if ($totalTime > $maxTime || ($totalFromCheckedInTime > $maxTime && $status[0]->flag != 'checkedout')) {
-                    return Response::json(['time' => gmdate('H:i', $totalTime), 'accessStyle' => 'block'])->setCallback(Input::get('callback'));
+                    return Response::json(['time' => Helper::time_hm($totalTime), 'accessStyle' => 'block'])->setCallback(Input::get('callback'));
                 } else {
-                    return Response::json(['time' => gmdate('H:i', $totalTime), 'accessStyle' => 'none'])->setCallback(Input::get('callback'));
+                    return Response::json(['time' => Helper::time_hm($totalTime), 'accessStyle' => 'none'])->setCallback(Input::get('callback'));
                 }
             } else {
                 return Response::json(['time' => '00:00', 'accessStyle' => 'none'])->setCallback(Input::get('callback'));

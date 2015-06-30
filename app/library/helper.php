@@ -65,6 +65,17 @@ class Helper
         return date('d-m-Y',strtotime($date));
     }
 
+    public static function time_hm($time)
+    {
+
+        $h = floor($time/3600);
+        $_h = ($h < 10 ? '0' : '').$h;
+
+        $m = floor(($time-($h*3600))/60);
+        $_m = ($m < 10 ? '0' : '').$m;
+
+        return $_h.':'.$_m;
+    }
 
     public static function sendMail($view,$data,$to,$subject)
     {

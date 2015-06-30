@@ -121,9 +121,9 @@ class UserWiseTimeSheetController extends \BaseController
                     $totalTime = (($totalStaff - $totalBreaks) > 0) ? ($totalStaff - $totalBreaks) : 0;
                     $totalFromCheckedInTime = strtotime($current_date) - strtotime($check_in);
                     if ($totalTime > $maxTime || ($totalFromCheckedInTime > $maxTime && $flag != 'checkedout')) {
-                        return ['time' => gmdate('H:i', $totalTime), 'break_time' => gmdate('H:i', $totalBreaks), 'actual_break_time' => gmdate('H:i', $actualBreak)];
+                        return ['time' => Helper::time_hm($totalTime), 'break_time' => Helper::time_hm($totalBreaks), 'actual_break_time' => Helper::time_hm($actualBreak)];
                     } else {
-                        return ['time' => gmdate('H:i', $totalTime), 'break_time' => gmdate('H:i', $totalBreaks), 'actual_break_time' => gmdate('H:i', $actualBreak)];
+                        return ['time' => Helper::time_hm($totalTime), 'break_time' => Helper::time_hm($totalBreaks), 'actual_break_time' => Helper::time_hm($actualBreak)];
                     }
                 } else {
                     $totalBreaks += strtotime($value->break_out) - strtotime($value->break_in);
@@ -139,9 +139,9 @@ class UserWiseTimeSheetController extends \BaseController
             $totalTime = (($totalStaff - $totalBreaks) > 0) ? ($totalStaff - $totalBreaks) : 0;
             $totalFromCheckedInTime = strtotime($current_date) - strtotime($check_in);
             if ($totalTime > $maxTime || ($totalFromCheckedInTime > $maxTime && $flag != 'checkedout')) {
-                return ['time' => gmdate('H:i', $totalTime), 'break_time' => gmdate('H:i', $totalBreaks), 'actual_break_time' => gmdate('H:i', $actualBreak)];
+                return ['time' => Helper::time_hm($totalTime), 'break_time' => Helper::time_hm($totalBreaks), 'actual_break_time' => Helper::time_hm($actualBreak)];
             } else {
-                return ['time' => gmdate('H:i', $totalTime), 'break_time' => gmdate('H:i', $totalBreaks), 'actual_break_time' => gmdate('H:i', $actualBreak)];
+                return ['time' => Helper::time_hm($totalTime), 'break_time' => Helper::time_hm($totalBreaks), 'actual_break_time' => Helper::time_hm($actualBreak)];
             }
         } elseif ($flag == 'check') {
             $totalStaff = strtotime($current_date) - strtotime($check_in);
@@ -152,9 +152,9 @@ class UserWiseTimeSheetController extends \BaseController
             $totalTime = (($totalStaff - $totalBreaks) > 0) ? ($totalStaff - $totalBreaks) : 0;
             $totalFromCheckedInTime = strtotime($current_date) - strtotime($check_in);
             if ($totalTime > $maxTime || ($totalFromCheckedInTime > $maxTime && $flag != 'checkedout')) {
-                return ['time' => gmdate('H:i', $totalTime), 'break_time' => gmdate('H:i', $totalBreaks), 'actual_break_time' => gmdate('H:i', $actualBreak)];
+                return ['time' => Helper::time_hm($totalTime), 'break_time' => Helper::time_hm($totalBreaks), 'actual_break_time' => Helper::time_hm($actualBreak)];
             } else {
-                return ['time' => gmdate('H:i', $totalTime), 'break_time' => gmdate('H:i', $totalBreaks), 'actual_break_time' => gmdate('H:i', $actualBreak)];
+                return ['time' => Helper::time_hm($totalTime), 'break_time' => Helper::time_hm($totalBreaks), 'actual_break_time' => Helper::time_hm($actualBreak)];
             }
         } else {
             return ['time' => '00:00', 'break_time' => '00:00'];
