@@ -63,6 +63,7 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval', '$root
                             }
                             else {
                                 $scope.userAccessClass = "block";
+                                $('.staffing_buttons').remove();
                             }
                         });
                     $scope.staffing_file = "tpl/staffing_file.html";
