@@ -3,7 +3,7 @@
         <div class="panel-body">
             <div ng-repeat="qualification_detail  in data.user.users_qualification">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Education Detail</label>
+                    <label class="col-sm-3 control-label">Education Detail{{qualification_detail.educational_qualifications_id}}</label>
 
                     <div class="col-sm-9" ng-init="qualification_detail.educational_qualifications_id = (qualification_detail.educational_qualifications_id * 1)">
                         <select type="text" class="form-control"
