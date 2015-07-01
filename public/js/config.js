@@ -153,6 +153,7 @@ app.directive('ngReallyClick', [function() {
             element.bind('click', function() {
                 //var message = attrs.ngReallyMessage;
                 var message = 'Are you sure?';
+                console.log('in');
                 if (message && confirm(message)) {
                     scope.$apply(attrs.ngReallyClick);
                 }
