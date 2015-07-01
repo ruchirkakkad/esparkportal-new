@@ -146,3 +146,17 @@ app.filter('htmlToPlaintext', function() {
     }
 );
 
+app.directive('ngReallyClick', [function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('click', function() {
+                //var message = attrs.ngReallyMessage;
+                var message = 'Are you sure?';
+                if (message && confirm(message)) {
+                    scope.$apply(attrs.ngReallyClick);
+                }
+            });
+        }
+    }
+}]);

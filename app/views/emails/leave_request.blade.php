@@ -1,7 +1,7 @@
 <body style="width: 640px;margin: 0 auto;padding: 0;height: auto;font-family: verdana;">
-    <div style="border: 15px solid #28BB7F;border-radius: 5px;">
+    <div style="border: 15px solid #F77F38;border-radius: 5px;">
 
-        <div class="footer_details" style="background: none repeat scroll 0 0 #28bb7f;color: #fff;float: left;height: 35px;margin-bottom: 15px;text-align: center;width: 100%;">
+        <div class="footer_details" style="background: none repeat scroll 0 0 #F77F38;color: #fff;float: left;height: 35px;margin-bottom: 15px;text-align: center;width: 100%;">
             <div style="font-size: 14px;">
                 <b>This is an auto-generated email. Please do not respond to it.</b>
             </div>
@@ -37,7 +37,7 @@
 
 
 
-        <div class="footer_details" style="background: #28BB7F; color: #fff;">
+        <div class="footer_details" style="background: #F77F38; color: #fff;">
             <div style="margin-left: 10px;padding: 30px 3px;font-size: 14px;">
                 101/102, Shanti Mall<br>
                 Nr. Satadhar X Roads<br>
