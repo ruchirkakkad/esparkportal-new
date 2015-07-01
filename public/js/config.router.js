@@ -87,6 +87,30 @@ angular.module('app')
                             }]
                     }
                 })
+
+
+                .state('app.dashboard_calendar', {
+                    url: '/dashboard_calendar',
+                    template: '<div ui-view  ng-controller="CalendarController" class="fade-in-right-big"></div>'
+                })
+                .state('app.dashboard_calendar.index-view', {
+                    url: '/index-view',
+                    templateUrl: 'dashboard_calendar/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad', 'uiLoad',
+                            function ($ocLazyLoad, uiLoad) {
+                                return uiLoad.load(
+                                    JQ_CONFIG.fullcalendar.concat('js/controllers/calendar.js')
+                                ).then(
+                                    function () {
+                                        return $ocLazyLoad.load('ui.calendar');
+                                    }
+                                )
+                            }]
+                    }
+                })
+
                 .state('app.modules', {
                     url: '/modules',
                     template: '<div ui-view class="fade-in-up"></div>'

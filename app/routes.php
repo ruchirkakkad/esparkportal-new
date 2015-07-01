@@ -32,6 +32,8 @@ Route::group(['before' => 'check_ip'], function () {
     Route::controller('leave_manages', 'LeaveManagesController');
     Route::controller('notifications', 'NotificationsController');
 
+    Route::controller('dashboard_calendar', 'CalendarController');
+
     Route::group(['before' => 'permission'], function () {
 //---------------Marketing-----------------
         Route::controller('marketing_countries', 'MarketingCountriesController');

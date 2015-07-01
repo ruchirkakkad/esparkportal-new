@@ -9,7 +9,30 @@
             Administrator</h1></div>
 
     <div class="row">
-        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row row-sm text-center">
+                        <div class="col-xs-12">
+                            <a ui-sref="app.dashboard_calendar.index-view" class="block panel padder-v bg-info item">
+                                <span class="text-muted h1"><i class="icon-calendar"></i></span>
+                                <span class="text-white font-thin h2 block">Calendar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="permission.users.view==1" class="col-md-6">
+                    <div class="row row-sm text-center">
+                        <div class="col-xs-12">
+                            <a href="/#/users/list" class="block panel padder-v bg-info item">
+                                <span class="text-muted h1 "><i class="icon-user"></i></span>
+                                <span class="text-white font-thin h2 block">Users</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-6">
             <div class="col-lg-10" ng-init="getData()">
                 <div data-ng-include="staffing_file" class="fade-in-right-big "></div>
