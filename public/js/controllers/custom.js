@@ -11,6 +11,12 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval', '$root
             time: "00:00"
         };
 
+        $scope.getUserCount = function () {
+            $http.get('staffing/usercount', {})
+                .success(function (data) {
+                    $scope.userCount = data;
+                });
+        };
         $scope.userAccessClass = "none";
         $scope.buttons = [];
         $scope.error = "";
@@ -73,25 +79,45 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval', '$root
         $scope.check_in = function () {
             $http.post('staffing/check-in', {})
                 .success(function (data) {
-                    $state.go($state.current, {}, {reload: true});
+                    if (data == '0') {
+                        alert('Are you playing with the system?? Already Checked In..');
+                        $state.go($state.current, {}, {reload: true});
+                    } else {
+                        $state.go($state.current, {}, {reload: true});
+                    }
                 });
         };
         $scope.check_out = function () {
             $http.post('staffing/check-out', {})
                 .success(function (data) {
-                    $state.go($state.current, {}, {reload: true});
+                    if (data == '0') {
+                        alert('Are you playing with the system?? Already Checked Out..');
+                        $state.go($state.current, {}, {reload: true});
+                    } else {
+                        $state.go($state.current, {}, {reload: true});
+                    }
                 });
         };
         $scope.break_in = function () {
             $http.post('staffing/break-in', {})
                 .success(function (data) {
-                    $state.go($state.current, {}, {reload: true});
+                    if (data == '0') {
+                        alert('Are you playing with the system?? Already Breaked In..');
+                        $state.go($state.current, {}, {reload: true});
+                    } else {
+                        $state.go($state.current, {}, {reload: true});
+                    }
                 });
         };
         $scope.break_out = function () {
             $http.post('staffing/break-out', {})
                 .success(function (data) {
-                    $state.go($state.current, {}, {reload: true});
+                    if (data == '0') {
+                        alert('Are you playing with the system?? Already Breaked Out..');
+                        $state.go($state.current, {}, {reload: true});
+                    } else {
+                        $state.go($state.current, {}, {reload: true});
+                    }
                 });
         };
     }]);
@@ -146,19 +172,16 @@ app.controller('LeaveManagementDashborad', ['$scope', '$http', '$state', '$inter
                 {
                     id: id,
                     status_type: selected,
-                    status : true
+                    status: true
                 })
                 .success(function (data) {
-                    if(selected == 'leave_request')
-                    {
+                    if (selected == 'leave_request') {
                         $scope.leave_request();
                     }
-                    if(selected == 'report')
-                    {
+                    if (selected == 'report') {
                         $scope.report();
                     }
-                    if(selected == 'today_leave')
-                    {
+                    if (selected == 'today_leave') {
                         $scope.today_leave();
                     }
                 });
@@ -169,19 +192,16 @@ app.controller('LeaveManagementDashborad', ['$scope', '$http', '$state', '$inter
                 {
                     id: id,
                     status_type: selected,
-                    status : false
+                    status: false
                 })
                 .success(function (data) {
-                    if(selected == 'leave_request')
-                    {
+                    if (selected == 'leave_request') {
                         $scope.leave_request();
                     }
-                    if(selected == 'report')
-                    {
+                    if (selected == 'report') {
                         $scope.report();
                     }
-                    if(selected == 'today_leave')
-                    {
+                    if (selected == 'today_leave') {
                         $scope.today_leave();
                     }
                 });
@@ -192,19 +212,16 @@ app.controller('LeaveManagementDashborad', ['$scope', '$http', '$state', '$inter
                 {
                     id: id,
                     status_type: 'today_leave',
-                    status : true
+                    status: true
                 })
                 .success(function (data) {
-                    if(selected == 'leave_request')
-                    {
+                    if (selected == 'leave_request') {
                         $scope.leave_request();
                     }
-                    if(selected == 'report')
-                    {
+                    if (selected == 'report') {
                         $scope.report();
                     }
-                    if(selected == 'today_leave')
-                    {
+                    if (selected == 'today_leave') {
                         $scope.today_leave();
                     }
                 });
@@ -213,25 +230,22 @@ app.controller('LeaveManagementDashborad', ['$scope', '$http', '$state', '$inter
     }]);
 //angular.element('#btn2').triggerHandler('click');
 
-app.directive('loading',   ['$http' ,function ($http)
-    {
-        return {
-            restrict: 'A',
-            link: function (scope, elm, attrs)
-            {
-                scope.isLoading = function () {
-                    return $http.pendingRequests.length > 0;
-                };
+app.directive('loading', ['$http', function ($http) {
+    return {
+        restrict: 'A',
+        link: function (scope, elm, attrs) {
+            scope.isLoading = function () {
+                return $http.pendingRequests.length > 0;
+            };
 
-                scope.$watch(scope.isLoading, function (v)
-                {
-                    if(v){
-                        elm.show();
-                    }else{
-                        elm.hide();
-                    }
-                });
-            }
-        };
+            scope.$watch(scope.isLoading, function (v) {
+                if (v) {
+                    elm.show();
+                } else {
+                    elm.hide();
+                }
+            });
+        }
+    };
 
-    }]);
+}]);

@@ -8,6 +8,10 @@
  */
 class StaffingController extends \BaseController
 {
+    public function getUsercount()
+    {
+        return User::count();
+    }
     public function anyStaffingCalculation()
     {
         $user_id = Auth::user()->user_id;
@@ -168,58 +172,205 @@ class StaffingController extends \BaseController
 
     public function postCheckIn()
     {
+
         $user_id = Auth::user()->user_id;
-        $current_date = date('Y-m-d H:i:s');
-        $staffing = new Staffing();
-        $staffing->users_id = $user_id;
-        $staffing->check_in = $current_date;
-        $staffing->flag = 'check';
-        $staffing->save();
+        $current_date = date('Y-m-d');
+
+        $yesturday_date = date('Y-m-d', strtotime("-1 days"));
+
+        $status = Staffing::where('users_id', '=', $user_id)
+            ->whereRaw("IF(
+            (SELECT COUNT(*) AS co FROM `staffings`
+            WHERE `users_id` = '$user_id'
+            AND ( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
+            ) = 1
+            ,( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
+            ,DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date')")
+            ->get();
+
+
+        if (count($status) == 0) {
+            $user_id = Auth::user()->user_id;
+            $current_date = date('Y-m-d H:i:s');
+            $staffing = new Staffing();
+            $staffing->users_id = $user_id;
+            $staffing->check_in = $current_date;
+            $staffing->flag = 'check';
+            $staffing->save();
+            return 1;
+        } elseif (count($status) == 1) {
+            if ($status[0]->flag == 'check') {
+                return 0;
+            } elseif ($status[0]->flag == 'break') {
+                return 0;
+            } elseif ($status[0]->flag == 'checkedout') {
+                if (date('Y-m-d', strtotime($status[0]->check_in)) != $current_date) {
+                    $user_id = Auth::user()->user_id;
+                    $current_date = date('Y-m-d H:i:s');
+                    $staffing = new Staffing();
+                    $staffing->users_id = $user_id;
+                    $staffing->check_in = $current_date;
+                    $staffing->flag = 'check';
+                    $staffing->save();
+                    return 1;
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
     }
 
     public function postCheckOut()
     {
         $user_id = Auth::user()->user_id;
-        $current_date = date('Y-m-d H:i:s');
-        $staffing = Staffing::where('users_id', '=', $user_id)
-            ->where('flag', '=', 'check')
-            ->update(['check_out' => $current_date, 'flag' => 'checkedout']);;
+        $current_date = date('Y-m-d');
+
+        $yesturday_date = date('Y-m-d', strtotime("-1 days"));
+
+        $status = Staffing::where('users_id', '=', $user_id)
+            ->whereRaw("IF(
+            (SELECT COUNT(*) AS co FROM `staffings`
+            WHERE `users_id` = '$user_id'
+            AND ( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
+            ) = 1
+            ,( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
+            ,DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date')")
+            ->get();
 
 
+        if (count($status) == 0) {
+            return 0;
+        } elseif (count($status) == 1) {
+            if ($status[0]->flag == 'check') {
+                $user_id = Auth::user()->user_id;
+                $current_date = date('Y-m-d H:i:s');
+                $staffing = Staffing::where('users_id', '=', $user_id)
+                    ->where('flag', '=', 'check')
+                    ->update(['check_out' => $current_date, 'flag' => 'checkedout']);;
+                return 1;
+            } elseif ($status[0]->flag == 'break') {
+                return 0;
+            } elseif ($status[0]->flag == 'checkedout') {
+                return 0;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
     }
 
     public function postBreakIn()
     {
         $user_id = Auth::user()->user_id;
-        $staffing_id = Staffing::where('users_id', '=', $user_id)->where('flag', '=', 'check')->latest()->pluck('staffings_id');
-        $current_date = date('Y-m-d H:i:s');
-        $break = new Breaks();
-        $break->staffings_id = $staffing_id;
-        $break->break_in = $current_date;
-        $break->flag = 'breakin';
-        $break->save();
+        $current_date = date('Y-m-d');
 
-        if ($break) {
-            $staffing = Staffing::find($staffing_id);
-            $staffing->flag = 'break';
-            $staffing->save();
+        $yesturday_date = date('Y-m-d', strtotime("-1 days"));
+
+        $status = Staffing::where('users_id', '=', $user_id)
+            ->whereRaw("IF(
+            (SELECT COUNT(*) AS co FROM `staffings`
+            WHERE `users_id` = '$user_id'
+            AND ( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
+            ) = 1
+            ,( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
+            ,DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date')")
+            ->get();
+
+
+        if (count($status) == 0) {
+            return 0;
+        } elseif (count($status) == 1) {
+            if ($status[0]->flag == 'check') {
+                $staffing_id = Staffing::where('users_id', '=', $user_id)->where('flag', '=', 'check')->latest()->pluck('staffings_id');
+                $current_date = date('Y-m-d H:i:s');
+                $break = new Breaks();
+                $break->staffings_id = $staffing_id;
+                $break->break_in = $current_date;
+                $break->flag = 'breakin';
+                $break->save();
+
+                if ($break) {
+                    $staffing = Staffing::find($staffing_id);
+                    $staffing->flag = 'break';
+                    $staffing->save();
+                }
+                return 1;
+            } elseif ($status[0]->flag == 'break') {
+                return 0;
+            } elseif ($status[0]->flag == 'checkedout') {
+                return 0;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
         }
     }
 
     public function postBreakOut()
     {
         $user_id = Auth::user()->user_id;
-        $staffing_id = Staffing::where('users_id', '=', $user_id)->where('flag', '=', 'break')->latest()->pluck('staffings_id');
-        $current_date = date('Y-m-d H:i:s');
-        $break_id = Breaks::where('staffings_id', '=', $staffing_id)->where('flag', '=', 'breakin')->pluck('breaks_id');
-        $break = Breaks::find($break_id);
-        $break->break_out = $current_date;
-        $break->flag = 'breakout';
-        $break->save();
-        if ($break) {
-            $staffing = Staffing::find($staffing_id);
-            $staffing->flag = 'check';
-            $staffing->save();
+        $current_date = date('Y-m-d');
+
+        $yesturday_date = date('Y-m-d', strtotime("-1 days"));
+
+        $status = Staffing::where('users_id', '=', $user_id)
+            ->whereRaw("IF(
+            (SELECT COUNT(*) AS co FROM `staffings`
+            WHERE `users_id` = '$user_id'
+            AND ( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
+            ) = 1
+            ,( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
+            ,DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date')")
+            ->get();
+
+
+        if (count($status) == 0) {
+            return 0;
+        } elseif (count($status) == 1) {
+            if ($status[0]->flag == 'check') {
+                return 0;
+            } elseif ($status[0]->flag == 'break') {
+                $user_id = Auth::user()->user_id;
+                $staffing_id = Staffing::where('users_id', '=', $user_id)->where('flag', '=', 'break')->latest()->pluck('staffings_id');
+                $current_date = date('Y-m-d H:i:s');
+                $break_id = Breaks::where('staffings_id', '=', $staffing_id)->where('flag', '=', 'breakin')->pluck('breaks_id');
+                $break = Breaks::find($break_id);
+                $break->break_out = $current_date;
+                $break->flag = 'breakout';
+                $break->save();
+                if ($break) {
+                    $staffing = Staffing::find($staffing_id);
+                    $staffing->flag = 'check';
+                    $staffing->save();
+                }
+                return 1;
+            } elseif ($status[0]->flag == 'checkedout') {
+                return 0;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
         }
 
     }

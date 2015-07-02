@@ -12,6 +12,8 @@
     {{ HTML::style('bower_components/animate.css/animate.css') }}
     {{ Html::style('bower_components/font-awesome/css/font-awesome.min.css') }}
     {{ Html::style('bower_components/simple-line-icons/css/simple-line-icons.css') }}
+
+    <link rel="stylesheet" href="bower_components/angular-filemanager/dist/angular-filemanager.css">
     {{ Html::style('css/font.css') }}
 
     {{ Html::style('css/app.css') }}
@@ -106,7 +108,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/mode/xml/xml.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/mode/javascript/javascript.min.js"></script>
     
-    
+
+
     {{ Html::script('js/app.js'); }}
     {{ Html::script('js/config.js'); }}
     {{ Html::script('js/config.lazyload.js'); }}
@@ -136,5 +139,9 @@
     <script type="text/javascript" src="js/js/ng-bs-daterangepicker.js"></script>
     <script type="text/javascript" src="js/js/datetimepicker.js"></script>
     {{ Html::script('js/ivh-treeview.js'); }}
+
+    <!-- angular-filemanager -->
+    <script src="bower_components/angular-filemanager/dist/angular-filemanager.min.js"></script>
+    <script src="bower_components/angular-filemanager/dist/cached-templates.js"></script>
 </body>
 </html>

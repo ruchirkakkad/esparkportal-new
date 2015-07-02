@@ -22,10 +22,10 @@
                     </div>
                 </div>
                 <div ng-if="permission.users.view==1" class="col-md-6">
-                    <div class="row row-sm text-center">
+                    <div class="row row-sm text-center" ng-init="getUserCount()">
                         <div class="col-xs-12">
                             <a href="/#/users/list" class="block panel padder-v bg-info item">
-                                <span class="text-muted h1 "><i class="icon-user"></i></span>
+                                <span class="text-muted h1 ">{{ userCount }}</span>
                                 <span class="text-white font-thin h2 block">Users</span>
                             </a>
                         </div>
