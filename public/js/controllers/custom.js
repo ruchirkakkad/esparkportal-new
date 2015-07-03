@@ -10,7 +10,7 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval', '$root
         $scope.totalStaffing = {
             time: "00:00"
         };
-        $scope.data = {};
+
         $scope.getUserCount = function () {
             $http.get('staffing/usercount', {})
                 .success(function (data) {
@@ -59,9 +59,8 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval', '$root
                     $scope.buttons = data.buttons;
                     $scope.error = data.error;
                     $scope.success = data.success;
+                    console.log($scope.success);
                     $scope.entries = data.entries;
-                    $scope.comment = data.comment;
-                    $scope.comments = data.comments;
                     $http.post('staffing/staffing-calculation', {})
                         .success(function (data) {
                             $scope.totalStaffing = data;
@@ -75,19 +74,6 @@ app.controller('StaffingCtrl', ['$scope', '$http', '$state', '$interval', '$root
                             }
                         });
                     $scope.staffing_file = "tpl/staffing_file.html";
-                });
-        };
-        $scope.add_comment = function () {
-            $http.post('staffing/add-comment', {
-                comment : $scope.data.comment
-            })
-                .success(function (data) {
-                    if (data == '0') {
-                        alert('Are you playing with the system?? Already Checked In..');
-                        $state.go($state.current, {}, {reload: true});
-                    } else {
-                        $state.go($state.current, {}, {reload: true});
-                    }
                 });
         };
         $scope.check_in = function () {
