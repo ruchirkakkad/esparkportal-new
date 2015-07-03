@@ -3,14 +3,36 @@
         Time Tracker : {{ totalStaffing.time }}
     </div>
     <div class="list-group">
+        <div class="list-group-item" ng-if="comment == 'true'">
+            <form name="formValidate" class="form-horizontal form-validation" novalidate>
+                <div class="">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Comment:</label>
+
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" placeholder="Write your Comment"
+                                   ng-model="data.comment">
+                        </div>
+                        <button type="submit" class="btn btn-dark col-sm-2" ng-click="add_comment()">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="list-group-item" ng-if="comment == 'true' && comments.length >= 1">
+            <h5>Comments</h5>
+            <alert ng-repeat="comment in comments" type="danger"><b>{{comment}}</b></alert>
+        </div>
         <div class="list-group-item">
             <alert ng-repeat="entry in entries" type="{{entry.type}}"><b>{{entry.msg}}</b></alert>
         </div>
-        <div class="list-group-item" ng-if="error.msg != ''"><b style="color: {{ error.type }}">{{ error.msg }}</b></div>
-        <div class="list-group-item" ><b style="color: {{ success.type }}">{{ success.msg }}</b></div>
+        <div class="list-group-item" ng-if="error.msg != ''"><b style="color: {{ error.type }}">{{ error.msg }}</b>
+        </div>
+        <div class="list-group-item"><b style="color: {{ success.type }}">{{ success.msg }}</b></div>
 
         <div class="list-group-item staffing_buttons" ng-if="error.msg == ''">
-            <button ng-click="{{ button.function }}" class="btn m-b-xs w-xs {{ button.class }}" ng-repeat="button in buttons">{{ button.name }}</button>
+            <button ng-click="{{ button.function }}" class="btn m-b-xs w-xs {{ button.class }}"
+                    ng-repeat="button in buttons">{{ button.name }}
+            </button>
         </div>
     </div>
 </div>
