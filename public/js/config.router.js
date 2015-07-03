@@ -3321,6 +3321,29 @@ angular.module('app')
                     url: '/create',
                     templateUrl: 'announcements/create-add'
                 })
+                .state('app.settings', {
+                    url: '/settings',
+                    template: '<div ui-view  ng-controller="SettingsController" class="fade-in-right-big"></div>'
+                })
+                .state('app.settings.index', {
+                    url: '/index',
+                    templateUrl: 'settings/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/settings.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
 
 
         }

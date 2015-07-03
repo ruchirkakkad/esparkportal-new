@@ -108,10 +108,6 @@ class StaffingController extends \BaseController
         $current_date = date('Y-m-d');
 
         $yesturday_date = date('Y-m-d', strtotime("-1 days"));
-//        $status = Staffing::where('users_id', '=', $user_id)
-////            ->where('flag','!=','checkedout')
-//            ->whereRaw("DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date' OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') != '$yesturday_date')")
-//            ->get();
 
         $status = Staffing::where('users_id', '=', $user_id)
             ->whereRaw("IF(
@@ -126,16 +122,16 @@ class StaffingController extends \BaseController
             OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
             ,DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date')")
             ->get();
-//        $queries = DB::getQueryLog();
-//        $last_query = end($queries);
-//        dd($last_query);
-        $buttons = [];
+
+        $comment = 'true';
+        $comments = [];
         $buttons = [];
         $entries = [];
         $success = [];
         $error = ['msg' => ""];
         if (count($status) == 0) {
             $buttons[] = ['name' => 'Check In', 'class' => 'btn-success', 'function' => 'check_in()'];
+            $comment = 'false';
         } elseif (count($status) == 1) {
             $entries[] = ['msg' => 'Check In time is : ' . date('M d, H:i A', strtotime($status[0]->check_in)), 'type' => 'success'];
             $staffing_id = $status[0]->staffings_id;
@@ -146,6 +142,7 @@ class StaffingController extends \BaseController
                     $entries[] = ['msg' => 'Break Out time is : ' . date('M d, H:i A', strtotime($value->break_out)), 'type' => 'warning'];
                 }
             }
+            $comments = json_decode($status[0]->comment,true);
             if ($status[0]->flag == 'check') {
                 $buttons[] = ['name' => 'Break In', 'class' => 'btn-info', 'function' => 'break_in()'];
                 $buttons[] = ['name' => 'Check Out', 'class' => 'btn-danger', 'function' => 'check_out()'];
@@ -157,16 +154,21 @@ class StaffingController extends \BaseController
                 if (date('Y-m-d', strtotime($status[0]->check_in)) != $current_date) {
                     $buttons[] = ['name' => 'Check In', 'class' => 'btn-success', 'function' => 'check_in()'];
                 }
+                $comment = 'false';
             } else {
                 $error = ['msg' => "Something is wrong with your Staffing.. Please kindly contact HR", 'type' => 'red'];
+                $comment = 'false';
             }
         } else {
             $error = ['msg' => "Something is wrong with your Staffing.. Please kindly contact HR", 'type' => 'red'];
+            $comment = 'false';
         }
         $data['error'] = $error;
         $data['success'] = $success;
         $data['buttons'] = $buttons;
         $data['entries'] = $entries;
+        $data['comment'] = $comment;
+        $data['comments'] = $comments;
         return $data;
     }
 
@@ -375,4 +377,57 @@ class StaffingController extends \BaseController
 
     }
 
+    public function postAddComment()
+    {
+
+        $user_id = Auth::user()->user_id;
+        $current_date = date('Y-m-d');
+
+        $yesturday_date = date('Y-m-d', strtotime("-1 days"));
+
+        $status = Staffing::where('users_id', '=', $user_id)
+            ->whereRaw("IF(
+            (SELECT COUNT(*) AS co FROM `staffings`
+            WHERE `users_id` = '$user_id'
+            AND ( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
+            ) = 1
+            ,( DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date'
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND DATE_FORMAT(check_out,'%Y-%m-%d') = '$current_date')
+            OR (DATE_FORMAT(check_in,'%Y-%m-%d') = '$yesturday_date' AND flag != 'checkedout'))
+            ,DATE_FORMAT(check_in,'%Y-%m-%d') = '$current_date')")
+            ->get();
+
+
+        if (count($status) == 0) {
+            return 0;
+        } elseif (count($status) == 1) {
+            if ($status[0]->flag == 'check') {
+                $staffings_id = $status[0]['staffings_id'];
+                $comment = Input::get('comment');
+                $staffing = Staffing::find($staffings_id);
+                $old_comments = json_decode($staffing->comment,true);
+                $old_comments[] = $comment;
+                $staffing->comment = json_encode($old_comments);
+                $staffing->save();
+                return 1;
+            } elseif ($status[0]->flag == 'break') {
+                $staffings_id = $status[0]['staffings_id'];
+                $comment = Input::get('comment');
+                $staffing = Staffing::find($staffings_id);
+                $old_comments = json_decode($staffing->comment,true);
+                $old_comments[] = $comment;
+                $staffing->comment = json_encode($old_comments);
+                $staffing->save();
+                return 1;
+            } elseif ($status[0]->flag == 'checkedout') {
+                return 0;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
 } 
