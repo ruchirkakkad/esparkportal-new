@@ -83,8 +83,8 @@
 </div>
 <!-- / navbar collapse -->
 <script>
-        app.controller('showMenuController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope',
-        function ($scope, $http, $state, Flash, $stateParams, $rootScope) {
+        app.controller('showMenuController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope','$interval',
+        function ($scope, $http, $state, Flash, $stateParams, $rootScope,$interval) {
 
             $scope.data = {
                 modules:[]
@@ -93,16 +93,25 @@
 
             $http.get('headerDataView',{}).success(
                 function(data){
-
                     $scope.data.modules =data.modules;
                     $scope.data.notification_count =data.notification_count;
-
-//                    console.log($scope.data.modules);
-
                 }
             );
 
-
+            $interval(function () {
+                jQuery.ajax({
+                    url: "notificationCounter",
+                    cache: false,
+                    success: function (data) {
+                        $scope.data.notification_count =data.notification_count;
+                    }
+                });
+//                $http.get('notificationCounter',{}).success(
+//                    function(data){
+//                        $scope.data.notification_count =data.notification_count;
+//                    }
+//                );
+            }, 10000);
 
 
     }]);

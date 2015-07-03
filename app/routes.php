@@ -12,6 +12,7 @@ Route::group(['before' => 'check_ip'], function () {
     Route::get('asideView', ['uses' => 'LayoutController@asideView']);
     Route::get('navView', ['uses' => 'LayoutController@navView']);
     Route::get('headerDataView', ['uses' => 'LayoutController@headerDataView']);
+    Route::get('notificationCounter', ['uses' => 'LayoutController@notificationCounter']);
 
 
 //---------------Authentication

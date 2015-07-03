@@ -104,6 +104,13 @@ class LayoutController extends \BaseController
         return json_decode(json_encode($data), true);
     }
 
+    public function notificationCounter()
+    {
+        $data['notification_count'] = NotificationTo::where('users_id','=',Auth::user()->user_id)
+            ->where('status','=','unread')->count();
+        return json_decode(json_encode($data), true);
+    }
+
 
     public function display_children($parent, $level, $newArray)
     {

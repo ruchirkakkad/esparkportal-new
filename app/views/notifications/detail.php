@@ -18,7 +18,7 @@
         <div ng-repeat="attach in mail.attach" class="panel b-a inline m-r-sm m-b-sm bg-light">
             <div class="wrapper-xs b-b"><i class="fa fa-paperclip"></i> {{attach.name}}</div>
             <div class="wrapper-xs w-sm lt">
-                <a ng-href="{{attach.url}}"><img ng-src="<?= ImgProxy::link("public/{{attach.image_url}}",140,140,100,0); ?>" class="img-full"></a>
+                <a ng-href="{{attach.url[0]['url']}}" download><img ng-src="<?= ImgProxy::link("public/{{attach.image_url}}",140,140,100,0); ?>" class="img-full"></a>
             </div>
         </div>
     </div>

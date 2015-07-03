@@ -38,12 +38,14 @@ class NotificationsController extends \BaseController
 
             if (count($returnData[$key]['attach']) > 0) {
                 foreach ($returnData[$key]['attach'] as $k => $attach) {
-                    $extension = File::extension($attach['url']);
+                    $attach['url'] = json_decode($attach['url'],true);
+//                    dd($attach['url'][0]['url']);
+                    $extension = File::extension($attach['url'][0]['url']);
                     if (!in_array($extension, $img_extensions)) {
                         $attach['image_url'] = 'img/images.png';
                     }else{
 
-                        $attach['image_url'] = $attach['url'];
+                        $attach['image_url'] = $attach['url'][0]['url'];
 
                     }
                     $returnData[$key]['attach'][$k] = $attach;
