@@ -13,28 +13,29 @@ app.controller('SettingsController', ['$scope', '$http', '$state', 'Flash', '$st
             $http.post('settings/index-data-view', {})
                 .success(function (data) {
                     $scope.data.fields = data;
+                    console.log($scope.data.fields)
                 });
-        }
+        };
 
 
         $scope.update = function () {
 
 
-            $http.post('skills/update-edit/' + $scope.data.skills_id, {
-                skills_name: $scope.data.skills_name
+            $http.post('settings/update-view', {
+                fields: $scope.data.fields
             }).success(function (data) {
 
-                var data = (data);
-
-                if (data.code == '200') {
-                    Flash.create('success', data.msg);
-                    $state.go('app.skills.index');
-                }
-                if (data.code == '403') {
-                    Flash.create('danger', data.msg);
-                }
+                //var data = (data);
+                //
+                //if (data.code == '200') {
+                //    Flash.create('success', data.msg);
+                //    $state.go('app.skills.index');
+                //}
+                //if (data.code == '403') {
+                //    Flash.create('danger', data.msg);
+                //}
             }, function (x) {
-                Flash.create('danger', 'Server Error');
+                //Flash.create('danger', 'Server Error');
             });
         };
 

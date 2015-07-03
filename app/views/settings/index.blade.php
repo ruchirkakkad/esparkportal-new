@@ -12,10 +12,10 @@
               <strong>General Settings</strong>
             </div>
             <div class="panel-body">                    
-              <div class="form-group" ng-repeats="field as data.fields">
-                <label class="col-sm-3 control-label">Name</label>
+              <div class="form-group" ng-repeat="field in data.fields">
+                <label class="col-sm-3 control-label">@{{ field.title }}</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" placeholder="required field" ng-model="data">
+                  <input type="text" class="form-control" placeholder="required field" ng-model="field.value">
                 </div>
               </div>
 
