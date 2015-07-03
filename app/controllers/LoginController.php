@@ -112,7 +112,7 @@ class LoginController extends \BaseController
                 return 1;
             } else {
                 $ips = AllowedIp::lists('allowed_ips_name');
-                if (!in_array('*', $ips)) {
+                if (!in_array('*', $ips)) { //globally allowed or not checked.. If * is in ip list it will allow all..
                     if (!in_array($_SERVER['REMOTE_ADDR'], $ips)) {
                         return 2;
                     }
