@@ -27,16 +27,13 @@ class LoginController extends \BaseController
             'personal_email' => 'required|unique:users'
         ];
         $validator = Validator::make(['personal_email' => Input::get('email')], $rules);
-        if($validator->fails())
-        {
+        if ($validator->fails()) {
             return json_encode([
                 'code' => 403,
                 'msg' => Config::get('constants.error_record_msg'),
                 'result' => $validator->messages()
             ]);
-        }
-        else
-        {
+        } else {
             $user = new User;
             $user->first_name = $user_info['first_name'];
             $user->middle_name = $user_info['middle_name'];
@@ -48,8 +45,7 @@ class LoginController extends \BaseController
 //            $save = 1;
 
             if ($save) {
-                Mail::send('emails.welcome', ['user' => $user], function($message) use($user)
-                {
+                Mail::send('emails.welcome', ['user' => $user], function ($message) use ($user) {
                     $message->to($user->personal_email, $user->first_name)->subject('Welcome!');
                 });
                 return json_encode([
@@ -82,12 +78,12 @@ class LoginController extends \BaseController
 
         if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'), 'user_status' => 1))) {
             $permission = Permission::leftJoin('modules', 'modules.module_id', '=', 'permissions.page_id')
-                ->where('modules.is_inmenu','=',1)
+                ->where('modules.is_inmenu', '=', 1)
                 ->where('permissions.role_id', '=', Auth::user()->role_id)->get()->keyBy('page_id')->toArray();
             Session::set('permission', $permission);
 
             $data['permission'] = Permission::leftJoin('modules', 'modules.module_id', '=', 'permissions.page_id')
-                ->where('modules.is_inmenu','=',1)
+                ->where('modules.is_inmenu', '=', 1)
                 ->where('permissions.role_id', '=', Auth::user()->role_id)->get()->keyBy('module_controller')->toArray();
             $data['user'] = Auth::user();
             return $data;
@@ -100,7 +96,7 @@ class LoginController extends \BaseController
     {
         if (Auth::check()) {
             $data['permission'] = Permission::leftJoin('modules', 'modules.module_id', '=', 'permissions.page_id')
-                ->where('modules.is_inmenu','=',1)
+                ->where('modules.is_inmenu', '=', 1)
                 ->where('permissions.role_id', '=', Auth::user()->role_id)->get()->keyBy('module_controller')->toArray();
             $data['user'] = Auth::user();
             return $data;
@@ -112,16 +108,14 @@ class LoginController extends \BaseController
     public function checkAuthentication()
     {
         if (Auth::check()) {
-            if(date('Y-m-d H:i:s') < date('Y-m-d H:i:s', strtotime(Auth::user()->ip_access_expire_time)))
-            {
+            if (date('Y-m-d H:i:s') < date('Y-m-d H:i:s', strtotime(Auth::user()->ip_access_expire_time))) {
                 return 1;
-            }
-            else
-            {
+            } else {
                 $ips = AllowedIp::lists('allowed_ips_name');
-                if(!in_array($_SERVER['REMOTE_ADDR'],$ips))
-                {
-                    return 2;
+                if (!in_array('*', $ips)) {
+                    if (!in_array($_SERVER['REMOTE_ADDR'], $ips)) {
+                        return 2;
+                    }
                 }
                 return 1;
             }
