@@ -1852,7 +1852,13 @@ fieldset[disabled] .btn-primary.active {
   background-color: #27c24c;
   border-color: #27c24c;
 }
-
+.btn-pink {
+    background: #e671b8 none repeat scroll 0 0;
+    color: #fff !important;
+}
+.btn-pink:hover {
+    background: #de46a2 none repeat scroll 0 0;
+}
 .btn-success:hover,
 .btn-success:focus,
 .btn-success:active,

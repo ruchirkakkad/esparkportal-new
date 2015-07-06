@@ -2,11 +2,51 @@
  * Created by hardik on 6/12/2015.
  */
 
-app.controller('RecruitCandidatesController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope', '$filter', '$timeout', '$compile', 'Upload',
-    function ($scope, $http, $state, Flash, $stateParams, $rootScope, $filter, $timeout, $compile, Upload) {
+app.controller('RecruitCandidatesController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope', '$filter', '$timeout', '$compile', 'Upload', '$modal',
+    function ($scope, $http, $state, Flash, $stateParams, $rootScope, $filter, $timeout, $compile, Upload, $modal) {
 
         $scope.data = {
-            users_qualification: []
+            candidate: [],
+            users_qualification: [],
+            candidates: [],
+            index : 0
+        };
+
+
+        $scope.user = {id: "", name: ""}
+
+
+        $scope.open = function (id) {
+            $scope.user.id = id;
+            var modalInstance = $modal.open({
+                templateUrl: 'myModalContent.html',
+                controller: 'ModalInstanceCtrl',
+                scope: $scope
+            });
+
+        };
+        $scope.change_action = function (index) {
+            $scope.data.index = index;
+            $scope.data.candidate = $scope.data.candidates[index];
+            $scope.data.candidate.date = '';
+            $scope.data.candidate.time = '';
+            $scope.data.candidate.subject = '';
+            $scope.data.candidate.message = '';
+            //console.log($scope.data.candidate.name);
+            var modalInstance = $modal.open({
+                templateUrl: 'changeAction.html',
+                controller: 'changeActionCtrl',
+                scope: $scope
+            });
+
+        };
+
+        $scope.index = function () {
+            $http.get('recruit_candidates/index-data-view', {})
+                .success(function (data) {
+                    $scope.data.candidates = data.aaData;
+                    $scope.recruit_candidates_view_file = 'tpl/recruit_candidates_view_file.html';
+                });
         };
 
         $scope.resetData = function () {
@@ -18,7 +58,7 @@ app.controller('RecruitCandidatesController', ['$scope', '$http', '$state', 'Fla
                 });
         };
 
-        $scope.create = function (files){
+        $scope.create = function (files) {
 
             if (files != undefined) {
 
@@ -70,7 +110,7 @@ app.controller('RecruitCandidatesController', ['$scope', '$http', '$state', 'Fla
         function uploadUsingUpload(file) {
 
             file.upload = Upload.upload({
-                url: 'recruit_candidates/store-resume-add' ,
+                url: 'recruit_candidates/store-resume-add',
                 method: 'POST',
                 headers: {
                     'my-header': 'my-header-value'
@@ -121,3 +161,31 @@ app.controller('RecruitCandidatesController', ['$scope', '$http', '$state', 'Fla
 
     }]);
 /* EOF */
+app.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+    $scope.ok = function () {
+        console.log($scope.user.id);
+        console.log($scope.status);
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
+app.controller('changeActionCtrl', function ($scope, $modalInstance, $http) {
+    $scope.ok = function () {
+        console.log($scope.data.candidate);
+        $http.post('recruit_candidates/change-status-to-scheduled-view', {
+            candidate: $scope.data.candidate
+        }).success(function (data) {
+            $scope.data.candidates[$scope.data.index].recruit_candidates_action = data.result.candidate.recruit_candidates_action;
+            $scope.data.reschedule_count = data.result.action_count;
+        });
+
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});

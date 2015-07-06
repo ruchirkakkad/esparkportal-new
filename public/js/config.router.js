@@ -3270,7 +3270,25 @@ angular.module('app')
                             }]
                     }
                 })
-
+                .state('app.recruit_candidates.index', {
+                    url: '/index',
+                    templateUrl: 'recruit_candidates/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['smart-table']).then(
+                                    function () {
+                                        return $ocLazyLoad.load({
+                                            files: [
+                                                'js/controllers/recruit_candidates.js'
+                                            ]
+                                        });
+                                    }
+                                );
+                            }]
+                    }
+                })
                 // mail
                 .state('app.notifications', {
                     abstract: true,
