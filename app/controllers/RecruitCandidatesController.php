@@ -129,6 +129,7 @@ class RecruitCandidatesController extends \BaseController
         foreach ($returndata as $key => $val) {
             foreach ($val as $key1 => $val1) {
                 $id = Helper::simple_encrypt($val1['recruit_candidates_id']);
+                $returndata[$key][$key1]['reschedule_count'] = RecruitCandidateAction::where('recruit_candidate_id', '=', $val1['recruit_candidates_id'])->count();
                 $returndata[$key][$key1]['edit'] = $id;
                 $returndata[$key][$key1]['delete'] = $id;
             }
@@ -140,8 +141,7 @@ class RecruitCandidatesController extends \BaseController
     {
         $settings = Setting::all();
         $settings_data = [];
-        foreach($settings as $key => $val)
-        {
+        foreach ($settings as $key => $val) {
             $settings_data[$val->key] = $val->value;
         }
         $settings_data = json_decode(json_encode($settings_data));
@@ -149,8 +149,8 @@ class RecruitCandidatesController extends \BaseController
         $id = $request_data['recruit_candidates_id'];
         $candidate_action = new RecruitCandidateAction();
         $candidate_action->recruit_candidate_id = $id;
-        $candidate_action->date = date('Y-m-d',strtotime($request_data['date']));
-        $candidate_action->time = date('H:i:s',strtotime($request_data['time']));
+        $candidate_action->date = date('Y-m-d', strtotime($request_data['date']));
+        $candidate_action->time = date('H:i:s', strtotime($request_data['time']));
         $candidate_action->action = $request_data['recruit_candidates_action'];
         $candidate_action->subject = $request_data['subject'];
         $candidate_action->save();
@@ -164,10 +164,10 @@ class RecruitCandidatesController extends \BaseController
             'settings' => $settings_data,
             'request_data' => $request_data,
         ];
-        Mail::send('emails/schedule_interview', $data, function ($message) use ($candidate,$candidate_action,$settings_data) {
-            $message->to($candidate->recruit_candidates_email, $candidate->recruit_candidates_fname)->subject('eSparkBiz has scheduled your interview on Date:- '.date('M d, Y (l)',strtotime($candidate_action->date)).'and Time:- '.date('H:i A',strtotime($candidate_action->time)));
+        Mail::send('emails/schedule_interview', $data, function ($message) use ($candidate, $candidate_action, $settings_data) {
+            $message->to($candidate->recruit_candidates_email, $candidate->recruit_candidates_fname)->subject('eSparkBiz has scheduled your interview on Date:- ' . date('M d, Y (l)', strtotime($candidate_action->date)) . 'and Time:- ' . date('H:i A', strtotime($candidate_action->time)));
         });
-        Mail::send('emails/schedule_interview', $data, function ($message) use ($candidate,$candidate_action,$settings_data) {
+        Mail::send('emails/schedule_interview', $data, function ($message) use ($candidate, $candidate_action, $settings_data) {
             $message->to($settings_data->hr_email, $settings_data->hr_name)->subject('eSparkBiz has scheduled an interview ');
         });
         if ($save) {
@@ -175,6 +175,58 @@ class RecruitCandidatesController extends \BaseController
                 'code' => 200,
                 'msg' => Config::get('constants.store_record_msg'),
                 'result' => ['candidate' => $candidate, 'action_count' => $count]
+            ]);
+        } else {
+            return json_encode([
+                'code' => 403,
+                'msg' => Config::get('constants.error_record_msg'),
+                'result' => null
+            ]);
+        }
+    }
+
+    public function anyChangeStatusView()
+    {
+        $settings = Setting::all();
+        $settings_data = [];
+        foreach ($settings as $key => $val) {
+            $settings_data[$val->key] = $val->value;
+        }
+        $settings_data = json_decode(json_encode($settings_data));
+        $request_data = Input::get('candidate');
+        $status = Input::get('status');
+
+        if ($status == 'Reject') {
+            $status = 'Rejected';
+            $action = 'Rejected';
+        } else {
+            $status = 'Selected';
+            $action = 'Offer Letter';
+        }
+        $id = $request_data['recruit_candidates_id'];
+
+        $candidate = RecruitCandidate::find($id);
+        $candidate->recruit_candidates_status = $status;
+        $candidate->recruit_candidates_action = $action;
+        $save = $candidate->save();
+        if ($status == 'Selected') {
+            $data = [
+                'candidate' => $candidate,
+                'settings' => $settings_data,
+                'request_data' => $request_data,
+            ];
+            Mail::send('emails/recruitment_select_candidate', $data, function ($message) use ($candidate, $settings_data) {
+                $message->to($candidate->recruit_candidates_email, $candidate->recruit_candidates_fname)->subject('Selected');
+            });
+            Mail::send('emails/recruitment_select_candidate', $data, function ($message) use ($candidate, $settings_data) {
+                $message->to($settings_data->hr_email, $settings_data->hr_name)->subject('Selected');
+            });
+        }
+        if ($save) {
+            return json_encode([
+                'code' => 200,
+                'msg' => Config::get('constants.store_record_msg'),
+                'result' => ['candidate' => $candidate]
             ]);
         } else {
             return json_encode([

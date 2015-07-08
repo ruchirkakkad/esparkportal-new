@@ -52,7 +52,7 @@
             <th st-sort="recruit_candidates_status">Status</th>
             <th st-sort="recruit_candidates_action">Action</th>
             <th ng-if="permission.recruit_candidates.edit==1">Edit</th>
-            <th ng-if="permission.recruit_candidates.delete==1">Delete</th>
+            <!--<th ng-if="permission.recruit_candidates.delete==1">Delete</th>-->
         </tr>
         </thead>
         <tbody>
@@ -62,7 +62,7 @@
             <td>{{row.recruit_candidates_contact_no}}</td>
             <td>
                 <button ng-if="row.recruit_candidates_status == 'Pending'" type="button" class="btn btn-primary"
-                        ng-click="open(row.recruit_candidates_id)">{{row.recruit_candidates_status}}
+                        ng-click="change_status($index)">{{row.recruit_candidates_status}}
                 </button>
                 <button ng-if="row.recruit_candidates_status != 'Pending'" type="button"
                         class="btn {{row.recruit_candidates_status == 'Rejected'?'btn-danger' : 'btn-success'}}">
@@ -76,10 +76,16 @@
                 </button>
                 <button ng-if="row.recruit_candidates_action == 'Reschedule'" ng-click="change_action($index)" type="button"
                         class="btn btn-success">
-                    {{row.recruit_candidates_action}} - {{ data.reschedule_count }}
+                    {{row.recruit_candidates_action}} - {{ row.reschedule_count }}
                 </button>
                 <button ng-if="row.recruit_candidates_action == 'Offer Letter'" ng-click="send_offer_letter($index)" type="button"
                         class="btn btn-pink">
+                         {{row.recruit_candidates_action}}
+                </button>
+                <button ng-if="row.recruit_candidates_action == 'Rejected'" type="button" class="btn btn-danger">
+                         {{row.recruit_candidates_action}}
+                </button>
+                <button ng-if="row.recruit_candidates_action == 'Selected'" type="button" class="btn btn-success">
                          {{row.recruit_candidates_action}}
                 </button>
             </td>
@@ -89,11 +95,11 @@
                     <button class="btn btn-sm btn-primary" tooltip="Edit"><i class=" fa fa-pencil"></i></button>
                 </a>
             </td>
-            <td ng-if="permission.recruit_candidates.delete==1">
-                <a href='#/app/recruit_candidates/delete/{{ row.delete }}'>
-                    <button class="btn btn-sm btn-danger" tooltip="Delete"><i class=" fa fa-trash-o"></i></button>
-                </a>
-            </td>
+            <!--<td ng-if="permission.recruit_candidates.delete==1">-->
+                <!--<a href='#/app/recruit_candidates/delete/{{ row.delete }}'>-->
+                    <!--<button class="btn btn-sm btn-danger" tooltip="Delete"><i class=" fa fa-trash-o"></i></button>-->
+                <!--</a>-->
+            <!--</td>-->
 
         </tr>
         </tbody>
@@ -108,7 +114,7 @@
     </table>
 </div>
 
-<script type="text/ng-template" id="myModalContent.html">
+<script type="text/ng-template" id="changeStatus.html">
     <div class="modal-header">
         <h3 class="modal-title">Select the candidate Status !!</h3>
 

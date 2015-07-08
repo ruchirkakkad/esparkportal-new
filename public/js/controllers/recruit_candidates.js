@@ -9,18 +9,19 @@ app.controller('RecruitCandidatesController', ['$scope', '$http', '$state', 'Fla
             candidate: [],
             users_qualification: [],
             candidates: [],
-            index : 0
+            index: 0
         };
 
 
         $scope.user = {id: "", name: ""}
 
 
-        $scope.open = function (id) {
-            $scope.user.id = id;
+        $scope.change_status = function (index) {
+            $scope.data.index = index;
+            $scope.data.candidate = $scope.data.candidates[index];
             var modalInstance = $modal.open({
-                templateUrl: 'myModalContent.html',
-                controller: 'ModalInstanceCtrl',
+                templateUrl: 'changeStatus.html',
+                controller: 'changeStatusCtrl',
                 scope: $scope
             });
 
@@ -161,10 +162,17 @@ app.controller('RecruitCandidatesController', ['$scope', '$http', '$state', 'Fla
 
     }]);
 /* EOF */
-app.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+app.controller('changeStatusCtrl', function ($scope, $modalInstance, $http) {
     $scope.ok = function () {
-        console.log($scope.user.id);
         console.log($scope.status);
+        $http.post('recruit_candidates/change-status-view', {
+            candidate: $scope.data.candidate,
+            status: $scope.status
+        }).success(function (data) {
+            $scope.data.candidates[$scope.data.index].recruit_candidates_action = data.result.candidate.recruit_candidates_action;
+            $scope.data.candidates[$scope.data.index].recruit_candidates_status = data.result.candidate.recruit_candidates_status;
+            console.log($scope.data.candidates[$scope.data.index]);
+        });
         $modalInstance.close();
     };
 
@@ -174,12 +182,11 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
 });
 app.controller('changeActionCtrl', function ($scope, $modalInstance, $http) {
     $scope.ok = function () {
-        console.log($scope.data.candidate);
         $http.post('recruit_candidates/change-status-to-scheduled-view', {
             candidate: $scope.data.candidate
         }).success(function (data) {
             $scope.data.candidates[$scope.data.index].recruit_candidates_action = data.result.candidate.recruit_candidates_action;
-            $scope.data.reschedule_count = data.result.action_count;
+            $scope.data.candidates[$scope.data.index].reschedule_count = data.result.action_count;
         });
 
         $modalInstance.close();

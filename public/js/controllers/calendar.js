@@ -57,11 +57,11 @@ app.controller('CalendarController', ['$scope', '$http', function ($scope, $http
     $scope.alertOnEventClick = function (date, jsEvent, view) {
         var time = new Date().getTime();
         if (time - $scope.lastClickTime <= $scope.precision) {
-            $scope.events.push({
-                title: 'New Event',
-                start: date,
-                className: ['b-l b-2x b-info']
-            });
+            //$scope.events.push({
+            //    title: 'New Event',
+            //    start: date,
+            //    className: ['b-l b-2x b-info']
+            //});
         }
         $scope.lastClickTime = time;
     };
@@ -100,7 +100,7 @@ app.controller('CalendarController', ['$scope', '$http', function ($scope, $http
     $scope.uiConfig = {
         calendar: {
             height: 450,
-            editable: true,
+            editable: false,
             header: {
                 left: 'prev',
                 center: 'title',
