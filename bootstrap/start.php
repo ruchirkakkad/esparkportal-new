@@ -32,6 +32,8 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(function () {
     if (gethostname() == 'serv01.siteground138.com') {
         return 'production';
+    } elseif (gethostname() == 'esplserver') {
+        return 'local_server';
     } elseif (gethostname() == 'serv01.m38.siteground.biz') {
         return 'staging';
     } else {
