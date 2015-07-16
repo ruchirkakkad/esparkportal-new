@@ -272,6 +272,11 @@ class UserProfilesController extends \BaseController
         $data->personal_email = $userData['personal_email'];
         $data->gender = $userData['gender'];
 
+        if($userData['password'] != '')
+        {
+            $data->password = Hash::make($userData['password']);
+        }
+
         $save = $data->save();
         if ($save) {
             return json_encode([

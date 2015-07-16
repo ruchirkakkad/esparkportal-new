@@ -36,7 +36,7 @@ class CalendarController extends \BaseController
                     $returndata[$k]['className'] = 'b-l b-r b-5x b-success';
                     $k++;
                 }
-                if ($this->validateDate($v->user_personal['aniversary_date'], 'Y-m-d')) {
+                if ($this->validateDate($v->user_personal['aniversary_date'], 'Y-m-d') && date('Y-m-d',strtotime($v->user_personal['aniversary_date'])) != '1970-01-01') {
                     $returndata[$k]['title'] = $v->first_name . " " . $v->last_name."'s Anniversary";
                     $returndata[$k]['start'] = date($year . '-m-d', strtotime($v->user_personal['aniversary_date']));
                     $returndata[$k]['className'] = 'b-l b-r b-5x b-danger';

@@ -11,7 +11,7 @@ class UsersController extends \BaseController
      */
     public function getIndexView()
     {
-       return View::make('users.index');
+        return View::make('users.index');
     }
 
     public function getListLayoutView()
@@ -36,8 +36,8 @@ class UsersController extends \BaseController
             'user_attachments'])->get();
         $returndata = json_decode(json_encode($data), true);
         foreach ($returndata['users'] as $key => $val) {
-                $id = Helper::simple_encrypt($val['user_id']);
-                $returndata['users'][$key]['user_encrypt_id'] = $id;
+            $id = Helper::simple_encrypt($val['user_id']);
+            $returndata['users'][$key]['user_encrypt_id'] = $id;
         }
         return $returndata;
     }
@@ -74,10 +74,8 @@ class UsersController extends \BaseController
         $users = User::where('user_status', '=', 0)->get();
         $data['aaData'] = $users;
         $returndata = json_decode(json_encode($data), true);
-        foreach ($returndata as $key => $val)
-        {
-            foreach ($val as $key1 => $val1)
-            {
+        foreach ($returndata as $key => $val) {
+            foreach ($val as $key1 => $val1) {
                 $id = Helper::simple_encrypt($val1['user_id']);
                 $returndata[$key][$key1]['edit'] = $id;
                 $returndata[$key][$key1]['delete'] = $id;
@@ -120,31 +118,28 @@ class UsersController extends \BaseController
         $user->role_id = Input::get('role_id');
         $user->email = Input::get('email');
         $user->employee_id = Input::get('employee_id');
-        $user->doj =date('Y-m-d',  strtotime(Input::get('doj')));
+        $user->doj = date('Y-m-d', strtotime(Input::get('doj')));
         $user->password = Hash::make(Input::get('password'));
         $user->user_status = 1;
 
         $save = $user->save();
         $user->password1 = Input::get('password');
 
-        if ($save)
-        {
+        if ($save) {
             $to[0] = new stdClass(); //TODO not tested the mail, check it before live
             $to[1] = new stdClass(); //TODO not tested the mail, check it before live
             $to[0]->email = $user->email;
             $to[0]->name = $user->first_name;
             $to[1]->email = $user->personal_email;
             $to[1]->name = $user->first_name;
-            Helper::sendMail('emails.approved_user',['user' => $user],$to,'Welcome!');
+            Helper::sendMail('emails.approved_user', ['user' => $user], $to, 'Welcome!');
 
             return json_encode([
                 'code' => 200,
                 'msg' => Config::get('constants.store_record_msg'),
                 'result' => null
             ]);
-        }
-        else
-        {
+        } else {
             return json_encode([
                 'code' => 403,
                 'msg' => Config::get('constants.error_record_msg'),
@@ -157,7 +152,7 @@ class UsersController extends \BaseController
      * Display the specified resource.
      * GET /users/{id}
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function getShowView()
@@ -196,17 +191,19 @@ class UsersController extends \BaseController
         $data['educational_qualifications'] = EducationalQualification::lists('educational_qualifications_name', 'educational_qualifications_id');
         return $data;
     }
+
     /**
      * Show the form for editing the specified resource.
      * GET /users/{id}/edit
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function getEditEdit()
     {
         return View::make('users.edit');
     }
+
     public function postFindEdit($id)
     {
         $id = Helper::simple_decrypt($id);
@@ -237,7 +234,6 @@ class UsersController extends \BaseController
         $data['designation'] = Designation::with('job_profiles')->get();
 
         $data['role'] = Role::all();
-
 
 
         $data['skills'] = Skill::select('skills_name', 'skills_id')->get();
@@ -332,20 +328,17 @@ class UsersController extends \BaseController
         $user->role_id = Input::get('role_id');
 
         $user->employee_id = Input::get('employee_id');
-        $user->doj =date('Y-m-d',  strtotime(Input::get('doj')));
+        $user->doj = date('Y-m-d', strtotime(Input::get('doj')));
 
         $save = $user->save();
 
-        if ($save)
-        {
+        if ($save) {
             return json_encode([
                 'code' => 200,
                 'msg' => Config::get('constants.store_record_msg'),
                 'result' => null
             ]);
-        }
-        else
-        {
+        } else {
             return json_encode([
                 'code' => 403,
                 'msg' => Config::get('constants.error_record_msg'),
@@ -485,7 +478,9 @@ class UsersController extends \BaseController
         $data->last_name = $userData['last_name'];
         $data->personal_email = $userData['personal_email'];
         $data->gender = $userData['gender'];
-
+        if ($userData['password'] != '') {
+            $data->password = Hash::make($userData['password']);
+        }
         $save = $data->save();
         if ($save) {
             return json_encode([
@@ -595,7 +590,7 @@ class UsersController extends \BaseController
         if (Input::hasFile('attachment')) {
             $file = Input::file('attachment');
 
-            $destinationPath = public_path() . '/uploads/' . $email.'/attachments/';
+            $destinationPath = public_path() . '/uploads/' . $email . '/attachments/';
 
 //            $filename = 'profile_image.' . $file->getClientOriginalExtension();
             $filename = $file->getClientOriginalName();
@@ -605,7 +600,7 @@ class UsersController extends \BaseController
         }
 
         if ($uploadSuccess) {
-            $data->attachment_url = "uploads/" . $email .'/attachments/'. $filename;
+            $data->attachment_url = "uploads/" . $email . '/attachments/' . $filename;
         }
 
 
@@ -632,7 +627,7 @@ class UsersController extends \BaseController
     {
         $file = 'uploads/admin@admin.com/attachments/Lighthouse.jpg';
 
-        $name= $_GET['attachement'];
+        $name = $_GET['attachement'];
 
         header('Content-Description: File Transfer');
         header('Content-Type: application/force-download');
@@ -644,14 +639,15 @@ class UsersController extends \BaseController
         header('Content-Length: ' . filesize($name));
         ob_clean();
         flush();
-        readfile("your_file_path/".$name); //showing the path to the server where the file is to be download
+        readfile("your_file_path/" . $name); //showing the path to the server where the file is to be download
         exit;
     }
+
     /**
      * Update the specified resource in storage.
      * PUT /users/{id}
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function update($id)
@@ -663,7 +659,7 @@ class UsersController extends \BaseController
      * Remove the specified resource from storage.
      * DELETE /users/{id}
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function getDestroyDelete($id)
@@ -672,17 +668,14 @@ class UsersController extends \BaseController
         $user = User::find($id);
 
         $save = $user->delete();
-        if ($save)
-        {
+        if ($save) {
             return json_encode([
                 'code' => 200,
                 'msg' => Config::get('constants.delete_record_msg'),
                 'result' => null,
                 'redirect' => 'app.users.approve'
             ]);
-        }
-        else
-        {
+        } else {
             return json_encode([
                 'code' => 403,
                 'msg' => Config::get('constants.error_record_msg'),

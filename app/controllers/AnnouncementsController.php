@@ -14,7 +14,8 @@ class AnnouncementsController extends \BaseController {
 
     public function getDataView()
     {
-        $notificationsOfUser = Announcement::orderBy('created_at','desc')->get();
+        $notificationsOfUser = Announcement::join('users', 'users.user_id', '=', 'notifications.from')
+            ->orderBy('created_at','desc')->get();
 
         $returnData = [];
         $img_extensions = ['gif', 'jpg', 'png'];
@@ -23,6 +24,7 @@ class AnnouncementsController extends \BaseController {
             $returnData[$key]['id'] = $notification->announcements_id;
             $returnData[$key]['subject'] = $notification->subject;
             $returnData[$key]['from'] = $notification->from;
+            $returnData[$key]['from_name'] = $notification->first_name." ".$notification->last_name;
             $returnData[$key]['avatar'] = User::find($notification->from)->profile_image;
             $returnData[$key]['to'] = '';
             $returnData[$key]['content'] = $notification->content;

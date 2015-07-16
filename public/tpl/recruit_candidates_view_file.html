@@ -70,23 +70,26 @@
                 </button>
             </td>
             <td>
-                <button ng-if="row.recruit_candidates_action == 'To Be Scheduled'" ng-click="change_action($index)" type="button"
+                <button ng-if="row.recruit_candidates_action == 'To Be Scheduled'" ng-click="change_action($index)"
+                        type="button"
                         class="btn btn-warning">
                     {{row.recruit_candidates_action}}
                 </button>
-                <button ng-if="row.recruit_candidates_action == 'Reschedule'" ng-click="change_action($index)" type="button"
+                <button ng-if="row.recruit_candidates_action == 'Reschedule'" ng-click="change_action($index)"
+                        type="button"
                         class="btn btn-success">
                     {{row.recruit_candidates_action}} - {{ row.reschedule_count }}
                 </button>
-                <button ng-if="row.recruit_candidates_action == 'Offer Letter'" ng-click="send_offer_letter($index)" type="button"
+                <button ng-if="row.recruit_candidates_action == 'Offer Letter'" ng-click="send_offer_letter($index)"
+                        type="button"
                         class="btn btn-pink">
-                         {{row.recruit_candidates_action}}
+                    {{row.recruit_candidates_action}}
                 </button>
                 <button ng-if="row.recruit_candidates_action == 'Rejected'" type="button" class="btn btn-danger">
-                         {{row.recruit_candidates_action}}
+                    {{row.recruit_candidates_action}}
                 </button>
                 <button ng-if="row.recruit_candidates_action == 'Selected'" type="button" class="btn btn-success">
-                         {{row.recruit_candidates_action}}
+                    {{row.recruit_candidates_action}}
                 </button>
             </td>
 
@@ -96,9 +99,9 @@
                 </a>
             </td>
             <!--<td ng-if="permission.recruit_candidates.delete==1">-->
-                <!--<a href='#/app/recruit_candidates/delete/{{ row.delete }}'>-->
-                    <!--<button class="btn btn-sm btn-danger" tooltip="Delete"><i class=" fa fa-trash-o"></i></button>-->
-                <!--</a>-->
+            <!--<a href='#/app/recruit_candidates/delete/{{ row.delete }}'>-->
+            <!--<button class="btn btn-sm btn-danger" tooltip="Delete"><i class=" fa fa-trash-o"></i></button>-->
+            <!--</a>-->
             <!--</td>-->
 
         </tr>
@@ -148,12 +151,14 @@
         <form name="formValidate" class="form-horizontal form-validation" novalidate>
             <div class="form-group">
                 <label class="col-sm-3 control-label">Candidate Name</label>
+
                 <div class="col-sm-9">
                     <input type="text" class="form-control" ng-model="data.candidate.recruit_candidates_fname" readonly>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">To</label>
+
                 <div class="col-sm-9">
                     <input type="text" class="form-control" ng-model="data.candidate.recruit_candidates_email" readonly>
                 </div>
@@ -184,7 +189,8 @@
 
                 <div class="col-sm-9">
                     <div ng-controller="TimepickerDemoCtrl">
-                        <timepicker ng-model="data.candidate.time" ng-change="changed()" hour-step="hstep" minute-step="mstep"
+                        <timepicker ng-model="data.candidate.time" ng-change="changed()" hour-step="hstep"
+                                    minute-step="mstep"
                                     show-meridian="ismeridian"></timepicker>
                     </div>
                 </div>
@@ -207,7 +213,121 @@
                 <label class="col-sm-3 control-label">Applied For</label>
 
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" ng-model="data.candidate.designation.designations_name" readonly>
+                    <input type="text" class="form-control" ng-model="data.candidate.designation.designations_name"
+                           readonly>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="sendOfferLetter.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Send Offer letter !!</h3>
+
+        <hr>
+        <form name="formValidate" class="form-horizontal form-validation" novalidate>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Candidate Name</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model="data.candidate.recruit_candidates_fname" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">To</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model="data.candidate.ofrltr_to_email" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Select Date</label>
+
+                <div class="col-sm-9" ng-controller="DatepickerDemoCtrl">
+                    <div class="input-group w-md">
+                        <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                               ng-model="data.candidate.ofrltr_date"
+                               is-open="opened" datepicker-options="dateOptions" ng-required="true"
+                               close-text="Close"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                        class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Subject</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model="data.candidate.ofrltr_subject">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Message</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model="data.candidate.ofrltr_message">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Applied For</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model="data.candidate.designation.designations_name"
+                           readonly>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Joining Date</label>
+
+                <div class="col-sm-9" ng-controller="DatepickerDemoCtrl">
+                    <div class="input-group w-md">
+                        <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                               ng-model="data.candidate.ofrltr_joining_date"
+                               is-open="opened" datepicker-options="dateOptions" ng-required="true"
+                               close-text="Close"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                        class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Joining Time</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model="data.candidate.ofrltr_joining_time">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">CTC</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model="data.candidate.ofrltr_ctc">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Department</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model="data.candidate.ofrltr_department">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Offer Letter Number</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model="data.candidate.ofrltr_number">
                 </div>
             </div>
         </form>

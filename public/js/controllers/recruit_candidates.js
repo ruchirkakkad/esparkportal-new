@@ -13,8 +13,26 @@ app.controller('RecruitCandidatesController', ['$scope', '$http', '$state', 'Fla
         };
 
 
-        $scope.user = {id: "", name: ""}
+        $scope.send_offer_letter = function (index) {
+            $scope.data.index = index;
+            $scope.data.candidate = $scope.data.candidates[index];
 
+            $scope.data.candidate.ofrltr_date = '';
+            $scope.data.candidate.ofrltr_subject = '';
+            $scope.data.candidate.ofrltr_message = '';
+            $scope.data.candidate.ofrltr_joining_date = '';
+            $scope.data.candidate.ofrltr_joining_time = '';
+            $scope.data.candidate.ofrltr_ctc = '';
+            $scope.data.candidate.ofrltr_department = '';
+            $scope.data.candidate.ofrltr_number = '';
+            
+            var modalInstance = $modal.open({
+                templateUrl: 'sendOfferLetter.html',
+                controller: 'sendOfferLetterCtrl',
+                scope: $scope
+            });
+
+        };
 
         $scope.change_status = function (index) {
             $scope.data.index = index;
@@ -105,7 +123,7 @@ app.controller('RecruitCandidatesController', ['$scope', '$http', '$state', 'Fla
 
         $scope.removeQualificationDetails = function (index) {
             $scope.data.users_qualification.splice(index, 1);
-        }
+        };
 
 
         function uploadUsingUpload(file) {
@@ -183,6 +201,22 @@ app.controller('changeStatusCtrl', function ($scope, $modalInstance, $http) {
 app.controller('changeActionCtrl', function ($scope, $modalInstance, $http) {
     $scope.ok = function () {
         $http.post('recruit_candidates/change-status-to-scheduled-view', {
+            candidate: $scope.data.candidate
+        }).success(function (data) {
+            $scope.data.candidates[$scope.data.index].recruit_candidates_action = data.result.candidate.recruit_candidates_action;
+            $scope.data.candidates[$scope.data.index].reschedule_count = data.result.action_count;
+        });
+
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
+app.controller('sendOfferLetterCtrl', function ($scope, $modalInstance, $http) {
+    $scope.ok = function () {
+        $http.post('recruit_candidates/send-offer-letter-view', {
             candidate: $scope.data.candidate
         }).success(function (data) {
             $scope.data.candidates[$scope.data.index].recruit_candidates_action = data.result.candidate.recruit_candidates_action;

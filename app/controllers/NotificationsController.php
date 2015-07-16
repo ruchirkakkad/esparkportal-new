@@ -17,6 +17,7 @@ class NotificationsController extends \BaseController
     {
         $notificationsOfUser = NotificationTo::where('users_id', '=', Auth::user()->user_id)
             ->join('notifications', 'notifications.notifications_id', '=', 'notification_tos.notifications_id')
+            ->join('users', 'users.user_id', '=', 'notifications.from')
             ->orderBy('notifications.created_at','desc')->get();
 
         $returnData = [];
@@ -28,6 +29,7 @@ class NotificationsController extends \BaseController
             $returnData[$key]['id'] = $notification->notification_tos_id;
             $returnData[$key]['subject'] = $notification->subject;
             $returnData[$key]['from'] = $notification->from;
+            $returnData[$key]['from_name'] = $notification->first_name." ".$notification->last_name;
             $returnData[$key]['avatar'] = User::find($notification->from)->profile_image;
             $returnData[$key]['to'] = '';
             $returnData[$key]['content'] = $notification->content;

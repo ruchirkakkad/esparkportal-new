@@ -9,7 +9,7 @@
     </div>
     <div class="wrapper b-b">
         <img ng-src="{{mail.avatar}}" class="img-circle thumb-xs m-r-sm">
-        from <a href>{{mail.from}}</a> on {{mail.date}}
+        from <a href>{{mail.from_name}}</a> on {{mail.date}}
     </div>
     <div class="wrapper">
         <div ta-bind="text" ng-model="mail.content" ta-readonly='disabled'></div>
